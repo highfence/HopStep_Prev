@@ -1,4 +1,6 @@
 #pragma once
+#include <Windows.h>
+
 namespace HopStep
 {
 	class HSWindow

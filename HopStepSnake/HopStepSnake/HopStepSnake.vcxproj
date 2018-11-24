@@ -116,9 +116,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\HopStep\HopStep\HopStep.vcxproj">
