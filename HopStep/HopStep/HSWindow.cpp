@@ -21,6 +21,14 @@ namespace HopStep
 		return 0;
 	}
 
+	HSWindow::HSWindow()
+	{
+	}
+
+	HSWindow::~HSWindow()
+	{
+	}
+
 	void HSWindow::Create(WindowConfig config)
 	{
 		m_Config = config;

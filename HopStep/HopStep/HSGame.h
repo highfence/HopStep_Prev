@@ -1,6 +1,8 @@
 #pragma once
 #include <stack>
+#include "HSWindow.h"
 #include "IScene.h"
+#include "Result.h"
 
 namespace HopStep
 {
@@ -8,13 +10,21 @@ namespace HopStep
 	{
 	public:
 
+		HSGame();
+		~HSGame();
+
 		void GameStart();
+
+		void SetWindowConfig(WindowConfig& config);
 
 		void SetStartScene(IScene* startScene);
 
 	private :
 
-		std::stack<std::shared_ptr<IScene*>> m_Scene;
+		Result InitEngine();
+
+		std::stack<IScene*> m_Scene;
+		std::unique_ptr<HSWindow> m_GameWindow;
 
 	};
 }

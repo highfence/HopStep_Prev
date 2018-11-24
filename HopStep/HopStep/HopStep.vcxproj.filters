@@ -11,15 +11,14 @@
     <ClInclude Include="HsWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Result.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="IScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="HSGame.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="HSDebug.h" />
+    <ClInclude Include="Result.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -45,5 +44,6 @@
     <ClCompile Include="HSGame.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="HSDebug.cpp" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	windowConfig.cmdShow = nCmdShow;
 	windowConfig.windowName = L"Snake Practice!";
 
-
+	HopStep::HSGame SnakeGame;
 
 
 	return 0;

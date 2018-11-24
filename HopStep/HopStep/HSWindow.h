@@ -17,6 +17,9 @@ namespace HopStep
 	{
 	public:
 
+		HSWindow();
+		~HSWindow();
+
 		void Create(WindowConfig config);
 
 	private :

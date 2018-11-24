@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HsWindow.h" />
     <ClInclude Include="IScene.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HSDebug.cpp" />
     <ClCompile Include="HSGame.cpp" />
     <ClCompile Include="HsWindow.cpp" />
     <ClCompile Include="stdafx.cpp">
