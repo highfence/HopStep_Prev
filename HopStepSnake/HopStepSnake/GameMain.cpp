@@ -7,5 +7,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	std::wstring gameWindowName = L"Snake Practice!";
 	HopStep::HSWindow::Create(hInstance, nCmdShow, gameWindowName, 1200, 800);
 
+
+
 	return 0;
 }
