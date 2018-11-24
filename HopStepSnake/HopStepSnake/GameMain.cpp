@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <string>
 #include "GameMain.h"
+#include "GameScene.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nCmdShow)
 {
@@ -12,7 +13,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	windowConfig.windowName = L"Snake Practice!";
 
 	HopStep::HSGame SnakeGame;
+	SnakeGame.SetWindowConfig(windowConfig);
 
+	GameScene gameScene;
+	SnakeGame.SetStartScene(&gameScene);
+
+	SnakeGame.GameStart();
 
 	return 0;
 }
