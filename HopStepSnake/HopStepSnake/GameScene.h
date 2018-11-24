@@ -6,6 +6,6 @@ public:
 
 	virtual bool Init() override;
 
-	virtual void UpdateScene(float deltaTime) override;
+	virtual void UpdateScene(const float deltaTime) override;
 };
 

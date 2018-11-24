@@ -17,6 +17,9 @@
     <ClInclude Include="IScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="HSGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="HsWindow.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="HSGame.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

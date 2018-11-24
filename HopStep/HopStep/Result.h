@@ -8,7 +8,7 @@ namespace HopStep
 		{
 			None = 0,
 
-			ResultMax
+			ResultMaxCount
 		};
 	}
 }

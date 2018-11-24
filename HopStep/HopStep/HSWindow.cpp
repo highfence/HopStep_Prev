@@ -25,7 +25,6 @@ namespace HopStep
 	{
 		WNDCLASSEX wc;
 		HWND hwnd;
-		MSG Msg;
 
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.style = 0;
@@ -56,11 +55,5 @@ namespace HopStep
 
 		ShowWindow(hwnd, nCmdShow);
 		UpdateWindow(hwnd);
-
-		while (GetMessage(&Msg, NULL, 0, 0) > 0)
-		{
-			TranslateMessage(&Msg);
-			DispatchMessage(&Msg);
-		}
 	}
 }
