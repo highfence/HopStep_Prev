@@ -3,11 +3,25 @@
 
 namespace HopStep
 {
+	struct WindowConfig
+	{
+		HINSTANCE instance;
+		int cmdShow;
+		std::wstring windowName;
+
+		int clientWidth;
+		int clientHeight;
+	};
+
 	class HSWindow
 	{
 	public:
 
-		static void Create(HINSTANCE hInstance, int nCmdShow, std::wstring& name, int width, int height);
+		void Create(WindowConfig config);
+
+	private :
+
+		WindowConfig m_Config;
 
 	};
 }

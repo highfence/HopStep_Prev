@@ -4,8 +4,13 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nCmdShow)
 {
-	std::wstring gameWindowName = L"Snake Practice!";
-	HopStep::HSWindow::Create(hInstance, nCmdShow, gameWindowName, 1200, 800);
+	HopStep::WindowConfig windowConfig;
+	windowConfig.clientWidth = 1200;
+	windowConfig.clientHeight = 800;
+	windowConfig.instance = hInstance;
+	windowConfig.cmdShow = nCmdShow;
+	windowConfig.windowName = L"Snake Practice!";
+
 
 
 

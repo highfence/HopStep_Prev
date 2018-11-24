@@ -21,8 +21,10 @@ namespace HopStep
 		return 0;
 	}
 
-	void HSWindow::Create(HINSTANCE hInstance, int nCmdShow, std::wstring& name, int width, int height)
+	void HSWindow::Create(WindowConfig config)
 	{
+		m_Config = config;
+
 		WNDCLASSEX wc;
 		HWND hwnd;
 
@@ -31,7 +33,7 @@ namespace HopStep
 		wc.lpfnWndProc = HSBasicWindowProc;
 		wc.cbClsExtra = 0;
 		wc.cbWndExtra = 0;
-		wc.hInstance = hInstance;
+		wc.hInstance = m_Config.instance;
 		wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 		wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
@@ -45,7 +47,7 @@ namespace HopStep
 			return;
 		}
 
-		hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), name.c_str(), WS_OVERLAPPEDWINDOW,	CW_USEDEFAULT, CW_USEDEFAULT, width, height, NULL, NULL, hInstance, NULL);
+		hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), m_Config.windowName.c_str(), WS_OVERLAPPEDWINDOW,	CW_USEDEFAULT, CW_USEDEFAULT, m_Config.clientWidth, m_Config.clientHeight, NULL, NULL, m_Config.instance, NULL);
 
 		if (hwnd == NULL)
 		{
@@ -53,7 +55,7 @@ namespace HopStep
 			return;
 		}
 
-		ShowWindow(hwnd, nCmdShow);
+		ShowWindow(hwnd, m_Config.cmdShow);
 		UpdateWindow(hwnd);
 	}
 }
