@@ -8,15 +8,30 @@
     <ClInclude Include="targetver.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="HsWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
       <UniqueIdentifier>{cf061c20-dace-4abb-9966-71d6ff1ed371}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{771c0d14-5a76-4d6f-90fd-eb1fca505358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{ab60a33b-5cbd-460e-9e14-95d96761b890}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HsWindow.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
