@@ -5,6 +5,7 @@ namespace HopStep
 {
 	HSGame::HSGame()
 	{
+		InitEngine();
 	}
 
 	HSGame::~HSGame()
@@ -20,6 +21,9 @@ namespace HopStep
 			{
 				if (message.message == WM_QUIT)
 					break;
+
+				TranslateMessage(&message);
+				DispatchMessage(&message);
 			}
 			else
 			{
@@ -30,6 +34,7 @@ namespace HopStep
 
 	void HSGame::SetWindowConfig(WindowConfig& config)
 	{
+		m_WindowConfig = config;
 	}
 
 	void HSGame::SetStartScene(IScene* startScene)

@@ -23,6 +23,8 @@ namespace HopStep
 
 		Result InitEngine();
 
+		WindowConfig m_WindowConfig;
+
 		std::stack<IScene*> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
 
