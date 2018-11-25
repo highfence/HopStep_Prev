@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "Result.h"
+#include <string>
 #include "HSDebug.h"
 
 

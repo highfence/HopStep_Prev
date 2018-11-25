@@ -19,6 +19,11 @@
     </ClInclude>
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="Result.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="RenderCommand.h" />
+    <ClInclude Include="Pool.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -33,6 +38,12 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{fc161cf8-01fa-47b5-8a92-03700302e774}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{8949f0b8-0c5c-4f87-b0c1-f07b3704485f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{66df21be-5fbb-4aad-8e2e-63404d6e9ecd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -45,5 +56,7 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="HSDebug.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="RenderCommand.cpp" />
   </ItemGroup>
 </Project>
