@@ -52,8 +52,10 @@ namespace HopStep
 	Result HSGame::InitEngine()
 	{
 		m_Scene.empty();
+
 		m_Timer = std::make_unique<Timer>();
 		m_Timer->InitTimer();
+
 		m_GameWindow = std::make_unique<HSWindow>();
 
 		return Result::None;
@@ -61,7 +63,10 @@ namespace HopStep
 
 	Result HSGame::OpenWindow()
 	{
-		m_GameWindow->Create(m_WindowConfig);
+		Result funcResult = Result::None;
+
+		funcResult = m_GameWindow->Create(m_WindowConfig);
+		HSDebug::CheckResult(funcResult);
 
 		return Result::None;
 	}

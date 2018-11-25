@@ -10,6 +10,9 @@ namespace HopStep
 
 			InvalidParameter = 1,
 
+			WindowClassRegistFailed = 20,
+			WindowInvalidHandleReturn = 21,
+
 			ResultMaxCount
 		};
 	}

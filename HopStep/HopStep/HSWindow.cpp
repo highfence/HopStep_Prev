@@ -29,7 +29,7 @@ namespace HopStep
 	{
 	}
 
-	void HSWindow::Create(WindowConfig& config)
+	Result HSWindow::Create(WindowConfig& config)
 	{
 		m_Config = config;
 
@@ -50,18 +50,14 @@ namespace HopStep
 		wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
 		if (!RegisterClassEx(&wc))
-		{
-			MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
-			return;
-		}
+			return Result::WindowClassRegistFailed;
 
-		hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), m_Config.windowName.c_str(), WS_OVERLAPPEDWINDOW,	CW_USEDEFAULT, CW_USEDEFAULT, m_Config.clientWidth, m_Config.clientHeight, NULL, NULL, m_Config.instance, NULL);
+		hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), m_Config.windowName.c_str(),
+			WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
+			m_Config.clientWidth, m_Config.clientHeight, NULL, NULL, m_Config.instance, NULL);
 
 		if (hwnd == NULL)
-		{
-			MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
-			return;
-		}
+			return Result::WindowInvalidHandleReturn;
 
 		ShowWindow(hwnd, m_Config.cmdShow);
 		UpdateWindow(hwnd);
