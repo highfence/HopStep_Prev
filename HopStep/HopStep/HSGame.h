@@ -6,6 +6,8 @@
 
 namespace HopStep
 {
+	class Timer;
+
 	class HSGame
 	{
 	public:
@@ -22,11 +24,15 @@ namespace HopStep
 	private :
 
 		Result InitEngine();
+		Result OpenWindow();
 
+		void UpdateEngine();
 		WindowConfig m_WindowConfig;
 
 		std::stack<IScene*> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
+		std::unique_ptr<Timer> m_Timer;
 
+		float m_AccTime = 0.0f;
 	};
 }

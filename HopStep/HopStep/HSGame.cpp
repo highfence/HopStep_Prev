@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Timer.h"
 #include "HSGame.h"
 
 namespace HopStep
@@ -14,6 +15,8 @@ namespace HopStep
 
 	void HSGame::GameStart()
 	{
+		OpenWindow();
+
 		MSG message;
 		while (true)
 		{
@@ -28,6 +31,7 @@ namespace HopStep
 			else
 			{
 				// whole game update
+				UpdateEngine();
 			}
 		}
 	}
@@ -48,8 +52,30 @@ namespace HopStep
 	Result HSGame::InitEngine()
 	{
 		m_Scene.empty();
+		m_Timer = std::make_unique<Timer>();
+		m_Timer->InitTimer();
 		m_GameWindow = std::make_unique<HSWindow>();
 
 		return Result::None;
+	}
+
+	Result HSGame::OpenWindow()
+	{
+		m_GameWindow->Create(m_WindowConfig);
+
+		return Result::None;
+	}
+
+	constexpr float frameTime = 1.0f / 60.0f;
+	void HSGame::UpdateEngine()
+	{
+		m_Timer->ProcessTime();
+		static float deltaTime = m_Timer->GetElapsedTime();
+
+		m_AccTime += deltaTime;
+		if (m_AccTime > frameTime)
+		{
+			m_AccTime = 0.0f;
+		}
 	}
 }

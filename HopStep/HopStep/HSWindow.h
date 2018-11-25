@@ -25,6 +25,5 @@ namespace HopStep
 	private :
 
 		WindowConfig m_Config;
-
 	};
 }
