@@ -17,13 +17,23 @@
     <ClInclude Include="HSGame.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="HSDebug.h" />
     <ClInclude Include="Result.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="RenderCommand.h" />
     <ClInclude Include="Pool.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="HSDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCommand.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DX11Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -55,8 +65,16 @@
     <ClCompile Include="HSGame.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="HSDebug.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="RenderCommand.cpp" />
+    <ClCompile Include="HSDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCommand.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderer.cpp" />
+    <ClCompile Include="DX11Renderer.cpp" />
   </ItemGroup>
 </Project>

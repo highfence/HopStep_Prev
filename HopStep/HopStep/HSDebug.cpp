@@ -13,6 +13,9 @@ namespace HopStep
 		case Result::None:
 			return std::wstring(TEXT("None"));
 
+		case Result::InvalidParameter:
+			return std::wstring(TEXT("Invalid parameter"));
+
 		default:
 			return std::wstring(TEXT("Undefined result enum"));
 		}

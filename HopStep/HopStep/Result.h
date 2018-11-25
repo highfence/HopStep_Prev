@@ -8,6 +8,8 @@ namespace HopStep
 		{
 			None = 0,
 
+			InvalidParameter = 1,
+
 			ResultMaxCount
 		};
 	}

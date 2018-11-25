@@ -4,7 +4,7 @@
 
 namespace HopStep
 {
-	IRenderer* IRenderer::Factory::GetRenderer()
+	IRenderer* RendererFactory::GetRenderer()
 	{
 		return nullptr;
 	}
