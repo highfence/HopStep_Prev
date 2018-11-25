@@ -11,16 +11,18 @@ namespace HopStep
 		switch (result)
 		{
 		case Result::None:
-			return std::wstring(TEXT("None"));
+			return std::wstring(TEXT("None."));
 		case Result::InvalidParameter:
-			return std::wstring(TEXT("Invalid parameter"));
+			return std::wstring(TEXT("Invalid parameter."));
+		case Result::NullParameter:
+			return std::wstring(TEXT("Parameter is null."));
 		case Result::WindowClassRegistFailed:
 			return std::wstring(TEXT("Window registration failed!"));
 		case Result::WindowInvalidHandleReturn:
 			return std::wstring(TEXT("Window creation failed!"));
 
 		default:
-			return std::wstring(TEXT("Undefined result enum"));
+			return std::wstring(TEXT("Undefined result enum."));
 		}
 	}
 
