@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "HopStep.h"
 #include "HsWindow.h"
 
 namespace HopStep
@@ -61,5 +62,7 @@ namespace HopStep
 
 		ShowWindow(hwnd, m_Config.cmdShow);
 		UpdateWindow(hwnd);
+
+		return Result::None;
 	}
 }

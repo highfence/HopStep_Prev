@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "HopStep.h"
 #include "Timer.h"
 #include "HSGame.h"
 
@@ -53,7 +54,7 @@ namespace HopStep
 	{
 		m_Scene.empty();
 
-		m_Timer = std::make_unique<Timer>();
+		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
 		m_GameWindow = std::make_unique<HSWindow>();

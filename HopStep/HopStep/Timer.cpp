@@ -3,16 +3,16 @@
 
 namespace HopStep
 {
-	Timer::Timer()
+	GameTimer::GameTimer()
 		: m_UseQPF(false), m_ElapsedTime(0.f), m_QPFTicksPerSec(0), m_LastElapsedTime(0)
 	{
 	}
 
-	Timer::~Timer()
+	GameTimer::~GameTimer()
 	{
 	}
 
-	void Timer::InitTimer()
+	void GameTimer::InitTimer()
 	{
 		LARGE_INTEGER qwTicksPerSec, qwTime;
 
@@ -27,7 +27,7 @@ namespace HopStep
 		m_LastElapsedTime = qwTime.QuadPart;
 	}
 
-	void Timer::ProcessTime()
+	void GameTimer::ProcessTime()
 	{
 		if (m_UseQPF == false)
 			return;

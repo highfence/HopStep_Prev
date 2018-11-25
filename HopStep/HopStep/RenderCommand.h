@@ -2,10 +2,11 @@
 
 namespace HopStep
 {
-	class RenderCommand
+	inline namespace Internal
 	{
-	public:
-		RenderCommand();
-		~RenderCommand();
-	};
+		class RenderCommand
+		{
+		public:
+		};
+	}
 }

@@ -3,11 +3,5 @@
 
 namespace HopStep
 {
-	RenderCommand::RenderCommand()
-	{
-	}
 
-	RenderCommand::~RenderCommand()
-	{
-	}
 }

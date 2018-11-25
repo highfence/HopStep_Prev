@@ -2,26 +2,29 @@
 
 namespace HopStep
 {
-	class Timer
+	inline namespace Internal
 	{
-	public:
-
-		Timer();
-		virtual ~Timer();
-
-		void InitTimer();
-		void ProcessTime();
-
-		inline float GetElapsedTime() const
+		class GameTimer
 		{
-			return m_ElapsedTime;
-		}
+		public:
 
-	private:
+			GameTimer();
+			virtual ~GameTimer();
 
-		bool m_UseQPF;
-		float m_ElapsedTime;
-		LONGLONG m_QPFTicksPerSec;
-		LONGLONG m_LastElapsedTime;
-	};
+			void InitTimer();
+			void ProcessTime();
+
+			inline float GetElapsedTime() const
+			{
+				return m_ElapsedTime;
+			}
+
+		private:
+
+			bool m_UseQPF;
+			float m_ElapsedTime;
+			LONGLONG m_QPFTicksPerSec;
+			LONGLONG m_LastElapsedTime;
+		};
+	}
 }

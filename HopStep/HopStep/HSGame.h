@@ -3,11 +3,10 @@
 #include "HSWindow.h"
 #include "IScene.h"
 #include "Result.h"
+#include "Timer.h"
 
 namespace HopStep
 {
-	class Timer;
-
 	class HSGame
 	{
 	public:
@@ -31,7 +30,7 @@ namespace HopStep
 
 		std::stack<IScene*> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
-		std::unique_ptr<Timer> m_Timer;
+		std::unique_ptr<GameTimer> m_Timer;
 
 		float m_AccTime = 0.0f;
 	};

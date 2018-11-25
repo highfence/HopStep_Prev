@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "HopStep.h"
-#include <string>
 #include "HSDebug.h"
 
 
