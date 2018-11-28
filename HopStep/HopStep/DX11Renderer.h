@@ -8,7 +8,13 @@ namespace HopStep
 		class DX11Renderer final : public IRenderer
 		{
 		public:
+
 			virtual Result SetRenderQueue(RenderQueue* renderQueue) override;
+
+		private :
+
+			RenderQueue* m_RenderQueue;
+
 		};
 	}
 }

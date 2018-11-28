@@ -9,6 +9,8 @@ namespace HopStep
 		if (renderQueue == nullptr)
 			return Result::NullParameter;
 
+		m_RenderQueue = renderQueue;
+
 		return Result::None;
 	}
 }

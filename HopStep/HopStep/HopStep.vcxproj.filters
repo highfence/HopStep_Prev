@@ -36,6 +36,9 @@
     <ClInclude Include="DX11Renderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="SwapContainer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -76,8 +79,10 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderer.cpp" />
     <ClCompile Include="DX11Renderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
