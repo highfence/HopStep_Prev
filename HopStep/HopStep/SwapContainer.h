@@ -18,8 +18,8 @@ namespace HopStep
 
 		std::mutex m_SwapMutex;
 
-		T* m_FirstContainer;
-		T* m_SecondContrainer;
+		T* m_FirstContainer = nullptr;
+		T* m_SecondContrainer = nullptr;
 
 		T& m_OutReference;
 	};
@@ -55,5 +55,4 @@ namespace HopStep
 			m_OutReference = m_FirstContainer;
 		}
 	}
-
 }
