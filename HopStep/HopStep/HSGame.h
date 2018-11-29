@@ -4,6 +4,7 @@
 #include "IScene.h"
 #include "Result.h"
 #include "Timer.h"
+#include "IRenderer.h"
 
 namespace HopStep
 {
@@ -31,6 +32,7 @@ namespace HopStep
 		std::stack<IScene*> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
 		std::unique_ptr<GameTimer> m_Timer;
+		std::unique_ptr<IRenderer> m_Renderer;
 
 		float m_AccTime = 0.0f;
 	};

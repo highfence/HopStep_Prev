@@ -6,5 +6,4 @@
 #include "HSGame.h"
 #include "IScene.h"
 #include "HSDebug.h"
-
-#define FactoryClass struct
+#include "DX11Renderer.h"

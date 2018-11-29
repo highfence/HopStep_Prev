@@ -59,6 +59,8 @@ namespace HopStep
 
 		m_GameWindow = std::make_unique<HSWindow>();
 
+		m_Renderer = std::make_unique<DX11Renderer>();
+
 		return Result::None;
 	}
 

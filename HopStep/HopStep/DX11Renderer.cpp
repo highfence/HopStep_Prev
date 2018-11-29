@@ -13,4 +13,13 @@ namespace HopStep
 
 		return Result::None;
 	}
+
+	Result Internal::DX11Renderer::InitRenderer()
+	{
+		return Result::None;
+	}
+
+	void Internal::DX11Renderer::Render()
+	{
+	}
 }
