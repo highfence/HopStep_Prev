@@ -11,7 +11,8 @@ namespace HopStep
 		SwapContainer(T* firstContainer, T* secondContainer);
 		~SwapContainer();
 
-		inline T& GetContainer() const { return m_OutReference; }
+		inline T& GetOutRef() const { return m_OutReference; }
+		inline T& GetInRef() const { return m_InReference; }
 		void Swap();
 
 	private :
@@ -22,6 +23,7 @@ namespace HopStep
 		T* m_SecondContrainer = nullptr;
 
 		T& m_OutReference;
+		T& m_InReference;
 	};
 
 	template<class T>
@@ -33,7 +35,8 @@ namespace HopStep
 		m_FirstContainer = firstContainer;
 		m_SecondContrainer = secondContainer;
 
-		m_OutReference = m_FirstContainer;
+		m_InReference = m_FirstContainer;
+		m_OutReference = m_SecondContrainer;
 	}
 
 	template<class T>
@@ -46,12 +49,14 @@ namespace HopStep
 	{
 		std::lock_guard<std::mutex> releaseLock(m_SwapMutex);
 
-		if (m_OutReference == m_FirstContainer)
+		if (m_OutReference == m_FirstContainer && m_InReference == m_SecondContrainer)
 		{
+			m_InReference = m_FirstContainer;
 			m_OutReference = m_SecondContrainer;
 		}
-		else if (m_OutReference == m_SecondContrainer)
+		else if (m_OutReference == m_SecondContrainer && m_InReference == m_FirstContainer)
 		{
+			m_InReference = m_SecondContrainer;
 			m_OutReference = m_FirstContainer;
 		}
 	}
