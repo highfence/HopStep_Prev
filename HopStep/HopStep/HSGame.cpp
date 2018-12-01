@@ -12,6 +12,12 @@ namespace HopStep
 
 	HSGame::~HSGame()
 	{
+		Release();
+	}
+
+	void HSGame::Release()
+	{
+		
 	}
 
 	void HSGame::GameStart()

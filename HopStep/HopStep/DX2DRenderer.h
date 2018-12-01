@@ -17,7 +17,7 @@ namespace HopStep
 
         private :
 
-            RenderQueue* m_RenderQueue;
+            RenderQueue* m_RenderQueue = nullptr;
         };
     }
 }

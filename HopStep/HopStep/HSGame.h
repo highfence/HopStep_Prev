@@ -15,6 +15,8 @@ namespace HopStep
 		HSGame();
 		~HSGame();
 
+		void Release();
+
 		void GameStart();
 
 		void SetWindowConfig(WindowConfig& config);

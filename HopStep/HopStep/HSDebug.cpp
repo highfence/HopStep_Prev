@@ -7,6 +7,10 @@ namespace HopStep
 {
 	std::wstring HSDebug::GetResultName(Result result)
 	{
+#ifndef _DEBUG
+		return std::wstring();
+#endif
+
 		switch (result)
 		{
 		case Result::None:
@@ -27,6 +31,10 @@ namespace HopStep
 
 	void HSDebug::CheckResult(Result result)
 	{
+#ifndef _DEBUG
+		return;
+#endif
+
 		if (result == Result::None)
 			return;
 
