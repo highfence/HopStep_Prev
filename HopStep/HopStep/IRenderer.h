@@ -18,11 +18,5 @@ namespace HopStep
 
 			virtual void Render() = 0;
 		};
-
-		class RendererFactory
-		{
-		public :
-			static IRenderer* GetRenderer();
-		};
 	}
 }

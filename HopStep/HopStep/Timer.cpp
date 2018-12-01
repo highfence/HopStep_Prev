@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "HopStep.h"
 #include "Timer.h"
 
 namespace HopStep
