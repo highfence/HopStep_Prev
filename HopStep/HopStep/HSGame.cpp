@@ -69,16 +69,26 @@ namespace HopStep
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
-		auto pool1 = new Pool<RenderCommand>();
-		auto pool2 = new Pool<RenderCommand>();
-		pool1->Init(1024);
-		pool2->Init(1024);
-
-		m_RenderQueue = std::make_shared<RenderQueue>(pool1, pool2);
+		HSDebug::CheckResult(InitRenderQueue());
 
 		m_GameWindow = std::make_unique<HSWindow>();
 
 		m_InputLayer = std::make_shared<InputLayer>();
+
+		return Result::None;
+	}
+
+	// Todo : Take this from engine config
+	constexpr int basicRenderCommandPoolSize = 1024;
+	Result HSGame::InitRenderQueue()
+	{
+		auto firstPool = new RenderCommandPool();
+		firstPool->Init(basicRenderCommandPoolSize);
+
+		auto secondPool = new RenderCommandPool();
+		secondPool->Init(basicRenderCommandPoolSize);
+
+		m_RenderQueue = std::make_shared<RenderQueue>(firstPool, secondPool);
 
 		return Result::None;
 	}
