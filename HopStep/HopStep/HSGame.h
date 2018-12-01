@@ -31,6 +31,7 @@ namespace HopStep
 
 		Result InitEngine();
 		Result InitRenderQueue();
+		Result InitRenderer();
 		Result OpenWindow();
 
 		void UpdateEngine();

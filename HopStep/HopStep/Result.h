@@ -11,6 +11,8 @@ namespace HopStep
 			InvalidParameter = 1,
 			NullParameter = 2,
 
+			InitializeFailed = 10,
+
 			WindowClassRegistFailed = 20,
 			WindowInvalidHandleReturn = 21,
 

@@ -43,7 +43,6 @@ namespace HopStep
 			}
 			else
 			{
-				// whole game update
 				UpdateEngine();
 			}
 		}
@@ -78,14 +77,20 @@ namespace HopStep
 		return Result::None;
 	}
 
-	// Todo : Take this from engine config
+	// Todo : Take this number from engine config
 	constexpr int basicRenderCommandPoolSize = 1024;
 	Result HSGame::InitRenderQueue()
 	{
 		auto firstPool = new RenderCommandPool();
+		if (firstPool == nullptr)
+			return Result::InitializeFailed;
+
 		firstPool->Init(basicRenderCommandPoolSize);
 
 		auto secondPool = new RenderCommandPool();
+		if (secondPool == nullptr)
+			return Result::InitializeFailed;
+
 		secondPool->Init(basicRenderCommandPoolSize);
 
 		m_RenderQueue = std::make_shared<RenderQueue>(firstPool, secondPool);
@@ -93,12 +98,14 @@ namespace HopStep
 		return Result::None;
 	}
 
+	Result HSGame::InitRenderer()
+	{
+		return Result::None;
+	}
+
 	Result HSGame::OpenWindow()
 	{
-		Result funcResult = Result::None;
-
-		funcResult = m_GameWindow->Create(m_WindowConfig);
-		HSDebug::CheckResult(funcResult);
+		HSDebug::CheckResult(m_GameWindow->Create(m_WindowConfig));
 
 		return Result::None;
 	}

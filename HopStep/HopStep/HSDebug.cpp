@@ -19,6 +19,8 @@ namespace HopStep
 			return std::wstring(TEXT("Invalid parameter."));
 		case Result::NullParameter:
 			return std::wstring(TEXT("Parameter is null."));
+		case Result::InitializeFailed:
+			return std::wstring(TEXT("Initialize Failed."));
 		case Result::WindowClassRegistFailed:
 			return std::wstring(TEXT("Window registration failed!"));
 		case Result::WindowInvalidHandleReturn:
