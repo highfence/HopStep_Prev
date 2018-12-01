@@ -148,12 +148,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DX11Renderer.h" />
+    <ClInclude Include="DX2DRenderer.h" />
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HsWindow.h" />
+    <ClInclude Include="InputLayer.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="Keys.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="RenderCommand.h" />
     <ClInclude Include="Result.h" />
@@ -164,10 +167,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11Renderer.cpp" />
+    <ClCompile Include="DX2DRenderer.cpp" />
     <ClCompile Include="HSDebug.cpp" />
     <ClCompile Include="HSGame.cpp" />
     <ClCompile Include="HsWindow.cpp" />
-    <ClCompile Include="IRenderer.cpp" />
+    <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="RenderCommand.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

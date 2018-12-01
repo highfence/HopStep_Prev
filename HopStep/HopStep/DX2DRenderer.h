@@ -5,7 +5,7 @@ namespace HopStep
 {
     inline namespace Internal
     {
-        class DX2DRenderer : public IRenderer
+        class DX2DRenderer final : public IRenderer
         {
         public :
 

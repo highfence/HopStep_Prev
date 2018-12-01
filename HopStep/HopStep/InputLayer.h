@@ -11,6 +11,8 @@ namespace HopStep
 
 		void UpdateKeyStates();
 
+		KeyState GetKeyState(int keyIndex);
+
 	private :
 
 		BYTE m_Keys[keyboardNumber];

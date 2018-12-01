@@ -39,6 +39,15 @@
     <ClInclude Include="SwapContainer.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="DX2DRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayer.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Keys.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -58,6 +67,9 @@
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{66df21be-5fbb-4aad-8e2e-63404d6e9ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{46da09e6-9bcc-449d-8649-6f24c569cbd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +94,11 @@
     <ClCompile Include="DX11Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderer.cpp">
+    <ClCompile Include="DX2DRenderer.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayer.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

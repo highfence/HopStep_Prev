@@ -5,6 +5,10 @@
 #include "Result.h"
 #include "Timer.h"
 #include "IRenderer.h"
+#include "SwapContainer.h"
+#include "Pool.h"
+#include "RenderCommand.h"
+#include "InputLayer.h"
 
 namespace HopStep
 {
@@ -34,7 +38,11 @@ namespace HopStep
 		std::stack<IScene*> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
 		std::unique_ptr<GameTimer> m_Timer;
-		std::unique_ptr<IRenderer> m_Renderer;
+		std::shared_ptr<InputLayer> m_InputLayer;
+		
+		using RenderCommandPool = Pool<RenderCommand>;
+		using RenderQueue = SwapContainer<RenderCommandPool>;
+		std::shared_ptr<RenderQueue> m_RenderQueue;
 
 		float m_AccTime = 0.0f;
 	};

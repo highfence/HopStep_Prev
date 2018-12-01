@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "HopStep.h"
 #include "Timer.h"
+#include "DX2DRenderer.h"
 #include "HSGame.h"
 
 namespace HopStep
@@ -20,6 +21,7 @@ namespace HopStep
 		
 	}
 
+	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::GameStart()
 	{
 		OpenWindow();
@@ -27,6 +29,10 @@ namespace HopStep
 		MSG message;
 		while (true)
 		{
+			m_Timer->ProcessTime();
+			static float deltaTime = m_Timer->GetElapsedTime();
+
+			m_AccTime += deltaTime;
 			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 			{
 				if (message.message == WM_QUIT)
@@ -63,9 +69,16 @@ namespace HopStep
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
+		auto pool1 = new Pool<RenderCommand>();
+		auto pool2 = new Pool<RenderCommand>();
+		pool1->Init(1024);
+		pool2->Init(1024);
+
+		m_RenderQueue = std::make_shared<RenderQueue>(pool1, pool2);
+
 		m_GameWindow = std::make_unique<HSWindow>();
 
-		m_Renderer = std::make_unique<DX11Renderer>();
+		m_InputLayer = std::make_shared<InputLayer>();
 
 		return Result::None;
 	}
@@ -80,16 +93,13 @@ namespace HopStep
 		return Result::None;
 	}
 
-	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::UpdateEngine()
 	{
-		m_Timer->ProcessTime();
-		static float deltaTime = m_Timer->GetElapsedTime();
+		if (m_AccTime < frameTime)
+			return;
 
-		m_AccTime += deltaTime;
-		if (m_AccTime > frameTime)
-		{
-			m_AccTime = 0.0f;
-		}
+		m_InputLayer->UpdateKeyStates();
+
+		m_AccTime = 0.0f;
 	}
 }

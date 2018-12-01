@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Pool.h"
 #include "SwapContainer.h"
 #include "HopStep.h"
@@ -10,7 +11,7 @@ namespace HopStep
 	{
 		using RenderQueue = SwapContainer<Pool<RenderCommand>>;
 
-		struct IRenderer
+		__interface IRenderer
 		{
 			virtual Result SetRenderQueue(RenderQueue* renderQueue) = 0;
 

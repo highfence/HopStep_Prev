@@ -11,8 +11,8 @@ namespace HopStep
 		SwapContainer(T* firstContainer, T* secondContainer);
 		~SwapContainer();
 
-		inline T& GetOutRef() const { return m_OutReference; }
-		inline T& GetInRef() const { return m_InReference; }
+		T* GetInContainer();
+		T* GetOutContainer();
 		void Swap();
 
 	private :
@@ -20,10 +20,9 @@ namespace HopStep
 		std::mutex m_SwapMutex;
 
 		T* m_FirstContainer = nullptr;
-		T* m_SecondContrainer = nullptr;
+		T* m_SecondContainer = nullptr;
 
-		T& m_OutReference;
-		T& m_InReference;
+		bool m_IsFirstIn = true;
 	};
 
 	template<class T>
@@ -33,15 +32,38 @@ namespace HopStep
 			return;
 
 		m_FirstContainer = firstContainer;
-		m_SecondContrainer = secondContainer;
-
-		m_InReference = m_FirstContainer;
-		m_OutReference = m_SecondContrainer;
+		m_SecondContainer = secondContainer;
 	}
 
 	template<class T>
 	inline SwapContainer<T>::~SwapContainer()
 	{
+		delete m_FirstContainer;
+		m_FirstContainer = nullptr;
+		delete m_SecondContainer;
+		m_SecondContainer = nullptr;
+	}
+
+	template<class T>
+	inline T* SwapContainer<T>::GetInContainer()
+	{
+		std::lock_guard<std::mutex> releaseLock(m_SwapMutex);
+
+		if (m_IsFirstIn)
+			return m_FirstContainer;
+		else
+			return m_SecondContainer;
+	}
+
+	template<class T>
+	inline T* SwapContainer<T>::GetOutContainer()
+	{
+		std::lock_guard<std::mutex> releaseLock(m_SwapMutex);
+
+		if (m_IsFirstIn)
+			return m_SecondContainer;
+		else
+			return m_FirstContainer;
 	}
 
 	template<class T>
@@ -49,15 +71,13 @@ namespace HopStep
 	{
 		std::lock_guard<std::mutex> releaseLock(m_SwapMutex);
 
-		if (m_OutReference == m_FirstContainer && m_InReference == m_SecondContrainer)
+		if (m_OutReference == m_FirstContainer && m_InReference == m_SecondContainer)
 		{
-			m_InReference = m_FirstContainer;
-			m_OutReference = m_SecondContrainer;
+			m_IsFirstIn = true;
 		}
-		else if (m_OutReference == m_SecondContrainer && m_InReference == m_FirstContainer)
+		else if (m_OutReference == m_SecondContainer && m_InReference == m_FirstContainer)
 		{
-			m_InReference = m_SecondContrainer;
-			m_OutReference = m_FirstContainer;
+			m_IsFirstIn = false;
 		}
 	}
 }

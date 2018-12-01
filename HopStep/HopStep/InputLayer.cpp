@@ -46,4 +46,27 @@ namespace HopStep
 			}
 		}
 	}
+
+	KeyState InputLayer::GetKeyState(int keyIndex)
+	{
+		if (keyIndex < 0 || keyIndex >= keyboardNumber)
+			return KeyState::None;
+
+		auto keyState = m_Keys[keyIndex];
+
+		switch (keyState)
+		{
+		case FREEKEY :
+			return KeyState::FreeKey;
+		case PULLKEY :
+			return KeyState::PullKey;
+		case PUSHKEY :
+			return KeyState::PushKey;
+		case HOLDKEY :
+			return KeyState::HoldKey;
+
+		default :
+			return KeyState::None;
+		}
+	}
 }

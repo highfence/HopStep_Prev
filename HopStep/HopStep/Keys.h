@@ -4,6 +4,15 @@ namespace HopStep
 {
 	constexpr int keyboardNumber = 256;
 
+	enum class KeyState : int
+	{
+		None,
+		FreeKey,
+		PullKey,
+		PushKey,
+		HoldKey
+	};
+
 #define FREEKEY	0x10	
 #define PULLKEY	0x20
 #define PUSHKEY	0x40
