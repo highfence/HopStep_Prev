@@ -21,7 +21,7 @@ namespace HopStep
 		HSWindow();
 		~HSWindow();
 
-		Result MakeWindow(WindowConfig& config);
+		Result Create(WindowConfig& config);
 
 	private :
 

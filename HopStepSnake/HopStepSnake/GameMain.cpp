@@ -15,10 +15,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	HopStep::HSGame SnakeGame;
 	SnakeGame.SetWindowConfig(windowConfig);
 
-	//std::shared_ptr<HopStep::IScene> gameScene = std::make_shared<GameScene>();
-	//SnakeGame.SetStartScene(gameScene);
+	// Todo : change this sequence easier
+	std::shared_ptr<HopStep::IScene> gameScene = std::static_pointer_cast<HopStep::IScene>(std::make_shared<GameScene>());
+	SnakeGame.SetStartScene(gameScene);
 
-	//SnakeGame.GameStart();
+	SnakeGame.GameStart();
 
 	return 0;
 }

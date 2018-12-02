@@ -29,7 +29,7 @@ namespace HopStep
 	{
 	}
 
-	Result HSWindow::MakeWindow(WindowConfig& config)
+	Result HSWindow::Create(WindowConfig& config)
 	{
 		m_Config = config;
 

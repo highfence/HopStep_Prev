@@ -111,7 +111,7 @@ namespace HopStep
 
 	Result HSGame::OpenWindow()
 	{
-		//HSDebug::CheckResult(m_GameWindow->Create(m_WindowConfig));
+		HSDebug::CheckResult(m_GameWindow->Create(m_WindowConfig));
 
 		return Result::None;
 	}
