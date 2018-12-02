@@ -48,6 +48,12 @@
     <ClInclude Include="Keys.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -70,6 +76,9 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{46da09e6-9bcc-449d-8649-6f24c569cbd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{e1a9e350-b7bf-4fec-898a-9234d2085899}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +108,12 @@
     </ClCompile>
     <ClCompile Include="InputLayer.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

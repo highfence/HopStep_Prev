@@ -154,9 +154,11 @@
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HsWindow.h" />
     <ClInclude Include="InputLayer.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="Keys.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="RenderCommand.h" />
     <ClInclude Include="Result.h" />
@@ -172,6 +174,8 @@
     <ClCompile Include="HSGame.cpp" />
     <ClCompile Include="HsWindow.cpp" />
     <ClCompile Include="InputLayer.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RenderCommand.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

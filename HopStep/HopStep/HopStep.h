@@ -7,3 +7,4 @@
 #include "IScene.h"
 #include "HSDebug.h"
 #include "GameObject.h"
+#include "IDGenerator.h"
