@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#include "Result.h"
 
 namespace HopStep
 {
@@ -20,7 +21,7 @@ namespace HopStep
 		HSWindow();
 		~HSWindow();
 
-		Result Create(WindowConfig& config);
+		Result MakeWindow(WindowConfig& config);
 
 	private :
 

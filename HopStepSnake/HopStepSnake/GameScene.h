@@ -1,4 +1,5 @@
 #pragma once
+#include "../../HopStep/HopStep/HopStep.h"
 
 class GameScene : public HopStep::IScene
 {

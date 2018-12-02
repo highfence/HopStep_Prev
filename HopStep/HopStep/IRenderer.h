@@ -2,7 +2,6 @@
 
 #include "Pool.h"
 #include "SwapContainer.h"
-#include "HopStep.h"
 #include "RenderCommand.h"
 
 namespace HopStep

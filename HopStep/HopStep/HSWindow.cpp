@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "HopStep.h"
 #include "HsWindow.h"
 
 namespace HopStep
@@ -30,7 +29,7 @@ namespace HopStep
 	{
 	}
 
-	Result HSWindow::Create(WindowConfig& config)
+	Result HSWindow::MakeWindow(WindowConfig& config)
 	{
 		m_Config = config;
 
