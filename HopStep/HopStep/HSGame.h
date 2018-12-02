@@ -1,5 +1,7 @@
 #pragma once
 #include <stack>
+#include <thread>
+#include <atomic>
 #include "HSWindow.h"
 #include "IScene.h"
 #include "Result.h"
@@ -25,7 +27,7 @@ namespace HopStep
 
 		void SetWindowConfig(WindowConfig& config);
 
-		void SetStartScene(IScene* startScene);
+		void SetStartScene(std::shared_ptr<IScene> startScene);
 
 	private :
 
@@ -37,7 +39,7 @@ namespace HopStep
 		void UpdateEngine();
 		WindowConfig m_WindowConfig;
 
-		std::stack<IScene*> m_Scene;
+		std::stack<std::shared_ptr<IScene>> m_Scene;
 		std::unique_ptr<HSWindow> m_GameWindow;
 		std::unique_ptr<GameTimer> m_Timer;
 		std::shared_ptr<InputLayer> m_InputLayer;
@@ -45,6 +47,10 @@ namespace HopStep
 		using RenderCommandPool = Pool<RenderCommand>;
 		using RenderQueue = SwapContainer<RenderCommandPool>;
 		std::shared_ptr<RenderQueue> m_RenderQueue;
+
+		std::thread m_RenderThread;
+		std::atomic_bool m_IsRenderThreadActive = false;
+		void RenderThreadWork();
 
 		float m_AccTime = 0.0f;
 	};

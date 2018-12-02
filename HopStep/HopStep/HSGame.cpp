@@ -53,7 +53,7 @@ namespace HopStep
 		m_WindowConfig = config;
 	}
 
-	void HSGame::SetStartScene(IScene* startScene)
+	void HSGame::SetStartScene(std::shared_ptr<IScene> startScene)
 	{
 		if (startScene == nullptr)
 			return;
@@ -77,7 +77,7 @@ namespace HopStep
 		return Result::None;
 	}
 
-	// Todo : Take this number from engine config
+	// Todo : make fetch this poolsize from engine config
 	constexpr int basicRenderCommandPoolSize = 1024;
 	Result HSGame::InitRenderQueue()
 	{
@@ -100,6 +100,10 @@ namespace HopStep
 
 	Result HSGame::InitRenderer()
 	{
+		// Todo : Divide render thread after test.
+		// m_IsRenderThreadActive = true;
+		// m_RenderThread = std::thread([this]() { RenderThreadWork(); });
+
 		return Result::None;
 	}
 
@@ -118,5 +122,13 @@ namespace HopStep
 		m_InputLayer->UpdateKeyStates();
 
 		m_AccTime = 0.0f;
+	}
+
+	void HSGame::RenderThreadWork()
+	{
+		while (m_IsRenderThreadActive)
+		{
+
+		}
 	}
 }
