@@ -4,13 +4,8 @@
 
 namespace HopStep
 {
-	Result DX11Renderer::SetRenderQueue(RenderQueue * renderQueue)
+	Result DX11Renderer::SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue)
 	{
-		if (renderQueue == nullptr)
-			return Result::NullParameter;
-
-		m_RenderQueue = renderQueue;
-
 		return Result::None;
 	}
 
@@ -21,5 +16,6 @@ namespace HopStep
 
 	void Internal::DX11Renderer::Render()
 	{
+
 	}
 }

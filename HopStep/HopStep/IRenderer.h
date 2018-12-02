@@ -13,7 +13,7 @@ namespace HopStep
 
 		__interface IRenderer
 		{
-			virtual Result SetRenderQueue(RenderQueue* renderQueue) = 0;
+			virtual Result SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue) = 0;
 
 			virtual Result InitRenderer() = 0;
 

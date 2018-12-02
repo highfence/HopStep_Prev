@@ -18,7 +18,11 @@ namespace HopStep
 
 	void HSGame::Release()
 	{
-		
+		m_IsRenderThreadActive = false;
+		m_RenderThread.join();
+
+		while (m_Scene.empty() == false)
+			m_Scene.pop();
 	}
 
 	constexpr float frameTime = 1.0f / 60.0f;
@@ -100,9 +104,8 @@ namespace HopStep
 
 	Result HSGame::InitRenderer()
 	{
-		// Todo : Divide render thread after test.
-		// m_IsRenderThreadActive = true;
-		// m_RenderThread = std::thread([this]() { RenderThreadWork(); });
+		 m_IsRenderThreadActive = true;
+		 m_RenderThread = std::thread([this]() { RenderThreadWork(); });
 
 		return Result::None;
 	}
@@ -126,9 +129,21 @@ namespace HopStep
 
 	void HSGame::RenderThreadWork()
 	{
+		std::unique_ptr<IRenderer> renderer;
+		// Todo : Renderer initialize with engine config
+		renderer = std::make_unique<DX2DRenderer>();
+
+		Result renderThreadResult;
+
+		renderThreadResult = renderer->SetRenderQueue(m_RenderQueue);
+		HSDebug::CheckResult(renderThreadResult);
+
+		renderThreadResult = renderer->InitRenderer();
+		HSDebug::CheckResult(renderThreadResult);
+
 		while (m_IsRenderThreadActive)
 		{
-
+			renderer->Render();
 		}
 	}
 }

@@ -9,15 +9,13 @@ namespace HopStep
 		{
 		public:
 
-			virtual Result SetRenderQueue(RenderQueue* renderQueue) override;
+			virtual Result SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue) override;
 
 			virtual Result InitRenderer() override;
 
 			virtual void Render() override;
 
 		private :
-
-			RenderQueue* m_RenderQueue;
 
 		};
 	}

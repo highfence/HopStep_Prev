@@ -3,7 +3,7 @@
 
 namespace HopStep
 {
-	Result DX2DRenderer::SetRenderQueue(RenderQueue * renderQueue)
+	Result DX2DRenderer::SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue)
 	{
 		if (renderQueue == nullptr)
 			return Result::NullParameter;

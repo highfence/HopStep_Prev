@@ -6,7 +6,7 @@ namespace HopStep
 	{
 		class RenderCommand
 		{
-		public:
+		public :
 		};
 	}
 }
