@@ -6,3 +6,4 @@
 #include "HSGame.h"
 #include "IScene.h"
 #include "HSDebug.h"
+#include "GameObject.h"

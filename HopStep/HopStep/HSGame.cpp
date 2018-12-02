@@ -17,11 +17,10 @@ namespace HopStep
 
 	void HSGame::Release()
 	{
-		m_IsRenderThreadActive = false;
-		m_RenderThread.join();
-
 		while (m_Scene.empty() == false)
 			m_Scene.pop();
+
+		m_IsRenderThreadActive = false;
 	}
 
 	constexpr float frameTime = 1.0f / 60.0f;
@@ -39,7 +38,10 @@ namespace HopStep
 			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 			{
 				if (message.message == WM_QUIT)
+				{
+					Release();
 					break;
+				}
 
 				TranslateMessage(&message);
 				DispatchMessage(&message);
@@ -72,6 +74,7 @@ namespace HopStep
 		m_Timer->InitTimer();
 
 		HSDebug::CheckResult(InitRenderQueue());
+		HSDebug::CheckResult(InitRenderer());
 
 		m_GameWindow = std::make_unique<HSWindow>();
 
@@ -104,7 +107,8 @@ namespace HopStep
 	Result HSGame::InitRenderer()
 	{
 		 m_IsRenderThreadActive = true;
-		 m_RenderThread = std::thread([this]() { RenderThreadWork(); });
+		 m_RenderThread = std::thread([&]() { RenderThreadWork(); });
+		 m_RenderThread.detach();
 
 		return Result::None;
 	}

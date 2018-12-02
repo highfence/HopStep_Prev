@@ -5,14 +5,14 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nCmdShow)
 {
+	HopStep::HSGame SnakeGame;
+
 	HopStep::WindowConfig windowConfig;
 	windowConfig.clientWidth = 1200;
 	windowConfig.clientHeight = 800;
 	windowConfig.instance = hInstance;
 	windowConfig.cmdShow = nCmdShow;
 	windowConfig.windowName = L"Snake Practice!";
-
-	HopStep::HSGame SnakeGame;
 	SnakeGame.SetWindowConfig(windowConfig);
 
 	// Todo : change this sequence easier
