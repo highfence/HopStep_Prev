@@ -6,11 +6,11 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
-		struct CheckResult
+		struct ResultChecker
 		{
 			Result result = Result::None;
 
-			CheckResult& operator=(const Result& result)
+			ResultChecker& operator=(const Result& result)
 			{
 				HSDebug::CheckResult(result);
 				this->result = result;

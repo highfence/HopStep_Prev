@@ -73,7 +73,7 @@ namespace HopStep
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
-		CheckResult funcResult;
+		ResultChecker funcResult;
 		funcResult = InitRenderQueue();
 		funcResult = InitRenderer();
 
@@ -116,8 +116,8 @@ namespace HopStep
 
 	Result HSGame::OpenWindow()
 	{
-		CheckResult openResult;
-		openResult = m_GameWindow->Create(m_WindowConfig));
+		ResultChecker openResult;
+		openResult = m_GameWindow->Create(m_WindowConfig);
 
 		return openResult.result;
 	}
