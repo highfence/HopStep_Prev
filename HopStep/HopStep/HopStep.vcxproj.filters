@@ -55,6 +55,9 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="IDGenerator.h" />
+    <ClInclude Include="CheckResult.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

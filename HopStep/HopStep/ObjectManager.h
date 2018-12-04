@@ -11,7 +11,6 @@ namespace HopStep
 	{
 	public:
 
-		ObjectManager() = delete;
 		~ObjectManager() { instance == nullptr; }
 
 		static std::shared_ptr<ObjectManager> Get();

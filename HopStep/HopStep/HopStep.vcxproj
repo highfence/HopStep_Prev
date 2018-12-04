@@ -23,7 +23,7 @@
     <ProjectGuid>{0A38C3BD-113F-4C3A-86ED-39EC47269AAA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HopStep</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CheckResult.h" />
     <ClInclude Include="DX11Renderer.h" />
     <ClInclude Include="DX2DRenderer.h" />
     <ClInclude Include="HopStep.h" />
