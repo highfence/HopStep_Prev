@@ -153,6 +153,7 @@
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HsWindow.h" />
+    <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputLayer.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IRenderer.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="HSDebug.cpp" />
     <ClCompile Include="HSGame.cpp" />
     <ClCompile Include="HsWindow.cpp" />
+    <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ObjectManager.cpp" />

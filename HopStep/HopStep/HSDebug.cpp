@@ -21,6 +21,10 @@ namespace HopStep
 			return std::wstring(TEXT("Parameter is null."));
 		case Result::InitializeFailed:
 			return std::wstring(TEXT("Initialize Failed."));
+		case Result::GetSingletonFailed:
+			return std::wstring(TEXT("Singleton class Get Failed."));
+		case Result::DuplicatedId:
+			return std::wstring(TEXT("Duplicated UID."));
 		case Result::WindowClassRegistFailed:
 			return std::wstring(TEXT("Window registration failed!"));
 		case Result::WindowInvalidHandleReturn:
@@ -36,7 +40,6 @@ namespace HopStep
 #ifndef _DEBUG
 		return;
 #endif
-
 		if (result == Result::None)
 			return;
 

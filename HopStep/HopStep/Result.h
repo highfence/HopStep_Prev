@@ -10,6 +10,8 @@ namespace HopStep
 
 			InvalidParameter = 1,
 			NullParameter = 2,
+			GetSingletonFailed = 3,
+			DuplicatedId = 4,
 
 			InitializeFailed = 10,
 

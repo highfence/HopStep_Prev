@@ -2,7 +2,7 @@
 #include <memory>
 #include <atomic>
 #include <utility>
-#include <vector>
+#include <unordered_map>
 #include "GameObject.h"
 
 namespace HopStep
@@ -16,10 +16,15 @@ namespace HopStep
 
 		static std::shared_ptr<ObjectManager> Get();
 
+		Result RegistObject(GameObject* object);
+		Result ReleaseObject(GameObject* object);
+
+		Result ClearAllObject();
+
 	private :
 
 		using GameObjectPtr = std::shared_ptr<GameObject>;
-		std::vector<GameObjectPtr> m_ObjectList;
+		std::unordered_map<ObjectId, GameObjectPtr> m_ObjectMap;
 
 		static std::shared_ptr<ObjectManager> instance;
 	};

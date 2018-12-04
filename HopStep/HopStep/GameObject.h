@@ -2,6 +2,8 @@
 
 namespace HopStep
 {
+	using ObjectId = long long;
+
 	class GameObject
 	{
 	public :
@@ -9,7 +11,12 @@ namespace HopStep
 		GameObject();
 		virtual ~GameObject();
 
-	private :
+		void SetObjectId(ObjectId id) { m_Id = id; }
+		ObjectId GetId() const { return m_Id; }
+
+	protected :
+
+		ObjectId m_Id = 0L;
 
 	};
 }
