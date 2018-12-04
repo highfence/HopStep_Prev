@@ -73,14 +73,15 @@ namespace HopStep
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
-		HSDebug::CheckResult(InitRenderQueue());
-		HSDebug::CheckResult(InitRenderer());
+		CheckResult funcResult;
+		funcResult = InitRenderQueue();
+		funcResult = InitRenderer();
 
 		m_GameWindow = std::make_unique<HSWindow>();
 
 		m_InputLayer = std::make_shared<InputLayer>();
 
-		return Result::None;
+		return funcResult.result;
 	}
 
 	// Todo : make fetch this poolsize from engine config
@@ -115,9 +116,10 @@ namespace HopStep
 
 	Result HSGame::OpenWindow()
 	{
-		HSDebug::CheckResult(m_GameWindow->Create(m_WindowConfig));
+		CheckResult openResult;
+		openResult = m_GameWindow->Create(m_WindowConfig));
 
-		return Result::None;
+		return openResult.result;
 	}
 
 	void HSGame::UpdateEngine()
