@@ -21,6 +21,8 @@ namespace HopStep
 		HSGame();
 		~HSGame();
 
+		void InitEngine();
+
 		void Release();
 
 		void GameStart();
@@ -31,7 +33,6 @@ namespace HopStep
 
 	private :
 
-		Result InitEngine();
 		Result InitRenderQueue();
 		Result InitRenderer();
 		Result OpenWindow();

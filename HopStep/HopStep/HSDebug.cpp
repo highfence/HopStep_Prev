@@ -25,10 +25,16 @@ namespace HopStep
 			return std::wstring(TEXT("Singleton class Get Failed."));
 		case Result::DuplicatedId:
 			return std::wstring(TEXT("Duplicated UID."));
+		case Result::NotInitializeYet:
+			return std::wstring(TEXT("Object Not Initialized Yet."));
 		case Result::WindowClassRegistFailed:
 			return std::wstring(TEXT("Window registration failed!"));
 		case Result::WindowInvalidHandleReturn:
 			return std::wstring(TEXT("Window creation failed!"));
+		case Result::DX2DRenderFactoryInitializeFailed:
+			return std::wstring(TEXT("DirectX2D Render Factory initialize failed!"));
+		case Result::DX2DRenderTargetCreateFailed:
+			return std::wstring(TEXT("DirectX2D Render Target initialize failed!"));
 
 		default:
 			return std::wstring(TEXT("Undefined result enum."));

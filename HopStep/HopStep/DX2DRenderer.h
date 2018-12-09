@@ -19,6 +19,8 @@ namespace HopStep
 
         private :
 
+			Result CreateDeviceResources();
+
 			std::shared_ptr<RenderQueue> m_RenderQueue;
 
 			HWND m_Hwnd;

@@ -14,11 +14,13 @@ namespace HopStep
 			DuplicatedId = 4,
 
 			InitializeFailed = 10,
+			NotInitializeYet = 11,
 
 			WindowClassRegistFailed = 20,
 			WindowInvalidHandleReturn = 21,
 
-			DirectX2DRenderFactoryInitializeFailed = 100,
+			DX2DRenderFactoryInitializeFailed = 100,
+			DX2DRenderTargetCreateFailed = 101,
 
 			ResultMaxCount
 		};

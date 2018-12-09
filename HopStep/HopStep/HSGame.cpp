@@ -7,12 +7,13 @@ namespace HopStep
 {
 	HSGame::HSGame()
 	{
-		InitEngine();
 	}
 
 	HSGame::~HSGame()
 	{
 		Release();
+
+		m_RenderThread.join();
 	}
 
 	void HSGame::Release()
@@ -26,8 +27,6 @@ namespace HopStep
 	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::GameStart()
 	{
-		OpenWindow();
-
 		MSG message;
 		while (true)
 		{
@@ -66,7 +65,7 @@ namespace HopStep
 		m_Scene.push(startScene);
 	}
 
-	Result HSGame::InitEngine()
+	void HSGame::InitEngine()
 	{
 		ResultChecker funcResult;
 		m_Scene.empty();
@@ -75,13 +74,12 @@ namespace HopStep
 		m_Timer->InitTimer();
 
 		m_GameWindow = std::make_unique<HSWindow>();
+		OpenWindow();
 
 		funcResult = InitRenderQueue();
 		funcResult = InitRenderer();
 
 		m_InputLayer = std::make_shared<InputLayer>();
-
-		return funcResult.result;
 	}
 
 	// Todo : make fetch this poolsize from engine config
@@ -120,7 +118,7 @@ namespace HopStep
 
 		m_IsRenderThreadActive = true;
 		m_RenderThread = std::thread([&]() { RenderThreadWork(); });
-		m_RenderThread.detach();
+		//m_RenderThread.detach();
 
 		return Result::None;
 	}
@@ -149,5 +147,7 @@ namespace HopStep
 		{
 			m_Renderer->Render();
 		}
+
+		m_Renderer->ReleaseRenderer();
 	}
 }
