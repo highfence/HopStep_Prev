@@ -18,6 +18,8 @@ namespace HopStep
 			WindowClassRegistFailed = 20,
 			WindowInvalidHandleReturn = 21,
 
+			DirectX2DRenderFactoryInitializeFailed = 100,
+
 			ResultMaxCount
 		};
 	}
