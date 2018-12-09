@@ -7,9 +7,9 @@ namespace HopStep
 	// Todo : Thread safe for Get method
 	class IDGenerator
 	{
-	public:
+	public :
 
-		IDGenerator() = delete;
+		IDGenerator() = default;
 		~IDGenerator() { instance == nullptr; }
 
 		static std::shared_ptr<IDGenerator> Get();

@@ -19,7 +19,7 @@ namespace HopStep
 		if (object == nullptr)
 			return Result::NullParameter;
 
-		auto objectPtr = std::make_shared<GameObject>(object);
+		auto objectPtr = std::make_shared<GameObject>(*object);
 
 		auto idgen = IDGenerator::Get();
 		if (idgen == nullptr)
