@@ -23,6 +23,8 @@ namespace HopStep
 
 		Result Create(WindowConfig& config);
 
+		HWND WindowHandle;
+
 	private :
 
 		WindowConfig m_Config;

@@ -11,7 +11,7 @@ namespace HopStep
 
 			virtual Result SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue) override;
 
-			virtual Result InitRenderer() override;
+			virtual Result InitRenderer(HWND windowHanle) override;
 
 			virtual void Render() override;
 

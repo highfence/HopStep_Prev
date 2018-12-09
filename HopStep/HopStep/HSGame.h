@@ -43,6 +43,7 @@ namespace HopStep
 		std::unique_ptr<HSWindow> m_GameWindow;
 		std::unique_ptr<GameTimer> m_Timer;
 		std::shared_ptr<InputLayer> m_InputLayer;
+		std::unique_ptr<IRenderer> m_Renderer;
 		
 		using RenderCommandPool = Pool<RenderCommand>;
 		using RenderQueue = SwapContainer<RenderCommandPool>;

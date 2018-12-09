@@ -68,16 +68,16 @@ namespace HopStep
 
 	Result HSGame::InitEngine()
 	{
+		ResultChecker funcResult;
 		m_Scene.empty();
 
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
-		ResultChecker funcResult;
+		m_GameWindow = std::make_unique<HSWindow>();
+
 		funcResult = InitRenderQueue();
 		funcResult = InitRenderer();
-
-		m_GameWindow = std::make_unique<HSWindow>();
 
 		m_InputLayer = std::make_shared<InputLayer>();
 
@@ -107,9 +107,20 @@ namespace HopStep
 
 	Result HSGame::InitRenderer()
 	{
-		 m_IsRenderThreadActive = true;
-		 m_RenderThread = std::thread([&]() { RenderThreadWork(); });
-		 m_RenderThread.detach();
+		// Todo : Renderer initialize with engine config
+		m_Renderer = std::make_unique<DX2DRenderer>();
+
+		Result renderThreadResult;
+
+		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue);
+		HSDebug::CheckResult(renderThreadResult);
+
+		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle);
+		HSDebug::CheckResult(renderThreadResult);
+
+		m_IsRenderThreadActive = true;
+		m_RenderThread = std::thread([&]() { RenderThreadWork(); });
+		m_RenderThread.detach();
 
 		return Result::None;
 	}
@@ -134,21 +145,9 @@ namespace HopStep
 
 	void HSGame::RenderThreadWork()
 	{
-		std::unique_ptr<IRenderer> renderer;
-		// Todo : Renderer initialize with engine config
-		renderer = std::make_unique<DX2DRenderer>();
-
-		Result renderThreadResult;
-
-		renderThreadResult = renderer->SetRenderQueue(m_RenderQueue);
-		HSDebug::CheckResult(renderThreadResult);
-
-		renderThreadResult = renderer->InitRenderer();
-		HSDebug::CheckResult(renderThreadResult);
-
 		while (m_IsRenderThreadActive)
 		{
-			renderer->Render();
+			m_Renderer->Render();
 		}
 	}
 }

@@ -13,8 +13,10 @@ namespace HopStep
 		return Result::None;
 	}
 
-	Result DX2DRenderer::InitRenderer()
+	Result DX2DRenderer::InitRenderer(HWND windowHandle)
 	{
+		m_Hwnd = windowHandle;
+
 
 
 		return Result::None;

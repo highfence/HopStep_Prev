@@ -22,6 +22,7 @@ namespace HopStep
 	}
 
 	HSWindow::HSWindow()
+		: WindowHandle(NULL)
 	{
 	}
 
@@ -34,7 +35,6 @@ namespace HopStep
 		m_Config = config;
 
 		WNDCLASSEX wc;
-		HWND hwnd;
 
 		wc.cbSize = sizeof(WNDCLASSEX);
 		wc.style = 0;
@@ -52,15 +52,15 @@ namespace HopStep
 		if (!RegisterClassEx(&wc))
 			return Result::WindowClassRegistFailed;
 
-		hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), m_Config.windowName.c_str(),
+		WindowHandle = CreateWindowEx(WS_EX_CLIENTEDGE,	windowClassName.c_str(), m_Config.windowName.c_str(),
 			WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
 			m_Config.clientWidth, m_Config.clientHeight, NULL, NULL, m_Config.instance, NULL);
 
-		if (hwnd == NULL)
+		if (WindowHandle == NULL)
 			return Result::WindowInvalidHandleReturn;
 
-		ShowWindow(hwnd, m_Config.cmdShow);
-		UpdateWindow(hwnd);
+		ShowWindow(WindowHandle, m_Config.cmdShow);
+		UpdateWindow(WindowHandle);
 
 		return Result::None;
 	}

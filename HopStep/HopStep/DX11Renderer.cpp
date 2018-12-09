@@ -9,7 +9,7 @@ namespace HopStep
 		return Result::None;
 	}
 
-	Result Internal::DX11Renderer::InitRenderer()
+	Result Internal::DX11Renderer::InitRenderer(HWND windowHandle)
 	{
 		return Result::None;
 	}

@@ -14,7 +14,7 @@ namespace HopStep
 		{
 			virtual Result SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue) = 0;
 
-			virtual Result InitRenderer() = 0;
+			virtual Result InitRenderer(HWND windowHandle) = 0;
 
 			virtual void Render() = 0;
 		};
