@@ -54,9 +54,11 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="CheckResult.h">
       <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="IDGenerator.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +121,8 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="IDGenerator.cpp" />
+    <ClCompile Include="IDGenerator.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

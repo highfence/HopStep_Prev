@@ -71,13 +71,6 @@ namespace HopStep
 	{
 		std::lock_guard<std::mutex> releaseLock(m_SwapMutex);
 
-		if (m_OutReference == m_FirstContainer && m_InReference == m_SecondContainer)
-		{
-			m_IsFirstIn = true;
-		}
-		else if (m_OutReference == m_SecondContainer && m_InReference == m_FirstContainer)
-		{
-			m_IsFirstIn = false;
-		}
+		m_IsFirstIn = !m_IsFirstIn;
 	}
 }
