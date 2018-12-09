@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CheckResult.h" />
+    <ClInclude Include="DirectXDefine.h" />
     <ClInclude Include="DX11Renderer.h" />
     <ClInclude Include="DX2DRenderer.h" />
     <ClInclude Include="HopStep.h" />

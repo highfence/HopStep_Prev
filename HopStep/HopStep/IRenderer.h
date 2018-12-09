@@ -16,6 +16,8 @@ namespace HopStep
 
 			virtual Result InitRenderer(HWND windowHandle) = 0;
 
+			virtual Result ReleaseRenderer() = 0;
+
 			virtual void Render() = 0;
 		};
 	}

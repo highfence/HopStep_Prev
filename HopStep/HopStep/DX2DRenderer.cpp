@@ -17,12 +17,16 @@ namespace HopStep
 	{
 		m_Hwnd = windowHandle;
 
-		HRESULT hr;
-		hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_Direct2DFactory);
+		HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_Direct2DFactory);
 		if (hr != S_OK)
 			return Result::DirectX2DRenderFactoryInitializeFailed;
 
 		return Result::None;
+	}
+
+	Result Internal::DX2DRenderer::ReleaseRenderer()
+	{
+		return Result();
 	}
 
 	void DX2DRenderer::Render()

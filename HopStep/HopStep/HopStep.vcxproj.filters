@@ -60,6 +60,9 @@
     <ClInclude Include="IDGenerator.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="DirectXDefine.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
