@@ -26,7 +26,12 @@ namespace HopStep
 
 	Result Internal::DX2DRenderer::ReleaseRenderer()
 	{
-		return Result();
+		SafeRelease(&m_Direct2DFactory);
+		SafeRelease(&m_pRenderTarget);
+		SafeRelease(&m_pLightSlateGrayBrush);
+		SafeRelease(&m_pCornflowerBlueBrush);
+
+		return Result::None;
 	}
 
 	void DX2DRenderer::Render()
