@@ -63,6 +63,7 @@
     <ClInclude Include="DirectXDefine.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="HSColor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -127,5 +128,6 @@
     <ClCompile Include="IDGenerator.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="HSColor.cpp" />
   </ItemGroup>
 </Project>

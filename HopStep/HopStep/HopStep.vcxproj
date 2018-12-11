@@ -152,6 +152,7 @@
     <ClInclude Include="DX11Renderer.h" />
     <ClInclude Include="DX2DRenderer.h" />
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="HSColor.h" />
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HsWindow.h" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <ClCompile Include="DX11Renderer.cpp" />
     <ClCompile Include="DX2DRenderer.cpp" />
+    <ClCompile Include="HSColor.cpp" />
     <ClCompile Include="HSDebug.cpp" />
     <ClCompile Include="HSGame.cpp" />
     <ClCompile Include="HsWindow.cpp" />

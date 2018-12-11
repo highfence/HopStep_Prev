@@ -7,7 +7,7 @@ namespace HopStep
 		enum class RenderCommandType : int
 		{
 			None,
-			ResizeWindow,
+			ClearScreen
 		};
 
 		class RenderCommand
@@ -15,6 +15,7 @@ namespace HopStep
 		public :
 
 			RenderCommandType type = RenderCommandType::None;
+			std::chrono::milliseconds tickTimeStamp;
 		};
 	}
 }
