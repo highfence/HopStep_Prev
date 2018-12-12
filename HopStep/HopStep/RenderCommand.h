@@ -1,17 +1,23 @@
 #pragma once
+#include "../Extern/json/json.h"
 
 namespace HopStep
 {
-#pragma pack(push, 1)
 
 	inline namespace Internal
 	{
+		class RenderCommand
+		{
+		public :
+		};
+
 		enum class RenderCommandType : int
 		{
 			None,
 			ClearScreen
 		};
 
+#pragma pack(push, 1)
 		class RenderCommandHeader
 		{
 		public :
@@ -22,12 +28,25 @@ namespace HopStep
 			int bodySize = 0;
 			char* body;
 		};
+#pragma pack(pop) 
 
-		class RenderCommand
+		class IJsonSerializable
 		{
-		public :
+		public:
+			virtual ~IJsonSerializable(void) {};
+			virtual void Serialize(Json::Value& root) = 0;
+			virtual void Deserialize(Json::Value& root) = 0;
+		};
+
+		class CJsonSerializer
+		{
+		public:
+			static bool Serialize(IJsonSerializable* pObj, std::string& output);
+			static bool Deserialize(IJsonSerializable* pObj, std::string& input);
+
+		private:
+			CJsonSerializer(void) {};
 		};
 	}
 
-#pragma push
 }
