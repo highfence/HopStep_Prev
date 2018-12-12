@@ -2,6 +2,8 @@
 
 namespace HopStep
 {
+#pragma pack(push, 1)
+
 	inline namespace Internal
 	{
 		enum class RenderCommandType : int
@@ -10,12 +12,22 @@ namespace HopStep
 			ClearScreen
 		};
 
-		class RenderCommand
+		class RenderCommandHeader
 		{
 		public :
 
 			RenderCommandType type = RenderCommandType::None;
 			std::chrono::milliseconds tickTimeStamp;
+
+			int bodySize = 0;
+			char* body;
+		};
+
+		class RenderCommand
+		{
+		public :
 		};
 	}
+
+#pragma push
 }
