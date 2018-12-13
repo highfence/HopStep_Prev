@@ -32,4 +32,12 @@ namespace HopStep
 
 		return true;
 	}
+
+	void Internal::ClearScreenCommand::Serialize(Json::Value & root)
+	{
+	}
+
+	void Internal::ClearScreenCommand::Deserialize(Json::Value & root)
+	{
+	}
 }

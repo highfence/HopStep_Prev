@@ -1,4 +1,5 @@
 #pragma once
+#include "HSColor.h"
 #include "../Extern/json/json.h"
 
 namespace HopStep
@@ -18,6 +19,7 @@ namespace HopStep
 		};
 
 #pragma pack(push, 1)
+
 		class RenderCommandHeader
 		{
 		public :
@@ -28,7 +30,8 @@ namespace HopStep
 			int bodySize = 0;
 			char* body;
 		};
-#pragma pack(pop) 
+
+#pragma pack(pop)
 
 		class IJsonSerializable
 		{
@@ -46,6 +49,18 @@ namespace HopStep
 
 		private:
 			CJsonSerializer(void) {};
+		};
+
+		class ClearScreenCommand final : public IJsonSerializable
+		{
+		public :
+			ClearScreenCommand(void) {}
+			virtual ~ClearScreenCommand(void) {}
+
+			virtual void Serialize(Json::Value& root) override;
+			virtual void Deserialize(Json::Value& root) override;
+
+			HSColor screenColor;
 		};
 	}
 
