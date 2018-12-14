@@ -27,7 +27,8 @@ namespace HopStep
 	Result Internal::DX2DRenderer::ReleaseRenderer()
 	{
 		SafeRelease(&m_Direct2DFactory);
-		SafeRelease(&m_pRenderTarget);
+		SafeRelease(&m_RenderTarget);
+		SafeRelease(&m_BackGroundColorBrush);
 		SafeRelease(&m_pLightSlateGrayBrush);
 		SafeRelease(&m_pCornflowerBlueBrush);
 
@@ -39,11 +40,11 @@ namespace HopStep
 		ResultChecker renderResult;
 		renderResult = CreateDeviceResources();
 
-		m_pRenderTarget->BeginDraw();
+		m_RenderTarget->BeginDraw();
 
-		m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+		m_RenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
-		m_pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
+		m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
 
 #pragma region DEBUG
 
@@ -96,12 +97,12 @@ namespace HopStep
 
 #pragma endregion
 
-		m_pRenderTarget->EndDraw();
+		m_RenderTarget->EndDraw();
 	}
 
 	Result Internal::DX2DRenderer::CreateDeviceResources()
 	{
-		if (m_pRenderTarget != nullptr)
+		if (m_RenderTarget != nullptr)
 			return Result::None;
 
 		HRESULT hr;
@@ -111,17 +112,17 @@ namespace HopStep
 		D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top);
 
 		// Create a Direct2D render target.
-		hr = m_Direct2DFactory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties(m_Hwnd, size), &m_pRenderTarget);
+		hr = m_Direct2DFactory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties(m_Hwnd, size), &m_RenderTarget);
 		if (SUCCEEDED(hr) == false)
 			return Result::DX2DRenderTargetCreateFailed;
 
 		// Create a gray brush.
-		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::LightSlateGray), &m_pLightSlateGrayBrush);
+		hr = m_RenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::LightSlateGray), &m_pLightSlateGrayBrush);
 		if (SUCCEEDED(hr) == false)
 			return Result::DX2DRenderTargetCreateFailed;
 
 		// Create a blue brush.
-		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::CornflowerBlue), &m_pCornflowerBlueBrush);
+		hr = m_RenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::CornflowerBlue), &m_pCornflowerBlueBrush);
 		if (SUCCEEDED(hr) == false)
 			return Result::DX2DRenderTargetCreateFailed;
 

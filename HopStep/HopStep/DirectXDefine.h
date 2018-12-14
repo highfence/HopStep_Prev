@@ -13,7 +13,6 @@ namespace HopStep
 				(*ppInterfaceToRelease) = nullptr;
 			}
 		}
-
 	}
 }
 

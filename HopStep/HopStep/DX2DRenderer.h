@@ -25,7 +25,8 @@ namespace HopStep
 
 			HWND m_Hwnd;
 			ID2D1Factory* m_Direct2DFactory = nullptr;
-			ID2D1HwndRenderTarget* m_pRenderTarget = nullptr;
+			ID2D1HwndRenderTarget* m_RenderTarget = nullptr;
+			ID2D1SolidColorBrush* m_BackGroundColorBrush = nullptr;
 			ID2D1SolidColorBrush* m_pLightSlateGrayBrush = nullptr;
 			ID2D1SolidColorBrush* m_pCornflowerBlueBrush = nullptr;
         };

@@ -7,11 +7,6 @@ namespace HopStep
 
 	inline namespace Internal
 	{
-		class RenderCommand
-		{
-		public :
-		};
-
 		enum class RenderCommandType : int
 		{
 			None,
