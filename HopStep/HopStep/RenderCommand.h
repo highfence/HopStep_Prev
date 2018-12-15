@@ -28,10 +28,9 @@ namespace HopStep
 
 #pragma pack(pop)
 
-		class IJsonSerializable
+		__interface IJsonSerializable
 		{
 		public:
-			virtual ~IJsonSerializable(void) {};
 			virtual void Serialize(Json::Value& root) = 0;
 			virtual void Deserialize(Json::Value& root) = 0;
 		};
@@ -46,16 +45,13 @@ namespace HopStep
 			CJsonSerializer(void) {};
 		};
 
-		class ClearScreenCommand final : public IJsonSerializable
+		class ClearScreenCommand 
 		{
 		public :
 			ClearScreenCommand(void) {}
 			virtual ~ClearScreenCommand(void) {}
 
-			virtual void Serialize(Json::Value& root) override;
-			virtual void Deserialize(Json::Value& root) override;
-
-			HSColor screenColor;
+			HSColor m_ScreenColor;
 		};
 	}
 

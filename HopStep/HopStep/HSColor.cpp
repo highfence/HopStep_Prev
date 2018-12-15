@@ -3,18 +3,6 @@
 
 namespace HopStep
 {
-	std::wstring HSColor::ToString() const
-	{
-		Json::Value root;
-		root["r"] = r;
-		root["g"] = g;
-		root["b"] = b;
-		root["a"] = a;
-
-		std::string jsonString = root.asString();
-		return StringHelper::WstringFromString(jsonString);
-	}
-
 	HSColor HSColor::FromString(Json::Value & jsonColor)
 	{
 		float r, g, b, a;

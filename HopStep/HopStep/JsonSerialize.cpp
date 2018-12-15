@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "RenderCommand.h"
+#pragma once
+#include "JsonSerialize.h"
 
 namespace HopStep
 {
-	bool Internal::CJsonSerializer::Serialize(IJsonSerializable * pObj, std::string & output)
+	bool JsonSerializer::Serialize(IJsonSerializable * pObj, std::string & output)
 	{
 		if (pObj == NULL)
 			return false;
@@ -17,7 +17,7 @@ namespace HopStep
 		return true;
 	}
 
-	bool Internal::CJsonSerializer::Deserialize(IJsonSerializable * pObj, std::string & input)
+	bool JsonSerializer::Deserialize(IJsonSerializable * pObj, std::string & input)
 	{
 		if (pObj == NULL)
 			return false;

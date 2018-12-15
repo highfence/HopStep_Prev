@@ -12,6 +12,8 @@ namespace HopStep
 
 		int clientWidth;
 		int clientHeight;
+
+		HSColor backgroundColor;
 	};
 
 	class HSWindow
