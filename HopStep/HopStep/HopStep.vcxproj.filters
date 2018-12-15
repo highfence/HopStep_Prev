@@ -69,6 +69,18 @@
     <ClInclude Include="HSColor.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="JsonSerialize.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteSerialize.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerBase.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="HSConsoleLogger.h">
+      <Filter>Util\Log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -94,6 +106,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{e1a9e350-b7bf-4fec-898a-9234d2085899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Log">
+      <UniqueIdentifier>{b5c393e2-fb31-4513-9cc4-11c3ce5f1f06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +152,9 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="HSColor.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSerialize.cpp">
       <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>

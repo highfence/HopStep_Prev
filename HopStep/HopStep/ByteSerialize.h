@@ -27,7 +27,7 @@ namespace HopStep
 	{
 		std::array< byte, sizeof(T) > bytes;
 
-		const byte* begin = reinterpret_cast<const byte*>(std::addressof(object));
+		const byte* begin = reinterpret_cast<const byte*>(std::addressof(obj));
 		const byte* end = begin + sizeof(T);
 		std::copy(begin, end, std::begin(bytes));
 

@@ -10,13 +10,13 @@ namespace HopStep
 		virtual void Deserialize(Json::Value& root) = 0;
 	};
 
-	class CJsonSerializer
+	class JsonSerializer
 	{
 	public:
 		static bool Serialize(IJsonSerializable* pObj, std::string& output);
 		static bool Deserialize(IJsonSerializable* pObj, std::string& input);
 
 	private:
-		CJsonSerializer(void) {};
+		JsonSerializer(void) {};
 	};
 }

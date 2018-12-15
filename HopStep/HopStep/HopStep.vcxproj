@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ByteSerialize.h" />
     <ClInclude Include="CheckResult.h" />
     <ClInclude Include="DirectXDefine.h" />
     <ClInclude Include="DX11Renderer.h" />
@@ -155,13 +156,16 @@
     <ClInclude Include="HSColor.h" />
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
+    <ClInclude Include="HSConsoleLogger.h" />
     <ClInclude Include="HsWindow.h" />
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputLayer.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="JsonSerialize.h" />
     <ClInclude Include="Keys.h" />
+    <ClInclude Include="LoggerBase.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="RenderCommand.h" />
@@ -182,6 +186,7 @@
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="JsonSerialize.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RenderCommand.cpp" />
     <ClCompile Include="stdafx.cpp">

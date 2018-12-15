@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "JsonSerialize.h"
 
 namespace HopStep

@@ -23,27 +23,11 @@ namespace HopStep
 			std::chrono::milliseconds tickTimeStamp;
 
 			int bodySize = 0;
-			char* body;
+			byte* body;
 		};
 
 #pragma pack(pop)
 
-		__interface IJsonSerializable
-		{
-		public:
-			virtual void Serialize(Json::Value& root) = 0;
-			virtual void Deserialize(Json::Value& root) = 0;
-		};
-
-		class CJsonSerializer
-		{
-		public:
-			static bool Serialize(IJsonSerializable* pObj, std::string& output);
-			static bool Deserialize(IJsonSerializable* pObj, std::string& input);
-
-		private:
-			CJsonSerializer(void) {};
-		};
 
 		class ClearScreenCommand 
 		{
