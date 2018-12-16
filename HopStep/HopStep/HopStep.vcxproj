@@ -152,6 +152,7 @@
     <ClInclude Include="DirectXDefine.h" />
     <ClInclude Include="DX11Renderer.h" />
     <ClInclude Include="DX2DRenderer.h" />
+    <ClInclude Include="FrameInfo.h" />
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="HSColor.h" />
     <ClInclude Include="HSDebug.h" />
@@ -169,6 +170,8 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="RenderCommand.h" />
+    <ClInclude Include="RenderCommandDefine.h" />
+    <ClInclude Include="RenderQueue.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringHelper.h" />

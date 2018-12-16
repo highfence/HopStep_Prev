@@ -1,9 +1,12 @@
 #pragma once
 #include <Windows.h>
+#include "HSColor.h"
 #include "Result.h"
 
 namespace HopStep
 {
+	class HSConsoleLogger;
+
 	struct WindowConfig
 	{
 		HINSTANCE instance;
@@ -20,7 +23,7 @@ namespace HopStep
 	{
 	public:
 
-		HSWindow();
+		HSWindow(HSConsoleLogger* logger);
 		~HSWindow();
 
 		Result Create(WindowConfig& config);
@@ -30,5 +33,6 @@ namespace HopStep
 	private :
 
 		WindowConfig m_Config;
+		HSConsoleLogger* m_Logger;
 	};
 }

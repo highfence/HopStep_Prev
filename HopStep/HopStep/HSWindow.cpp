@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "HSConsoleLogger.h"
 #include "HsWindow.h"
 
 namespace HopStep
@@ -21,8 +22,8 @@ namespace HopStep
 		return 0;
 	}
 
-	HSWindow::HSWindow()
-		: WindowHandle(NULL)
+	HSWindow::HSWindow(HSConsoleLogger* logger)
+		: m_Logger(logger), WindowHandle(NULL)
 	{
 	}
 

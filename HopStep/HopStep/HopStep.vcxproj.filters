@@ -81,6 +81,15 @@
     <ClInclude Include="HSConsoleLogger.h">
       <Filter>Util\Log</Filter>
     </ClInclude>
+    <ClInclude Include="RenderQueue.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameInfo.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCommandDefine.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

@@ -5,11 +5,13 @@ namespace HopStep
 {
     inline namespace Internal
     {
+		class RenderQueue;
+
         class DX2DRenderer final : public IRenderer
         {
         public :
 
-            virtual Result SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue) override;
+            virtual Result SetRenderQueue(RenderQueue* renderQueue) override;
 
             virtual Result InitRenderer(HWND windowHandle) override;
 
@@ -21,7 +23,7 @@ namespace HopStep
 
 			Result CreateDeviceResources();
 
-			std::shared_ptr<RenderQueue> m_RenderQueue;
+			RenderQueue* m_RenderQueue;
 
 			HWND m_Hwnd;
 			ID2D1Factory* m_Direct2DFactory = nullptr;

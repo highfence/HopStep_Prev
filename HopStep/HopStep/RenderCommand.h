@@ -1,18 +1,13 @@
 #pragma once
 #include "HSColor.h"
-#include "../Extern/json/json.h"
+#include "ByteSerialize.h"
+#include "RenderCommandDefine.h"
 
 namespace HopStep
 {
 
 	inline namespace Internal
 	{
-		enum class RenderCommandType : int
-		{
-			None,
-			ClearScreen
-		};
-
 #pragma pack(push, 1)
 
 		class RenderCommandHeader
@@ -27,7 +22,6 @@ namespace HopStep
 		};
 
 #pragma pack(pop)
-
 
 		class ClearScreenCommand 
 		{

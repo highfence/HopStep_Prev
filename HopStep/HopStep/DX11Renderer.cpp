@@ -4,7 +4,7 @@
 
 namespace HopStep
 {
-	Result DX11Renderer::SetRenderQueue(std::shared_ptr<RenderQueue> renderQueue)
+	Result DX11Renderer::SetRenderQueue(RenderQueue* renderQueue)
 	{
 		return Result::None;
 	}

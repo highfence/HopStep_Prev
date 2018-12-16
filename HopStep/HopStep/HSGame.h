@@ -10,7 +10,9 @@
 #include "SwapContainer.h"
 #include "Pool.h"
 #include "RenderCommand.h"
+#include "RenderQueue.h"
 #include "InputLayer.h"
+#include "HSConsoleLogger.h"
 
 namespace HopStep
 {
@@ -33,11 +35,11 @@ namespace HopStep
 
 	private :
 
-		Result InitRenderQueue();
 		Result InitRenderer();
 		Result OpenWindow();
 
 		void UpdateEngine();
+
 		WindowConfig m_WindowConfig;
 
 		std::stack<std::shared_ptr<IScene>> m_Scene;
@@ -45,10 +47,8 @@ namespace HopStep
 		std::unique_ptr<GameTimer> m_Timer;
 		std::shared_ptr<InputLayer> m_InputLayer;
 		std::unique_ptr<IRenderer> m_Renderer;
-		
-		using RenderCommandPool = Pool<RenderCommand>;
-		using RenderQueue = SwapContainer<RenderCommandPool>;
-		std::shared_ptr<RenderQueue> m_RenderQueue;
+		std::unique_ptr<RenderQueue> m_RenderQueue;
+		std::unique_ptr<HSConsoleLogger> m_Logger;
 
 		std::thread m_RenderThread;
 		std::atomic_bool m_IsRenderThreadActive = false;

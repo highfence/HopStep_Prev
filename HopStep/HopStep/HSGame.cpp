@@ -70,37 +70,19 @@ namespace HopStep
 		ResultChecker funcResult;
 		m_Scene.empty();
 
+		m_Logger = std::make_unique<HSConsoleLogger>();
+
+		m_RenderQueue = std::make_unique<RenderQueue>();
+
 		m_Timer = std::make_unique<GameTimer>();
 		m_Timer->InitTimer();
 
-		m_GameWindow = std::make_unique<HSWindow>();
+		m_GameWindow = std::make_unique<HSWindow>(m_Logger.get());
 		OpenWindow();
 
-		funcResult = InitRenderQueue();
 		funcResult = InitRenderer();
 
 		m_InputLayer = std::make_shared<InputLayer>();
-	}
-
-	// Todo : make fetch this poolsize from engine config
-	constexpr int basicRenderCommandPoolSize = 1024;
-	Result HSGame::InitRenderQueue()
-	{
-		auto firstPool = new RenderCommandPool();
-		if (firstPool == nullptr)
-			return Result::InitializeFailed;
-
-		firstPool->Init(basicRenderCommandPoolSize);
-
-		auto secondPool = new RenderCommandPool();
-		if (secondPool == nullptr)
-			return Result::InitializeFailed;
-
-		secondPool->Init(basicRenderCommandPoolSize);
-
-		m_RenderQueue = std::make_shared<RenderQueue>(firstPool, secondPool);
-
-		return Result::None;
 	}
 
 	Result HSGame::InitRenderer()
@@ -110,7 +92,7 @@ namespace HopStep
 
 		Result renderThreadResult;
 
-		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue);
+		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue.get());
 		HSDebug::CheckResult(renderThreadResult);
 
 		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle);
