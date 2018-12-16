@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Result.h"
+#include "HSConsoleLogger.h"
 #include "DX11Renderer.h"
 
 namespace HopStep
@@ -9,7 +10,7 @@ namespace HopStep
 		return Result::None;
 	}
 
-	Result Internal::DX11Renderer::InitRenderer(HWND windowHandle)
+	Result Internal::DX11Renderer::InitRenderer(HWND windowHandle, HSConsoleLogger* logger)
 	{
 		return Result::None;
 	}

@@ -90,6 +90,7 @@
     <ClInclude Include="RenderCommandDefine.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="RenderCommandProcessor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -166,5 +167,6 @@
     <ClCompile Include="JsonSerialize.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="RenderCommandProcessor.cpp" />
   </ItemGroup>
 </Project>

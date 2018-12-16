@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Timer.h"
 #include "DX2DRenderer.h"
+#include "HSConsoleLogger.h"
 #include "HSGame.h"
 
 namespace HopStep
@@ -95,7 +96,7 @@ namespace HopStep
 		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue.get());
 		HSDebug::CheckResult(renderThreadResult);
 
-		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle);
+		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle, m_Logger.get());
 		HSDebug::CheckResult(renderThreadResult);
 
 		m_IsRenderThreadActive = true;

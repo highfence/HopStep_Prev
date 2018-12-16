@@ -1,9 +1,6 @@
 #pragma once
-
-#include "Pool.h"
-#include "SwapContainer.h"
+#include "HSConsoleLogger.h"
 #include "RenderQueue.h"
-#include "RenderCommand.h"
 
 namespace HopStep
 {
@@ -13,7 +10,7 @@ namespace HopStep
 		{
 			virtual Result SetRenderQueue(RenderQueue* renderQueue) = 0;
 
-			virtual Result InitRenderer(HWND windowHandle) = 0;
+			virtual Result InitRenderer(HWND windowHandle, HSConsoleLogger* logger) = 0;
 
 			virtual Result ReleaseRenderer() = 0;
 

@@ -11,7 +11,7 @@ namespace HopStep
 		{
 		public :
 
-			std::unordered_map<RenderCommandType, RenderCommandHeader> m_RenderCommands;
+			std::unordered_map<RenderCommandType, std::vector<std::shared_ptr<RenderCommandHeader>>> m_RenderCommands;
 		};
 	}
 }

@@ -2,11 +2,10 @@
 #include <Windows.h>
 #include "HSColor.h"
 #include "Result.h"
+#include "HSConsoleLogger.h"
 
 namespace HopStep
 {
-	class HSConsoleLogger;
-
 	struct WindowConfig
 	{
 		HINSTANCE instance;

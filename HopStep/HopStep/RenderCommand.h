@@ -5,7 +5,6 @@
 
 namespace HopStep
 {
-
 	inline namespace Internal
 	{
 #pragma pack(push, 1)
