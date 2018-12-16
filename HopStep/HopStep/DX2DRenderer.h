@@ -34,6 +34,10 @@ namespace HopStep
 			ID2D1SolidColorBrush* m_pCornflowerBlueBrush = nullptr;
 
 			std::unique_ptr<RenderCommandProcessor> m_Processor;
+
+		private :
+
+			void ClearScreen(std::shared_ptr<RenderCommand> renderCommand);
         };
     }
 }

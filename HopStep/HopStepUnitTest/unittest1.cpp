@@ -1,18 +1,25 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "../HopStep/ByteSerialize.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace HopStepUnitTest
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(Serialize)
 	{
 	public:
-		
-		TEST_METHOD(TestMethod1)
+		struct TestClass
 		{
-			// TODO: 테스트 코드를 여기에 입력합니다.
-		}
+			int m_Int = 7;
+			float m_Float = 0.5f;
+			bool m_Bool = false;
+			std::string m_String;
+		};
+		
+		TEST_METHOD(SerializeTest)
+		{
 
+		}
 	};
 }

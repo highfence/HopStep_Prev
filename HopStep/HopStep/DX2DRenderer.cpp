@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "RenderQueue.h"
+#include "ByteSerialize.h"
 #include "HSConsoleLogger.h"
 #include "DX2DRenderer.h"
 
@@ -27,7 +28,10 @@ namespace HopStep
 		if (hr != S_OK)
 			return Result::DX2DRenderFactoryInitializeFailed;
 
-		return Result::None;
+		ResultChecker initResult;
+		initResult = RegistRenderFunctions();
+
+		return initResult.result;
 	}
 
 	Result Internal::DX2DRenderer::ReleaseRenderer()
@@ -137,6 +141,18 @@ namespace HopStep
 
 	Result Internal::DX2DRenderer::RegistRenderFunctions()
 	{
+		if (m_Processor == nullptr)
+			return Result::NotInitializeYet;
+
+		m_Processor->RegistRenderFunction(RenderCommandType::ClearScreen, std::bind(&DX2DRenderer::ClearScreen, this, std::placeholders::_1));
+
 		return Result::None;
+	}
+
+	void Internal::DX2DRenderer::ClearScreen(std::shared_ptr<RenderCommand> renderCommand)
+	{
+		ClearScreenCommand command;
+		const int bodySize = renderCommand->bodySize;
+		
 	}
 }

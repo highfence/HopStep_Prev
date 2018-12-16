@@ -1,5 +1,5 @@
 #pragma once
-#include <array>
+#include <vector>
 #include <memory>
 #include <type_traits>
 #include <iostream>
@@ -15,17 +15,17 @@ namespace HopStep
 	public :
 
 		template <class T>
-		static std::array<byte, sizeof(T)> SerializeToByte(const T& obj);
+		static std::vector<byte> SerializeToByte(const T& obj);
 			
 		template <class T>
-		static T& DeserializeFromByte(const std::array<byte, sizeof(T)>& bytes, T& object);
+		static T& DeserializeFromByte(const std::vector<byte>& bytes, T& object);
 
 	};
 
 	template<class T>
-	inline std::array<byte, sizeof(T)> ByteSerializer::SerializeToByte(const T & obj)
+	inline std::vector<byte> ByteSerializer::SerializeToByte(const T & obj)
 	{
-		std::array< byte, sizeof(T) > bytes;
+		std::vector<byte> bytes;
 
 		const byte* begin = reinterpret_cast<const byte*>(std::addressof(obj));
 		const byte* end = begin + sizeof(T);
@@ -35,11 +35,8 @@ namespace HopStep
 	}
 
 	template<class T>
-	inline T & ByteSerializer::DeserializeFromByte(const std::array<byte, sizeof(T)>& bytes, T & object)
+	inline T & ByteSerializer::DeserializeFromByte(const std::vector<byte>& bytes, T & object)
 	{
-		// http://en.cppreference.com/w/cpp/types/is_trivially_copyable
-		static_assert(std::is_trivially_copyable<T>::value, "not a TriviallyCopyable type");
-
 		byte* begin_object = reinterpret_cast<byte*>(std::addressof(object));
 		std::copy(std::begin(bytes), std::end(bytes), begin_object);
 

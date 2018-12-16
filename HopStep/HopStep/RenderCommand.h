@@ -9,7 +9,7 @@ namespace HopStep
 	{
 #pragma pack(push, 1)
 
-		class RenderCommandHeader
+		class RenderCommand
 		{
 		public :
 
@@ -29,6 +29,7 @@ namespace HopStep
 			virtual ~ClearScreenCommand(void) {}
 
 			HSColor m_ScreenColor;
+			bool m_IsColorChanged = false;
 		};
 	}
 

@@ -6,31 +6,34 @@ namespace HopStep
 {
 	bool JsonSerializer::Serialize(IJsonSerializable * pObj, std::string & output)
 	{
-		//if (pObj == NULL)
-		//	return false;
+		if (pObj == NULL)
+			return false;
 
-		//Json::Value serializeRoot;
-		//pObj->Serialize(serializeRoot);
+		Json::Value serializeRoot;
+		pObj->Serialize(serializeRoot);
 
-		//Json::StyledWriter writer;
-		//output = writer.write(serializeRoot);
+		Json::StreamWriterBuilder writer;
+		output = Json::writeString(writer, serializeRoot);
 
 		return true;
 	}
 
 	bool JsonSerializer::Deserialize(IJsonSerializable * pObj, std::string & input)
 	{
-		//if (pObj == NULL)
-		//	return false;
+		if (pObj == NULL)
+			return false;
 
-		//Json::Value deserializeRoot;
-		//Json::Reader reader;
+		Json::Value deserializeRoot;
+		Json::CharReaderBuilder builder;
+		Json::CharReader* reader = builder.newCharReader();
+		std::string errors;
 
-		//if (!reader.parse(input, deserializeRoot))
-		//	return false;
+		bool parseSucceed = reader->parse(input.c_str(), input.c_str() + input.size(), &deserializeRoot, &errors);
 
-		//pObj->Deserialize(deserializeRoot);
+		if (parseSucceed)
+			pObj->Deserialize(deserializeRoot);
 
-		return true;
+		delete reader;
+		return parseSucceed;
 	}
 }

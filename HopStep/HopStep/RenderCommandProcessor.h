@@ -8,7 +8,7 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
-		using RenderCommandFunc = std::function<void(std::shared_ptr<RenderCommandHeader>)>;
+		using RenderCommandFunc = std::function<void(std::shared_ptr<RenderCommand>)>;
 
 		class RenderCommandProcessor
 		{
