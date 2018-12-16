@@ -9,6 +9,7 @@ namespace HopStep
 		HSColor(float r, float g, float b, float a) : r(r), g(g), b(b), a(a) {}
 
 		static HSColor FromString(Json::Value& jsonColor);
+		void ToString(Json::Value& root);
 
 		float r;
 		float g;

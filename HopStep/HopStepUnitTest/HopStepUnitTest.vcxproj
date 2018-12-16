@@ -23,7 +23,7 @@
     <ProjectGuid>{ACC0B998-F533-4459-BB8F-3434F982C390}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HopStepUnitTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -163,6 +163,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="unittest1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HopStep\HopStep.vcxproj">
+      <Project>{0a38c3bd-113f-4c3a-86ed-39ec47269aaa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

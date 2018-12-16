@@ -13,4 +13,12 @@ namespace HopStep
 
 		return HSColor(r, g, b, a);
 	}
+
+	void HSColor::ToString(Json::Value & root)
+	{
+		root["r"] = r;
+		root["g"] = g;
+		root["b"] = b;
+		root["a"] = a;
+	}
 }

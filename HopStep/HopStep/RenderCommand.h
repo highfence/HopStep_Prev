@@ -2,6 +2,7 @@
 #include "HSColor.h"
 #include "ByteSerialize.h"
 #include "RenderCommandDefine.h"
+#include "JsonSerialize.h"
 
 namespace HopStep
 {
@@ -22,7 +23,7 @@ namespace HopStep
 
 #pragma pack(pop)
 
-		class ClearScreenCommand 
+		class ClearScreenCommand final : public IJsonSerializable
 		{
 		public :
 			ClearScreenCommand(void) {}
@@ -30,6 +31,9 @@ namespace HopStep
 
 			HSColor m_ScreenColor;
 			bool m_IsColorChanged = false;
+
+			virtual void Serialize(Json::Value& root) override;
+			virtual void Deserialize(Json::Value& root) override;
 		};
 	}
 
