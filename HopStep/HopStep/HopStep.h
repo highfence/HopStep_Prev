@@ -9,4 +9,4 @@
 #include "GameObject.h"
 #include "HSColor.h"
 #include "IDGenerator.h"
-#include "../Extern/json/json.h"
+#include "json/json.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include "../Extern/json/json.h"
+#include "json/json.h"
 
 namespace HopStep
 {
