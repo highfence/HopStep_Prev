@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "RenderQueue.h"
-#include "ByteSerialize.h"
+#include "JsonSerialize.h"
 #include "HSConsoleLogger.h"
+#include "RenderCommandProcessor.h"
 #include "DX2DRenderer.h"
 
 namespace HopStep
@@ -28,6 +29,8 @@ namespace HopStep
 		if (hr != S_OK)
 			return Result::DX2DRenderFactoryInitializeFailed;
 
+		m_Processor = std::make_unique<RenderCommandProcessor>();
+
 		ResultChecker initResult;
 		initResult = RegistRenderFunctions();
 
@@ -47,6 +50,9 @@ namespace HopStep
 
 	void DX2DRenderer::Render()
 	{
+		if (m_RenderQueue->IsEmpty())
+			return;
+
 		ResultChecker renderResult;
 		renderResult = CreateDeviceResources();
 
@@ -54,9 +60,15 @@ namespace HopStep
 
 		m_RenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
-		m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
+		auto currentFrame = m_RenderQueue->Peek();
+
+		m_Processor->Process(currentFrame);
+
+		m_RenderQueue->Pop();
 
 #pragma region DEBUG
+
+		//m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
 
 		//// Draw a grid background.
 		//D2D1_SIZE_F rtSize = m_pRenderTarget->GetSize();
@@ -153,6 +165,18 @@ namespace HopStep
 	{
 		ClearScreenCommand command;
 		const int bodySize = renderCommand->bodySize;
-		
+		auto rawJson = std::string(renderCommand->body);
+
+		Json::Value root;
+		Json::CharReaderBuilder builder;
+		Json::CharReader* reader = builder.newCharReader();;
+
+		if (reader == nullptr)
+			return;
+
+		reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
+		command.Deserialize(root);
+
+		delete reader;
 	}
 }

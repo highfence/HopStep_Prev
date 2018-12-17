@@ -8,7 +8,7 @@
 namespace HopStep
 {
 	// Maybe switching with std::byte...?
-	using byte = unsigned char;
+	using byte = char;
 
 	class ByteSerializer
 	{
