@@ -78,6 +78,9 @@ namespace HopStep
 
 		m_Logger = std::make_unique<HSConsoleLogger>();
 
+		m_RenderObjectList = std::make_shared<RenderProducerList>();
+		m_TickObjectList = std::make_shared<TickObjectList>();
+
 		m_RenderQueue = std::make_unique<RenderQueue>();
 
 		m_Timer = std::make_unique<GameTimer>();
@@ -89,8 +92,6 @@ namespace HopStep
 		funcResult = InitRenderer();
 
 		m_InputLayer = std::make_unique<InputLayer>();
-
-		m_RenderObjectList = std::make_shared<RenderProducerList>();
 	}
 
 	Result HSGame::InitRenderer()
@@ -127,6 +128,8 @@ namespace HopStep
 			return;
 
 		m_InputLayer->UpdateKeyStates();
+
+		m_TickObjectList->ProcessTick(m_AccTime);
 
 		m_RenderObjectList->GatherCommand(m_RenderQueue.get());
 

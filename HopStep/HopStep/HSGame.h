@@ -13,6 +13,7 @@
 #include "RenderQueue.h"
 #include "InputLayer.h"
 #include "RenderProducerList.h"
+#include "TickObjectList.h"
 #include "HSConsoleLogger.h"
 
 namespace HopStep
@@ -51,6 +52,7 @@ namespace HopStep
 		std::unique_ptr<RenderQueue>        m_RenderQueue;
 		std::unique_ptr<HSConsoleLogger>    m_Logger;
 		std::shared_ptr<RenderProducerList> m_RenderObjectList;
+		std::shared_ptr<TickObjectList>		m_TickObjectList;
 
 		std::thread m_RenderThread;
 		std::atomic_bool m_IsRenderThreadActive = false;
