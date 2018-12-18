@@ -10,3 +10,4 @@
 #include "HSColor.h"
 #include "IDGenerator.h"
 #include "json/json.h"
+#include "HSVector.h"

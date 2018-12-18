@@ -93,6 +93,9 @@
     <ClInclude Include="RenderCommandProcessor.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="HSVector.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

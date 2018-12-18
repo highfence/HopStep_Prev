@@ -7,7 +7,8 @@ namespace HopStep
 		enum class RenderCommandType : int
 		{
 			None,
-			ClearScreen
+			ClearScreen,
+			DrawRect
 		};
 	}
 }

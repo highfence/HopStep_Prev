@@ -68,8 +68,6 @@ namespace HopStep
 
 #pragma region DEBUG
 
-		//m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));
-
 		//// Draw a grid background.
 		//D2D1_SIZE_F rtSize = m_pRenderTarget->GetSize();
 
@@ -178,5 +176,60 @@ namespace HopStep
 		command.Deserialize(root);
 
 		delete reader;
+
+		HSColor color = command.m_ScreenColor;
+		D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
+		m_RenderTarget->Clear(screenColor);
+	}
+
+	void Internal::DX2DRenderer::DrawRect(std::shared_ptr<RenderCommand> renderCommand)
+	{
+		if (m_RenderTarget == nullptr)
+			return;
+
+		DrawRectCommand command;
+		const int bodySize = renderCommand->bodySize;
+		auto rawJson = std::string(renderCommand->body);
+
+		Json::Value root;
+		Json::CharReaderBuilder builder;
+		Json::CharReader* reader = builder.newCharReader();;
+
+		if (reader == nullptr)
+			return;
+
+		reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
+		command.Deserialize(root);
+
+		delete reader;
+
+		HSColor color = command.m_RectColor;
+		D2D1::ColorF rectColor(color.r, color.g, color.b, color.a);
+
+		D2D1_RECT_F rectangle = D2D1::RectF(
+			command.m_Center.x - command.m_Width / 2,
+			command.m_Center.y - command.m_Height / 2,
+			command.m_Center.x + command.m_Width / 2,
+			command.m_Center.y + command.m_Height / 2
+		);
+
+		ID2D1SolidColorBrush* rectBrush = nullptr;
+		HRESULT hr = m_RenderTarget->CreateSolidColorBrush(rectColor, &rectBrush);
+		if (SUCCEEDED(hr) == false)
+		{
+			m_Logger->Write(LogType::Error, "%s | Brush creation failed", __FUNCTION__);
+			return;
+		}
+
+		if (command.m_Type == DrawRectCommand::RectType::FilledRect)
+		{
+			m_RenderTarget->FillRectangle(&rectangle, rectBrush);
+		}
+		else if (command.m_Type == DrawRectCommand::RectType::LineRect)
+		{
+			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
+		}
+
+		SafeRelease(&rectBrush);
 	}
 }

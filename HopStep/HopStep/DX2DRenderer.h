@@ -38,6 +38,7 @@ namespace HopStep
 		private :
 
 			void ClearScreen(std::shared_ptr<RenderCommand> renderCommand);
+			void DrawRect(std::shared_ptr<RenderCommand> renderCommand);
         };
     }
 }
