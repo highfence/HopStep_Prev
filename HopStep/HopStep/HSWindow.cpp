@@ -65,4 +65,10 @@ namespace HopStep
 
 		return Result::None;
 	}
+
+	void HSWindow::Produce(std::shared_ptr<FrameInfo> frameInfo)
+	{
+		if (frameInfo == nullptr)
+			return;
+	}
 }

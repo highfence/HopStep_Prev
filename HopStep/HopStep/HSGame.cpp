@@ -131,7 +131,11 @@ namespace HopStep
 
 		m_TickObjectList->ProcessTick(m_AccTime);
 
-		m_RenderObjectList->GatherCommand(m_RenderQueue.get());
+		auto currentFrame = std::make_shared<FrameInfo>();
+
+		m_RenderObjectList->GatherCommand(currentFrame);
+
+		m_RenderQueue->Push(currentFrame);
 
 		m_AccTime = 0.0f;
 	}

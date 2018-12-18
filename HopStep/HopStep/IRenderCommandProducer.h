@@ -25,7 +25,7 @@ namespace HopStep
 				thisGameRendererList->DeleteProducer(this);
 			}
 
-			virtual void Produce(RenderQueue* queue) = 0;
+			virtual void Produce(std::shared_ptr<FrameInfo> frameInfo) = 0;
 		};
 	}
 }

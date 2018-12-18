@@ -43,9 +43,9 @@ namespace HopStep
 		return Result::None;
 	}
 
-	void RenderProducerList::GatherCommand(RenderQueue * queue)
+	void RenderProducerList::GatherCommand(std::shared_ptr<FrameInfo> frameInfo)
 	{
-		if (queue == nullptr)
+		if (frameInfo == nullptr)
 			return;
 
 		for (const auto& producer : m_RenderProducers)
@@ -53,7 +53,7 @@ namespace HopStep
 			if (producer == nullptr)
 				continue;
 
-			producer->Produce(queue);
+			producer->Produce(frameInfo);
 		}
 	}
 }

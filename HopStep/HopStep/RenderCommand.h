@@ -16,7 +16,7 @@ namespace HopStep
 		public :
 
 			RenderCommandType type = RenderCommandType::None;
-			std::chrono::milliseconds tickTimeStamp;
+			// std::chrono::milliseconds tickTimeStamp;
 
 			int bodySize = 0;
 			byte* body;

@@ -1,4 +1,5 @@
 #pragma once
+#include "FrameInfo.h"
 
 namespace HopStep
 {
@@ -16,7 +17,7 @@ namespace HopStep
 			Result AddProducer(IRenderCommandProducer* producer);
 			Result DeleteProducer(IRenderCommandProducer* producer);
 
-			void GatherCommand(RenderQueue* queue);
+			void GatherCommand(std::shared_ptr<FrameInfo> frame);
 
 		private:
 
