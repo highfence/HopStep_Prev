@@ -70,5 +70,23 @@ namespace HopStep
 	{
 		if (frameInfo == nullptr)
 			return;
+
+		ClearScreenCommand command;
+		command.m_ScreenColor = m_Config.backgroundColor;
+		command.m_IsColorChanged = true;
+
+		std::string jsonString;
+		JsonSerializer::Serialize(&command, jsonString);
+
+		auto renderCommand = std::make_shared<RenderCommand>();
+
+		char* body = new char[jsonString.size() + 1];
+		std::copy(jsonString.begin(), jsonString.end(), body);
+		body[jsonString.size()] = '\0';
+
+		renderCommand->body = body;
+		renderCommand->bodySize = jsonString.size();
+
+		renderCommand->type = RenderCommandType::ClearScreen;
 	}
 }

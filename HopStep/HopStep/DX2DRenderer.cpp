@@ -155,6 +155,7 @@ namespace HopStep
 			return Result::NotInitializeYet;
 
 		m_Processor->RegistRenderFunction(RenderCommandType::ClearScreen, std::bind(&DX2DRenderer::ClearScreen, this, std::placeholders::_1));
+		m_Processor->RegistRenderFunction(RenderCommandType::DrawRect, std::bind(&DX2DRenderer::DrawRect, this, std::placeholders::_1));
 
 		return Result::None;
 	}
@@ -163,23 +164,26 @@ namespace HopStep
 	{
 		ClearScreenCommand command;
 		const int bodySize = renderCommand->bodySize;
-		auto rawJson = std::string(renderCommand->body);
+		std::string rawJson;
+		rawJson.assign(renderCommand->body, renderCommand->bodySize);
 
 		Json::Value root;
 		Json::CharReaderBuilder builder;
 		Json::CharReader* reader = builder.newCharReader();;
 
-		if (reader == nullptr)
-			return;
+		if (reader)
+		{
+			reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
+			command.Deserialize(root);
 
-		reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
-		command.Deserialize(root);
+			delete reader;
 
-		delete reader;
+			HSColor color = command.m_ScreenColor;
+			D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
+			m_RenderTarget->Clear(screenColor);
+		}
 
-		HSColor color = command.m_ScreenColor;
-		D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
-		m_RenderTarget->Clear(screenColor);
+		delete[] renderCommand->body;
 	}
 
 	void Internal::DX2DRenderer::DrawRect(std::shared_ptr<RenderCommand> renderCommand)
@@ -189,7 +193,8 @@ namespace HopStep
 
 		DrawRectCommand command;
 		const int bodySize = renderCommand->bodySize;
-		auto rawJson = std::string(renderCommand->body);
+		std::string rawJson;
+		rawJson.assign(renderCommand->body, renderCommand->bodySize);;
 
 		Json::Value root;
 		Json::CharReaderBuilder builder;
@@ -218,6 +223,7 @@ namespace HopStep
 		if (SUCCEEDED(hr) == false)
 		{
 			m_Logger->Write(LogType::Error, "%s | Brush creation failed", __FUNCTION__);
+			delete[] renderCommand->body;
 			return;
 		}
 
@@ -230,6 +236,7 @@ namespace HopStep
 			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
 		}
 
+		delete[] renderCommand->body;
 		SafeRelease(&rectBrush);
 	}
 }
