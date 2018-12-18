@@ -13,6 +13,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	windowConfig.instance = hInstance;
 	windowConfig.cmdShow = nCmdShow;
 	windowConfig.windowName = L"Snake Practice!";
+	windowConfig.backgroundColor = HopStep::HSColor(255.f, 255.f, 255.f, 1.0f);
+
 	SnakeGame.SetWindowConfig(windowConfig);
 	SnakeGame.InitEngine();
 
