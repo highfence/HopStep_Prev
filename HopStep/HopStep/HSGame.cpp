@@ -8,6 +8,11 @@ namespace HopStep
 {
 	HSGame::HSGame()
 	{
+		if (thisGame != nullptr)
+		{
+			HSDebug::CheckResult(Result::DuplicatedGameInstance);
+			thisGame = this;
+		}
 	}
 
 	HSGame::~HSGame()
@@ -83,7 +88,9 @@ namespace HopStep
 
 		funcResult = InitRenderer();
 
-		m_InputLayer = std::make_shared<InputLayer>();
+		m_InputLayer = std::make_unique<InputLayer>();
+
+		m_RenderObjectList = std::make_shared<RenderProducerList>();
 	}
 
 	Result HSGame::InitRenderer()
@@ -120,6 +127,8 @@ namespace HopStep
 			return;
 
 		m_InputLayer->UpdateKeyStates();
+
+		m_RenderObjectList->GatherCommand(m_RenderQueue.get());
 
 		m_AccTime = 0.0f;
 	}

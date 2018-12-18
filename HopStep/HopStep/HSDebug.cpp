@@ -25,6 +25,10 @@ namespace HopStep
 			return std::wstring(TEXT("Singleton class Get Failed."));
 		case Result::DuplicatedId:
 			return std::wstring(TEXT("Duplicated UID."));
+		case Result::DuplicatedGameInstance:
+			return std::wstring(TEXT("Duplicated HSGame Instance."));
+		case Result::DuplicatedObject:
+			return std::wstring(TEXT("Duplicated Object."));
 		case Result::NotInitializeYet:
 			return std::wstring(TEXT("Object Not Initialized Yet."));
 		case Result::WindowClassRegistFailed:

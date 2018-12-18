@@ -21,9 +21,6 @@
     <ClInclude Include="Pool.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="HSDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
@@ -33,14 +30,8 @@
     <ClInclude Include="Timer.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="DX11Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="SwapContainer.h">
       <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="DX2DRenderer.h">
-      <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="InputLayer.h">
       <Filter>Input</Filter>
@@ -96,6 +87,21 @@
     <ClInclude Include="HSVector.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="DX2DRenderer.h">
+      <Filter>Rendering\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="DX11Renderer.h">
+      <Filter>Rendering\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>Rendering\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderCommandProducer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderProducerList.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -125,6 +131,9 @@
     <Filter Include="Util\Log">
       <UniqueIdentifier>{b5c393e2-fb31-4513-9cc4-11c3ce5f1f06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Renderer">
+      <UniqueIdentifier>{a03c910f-28ef-46de-9796-f587a43cb912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -144,12 +153,6 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="DX11Renderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="DX2DRenderer.cpp">
-      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="InputLayer.cpp">
       <Filter>Input</Filter>
@@ -173,6 +176,15 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="RenderCommandProcessor.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DX2DRenderer.cpp">
+      <Filter>Rendering\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="DX11Renderer.cpp">
+      <Filter>Rendering\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderProducerList.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>

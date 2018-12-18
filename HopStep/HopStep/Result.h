@@ -12,6 +12,8 @@ namespace HopStep
 			NullParameter = 2,
 			GetSingletonFailed = 3,
 			DuplicatedId = 4,
+			DuplicatedGameInstance = 5,
+			DuplicatedObject = 6,
 
 			InitializeFailed = 10,
 			NotInitializeYet = 11,
