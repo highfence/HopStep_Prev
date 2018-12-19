@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RenderQueue.h"
 #include "JsonSerialize.h"
+#include "HSRect.h"
 #include "HSConsoleLogger.h"
 #include "RenderCommandProcessor.h"
 #include "DX2DRenderer.h"
@@ -181,7 +182,6 @@ namespace HopStep
 			HSColor color = command.m_ScreenColor;
 			D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
 			m_RenderTarget->Clear(screenColor);
-			//m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::PeachPuff));
 		}
 
 		delete[] renderCommand->body;
@@ -209,14 +209,15 @@ namespace HopStep
 
 		delete reader;
 
-		HSColor color = command.m_RectColor;
+		HSRect rect = command.m_Rect;
+		HSColor color = rect.m_RectColor;
 		D2D1::ColorF rectColor(color.r, color.g, color.b, color.a);
 
 		D2D1_RECT_F rectangle = D2D1::RectF(
-			command.m_Center.x - command.m_Width / 2,
-			command.m_Center.y - command.m_Height / 2,
-			command.m_Center.x + command.m_Width / 2,
-			command.m_Center.y + command.m_Height / 2
+			rect.m_Center.x - rect.m_Width / 2,
+			rect.m_Center.y - rect.m_Height / 2,
+			rect.m_Center.x + rect.m_Width / 2,
+			rect.m_Center.y + rect.m_Height / 2
 		);
 
 		ID2D1SolidColorBrush* rectBrush = nullptr;
@@ -228,11 +229,11 @@ namespace HopStep
 			return;
 		}
 
-		if (command.m_Type == DrawRectCommand::RectType::FilledRect)
+		if (rect.m_Type == HSRect::RectType::FilledRect)
 		{
 			m_RenderTarget->FillRectangle(&rectangle, rectBrush);
 		}
-		else if (command.m_Type == DrawRectCommand::RectType::LineRect)
+		else if (rect.m_Type == HSRect::RectType::LineRect)
 		{
 			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
 		}

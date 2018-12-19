@@ -45,7 +45,7 @@ namespace HopStep
 		return Result::None;
 	}
 
-	void RenderProducerList::GatherCommand(std::shared_ptr<FrameInfo> frameInfo)
+	void RenderProducerList::GatherCommand(FrameInfo* frameInfo)
 	{
 		if (frameInfo == nullptr)
 			return;

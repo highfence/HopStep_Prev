@@ -35,9 +35,9 @@ namespace HopStep
     template <typename T>
     inline HSVector<T>& HSVector<T>::operator=(const HSVector<T>& rhs)
     {
-        if (this == &rhs)
-            return *this;
-
+		this->x = rhs.x;
+		this->y = rhs.y;
+		this->z = rhs.z;
         
         return *this;
     }

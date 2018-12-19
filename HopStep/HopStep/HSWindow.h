@@ -8,6 +8,7 @@ namespace HopStep
 {
 	class HSConsoleLogger;
 
+	// Todo : Move this class to EngineConfig member variable
 	struct WindowConfig
 	{
 		HINSTANCE instance;
@@ -31,7 +32,7 @@ namespace HopStep
 
 		HWND WindowHandle;
 
-		virtual void Produce(std::shared_ptr<FrameInfo> frameInfo) override;
+		virtual void Produce(FrameInfo* frameInfo) override;
 
 	private :
 

@@ -160,6 +160,7 @@
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HSConsoleLogger.h" />
+    <ClInclude Include="HSRect.h" />
     <ClInclude Include="HsWindow.h" />
     <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="InputLayer.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="RenderProducerList.h" />
     <ClInclude Include="RenderQueue.h" />
     <ClInclude Include="Result.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringHelper.h" />
     <ClInclude Include="SwapContainer.h" />
@@ -190,9 +192,11 @@
   <ItemGroup>
     <ClCompile Include="DX11Renderer.cpp" />
     <ClCompile Include="DX2DRenderer.cpp" />
+    <ClCompile Include="FrameInfo.cpp" />
     <ClCompile Include="HSColor.cpp" />
     <ClCompile Include="HSDebug.cpp" />
     <ClCompile Include="HSGame.cpp" />
+    <ClCompile Include="HSRect.cpp" />
     <ClCompile Include="HsWindow.cpp" />
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputLayer.cpp" />
@@ -202,6 +206,7 @@
     <ClCompile Include="RenderCommand.cpp" />
     <ClCompile Include="RenderCommandProcessor.cpp" />
     <ClCompile Include="RenderProducerList.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

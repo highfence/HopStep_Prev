@@ -19,7 +19,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	SnakeGame.InitEngine();
 
 	// Todo : change this sequence easier
-	std::shared_ptr<HopStep::IScene> gameScene = std::static_pointer_cast<HopStep::IScene>(std::make_shared<GameScene>());
+	std::shared_ptr<HopStep::IScene> gameScene = std::static_pointer_cast<HopStep::IScene>(std::make_shared<SnakeGameScene>());
 	SnakeGame.SetStartScene(gameScene);
 
 	SnakeGame.GameStart();

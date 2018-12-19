@@ -1,12 +1,19 @@
 #include "GameScene.h"
 
 
-bool GameScene::Init()
+bool SnakeGameScene::Init()
 {
-	return false;
+
+
+	return true;
 }
 
-void GameScene::UpdateScene(float deltaTime)
+void SnakeGameScene::UpdateScene(float deltaTime)
 {
 
+}
+
+bool SnakeGameScene::OnChangeScene(HopStep::SceneManager * manager)
+{
+	return false;
 }

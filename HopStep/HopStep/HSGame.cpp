@@ -24,15 +24,12 @@ namespace HopStep
 
 	void HSGame::Release()
 	{
-		while (m_Scene.empty() == false)
-			m_Scene.pop();
-
 		m_IsRenderThreadActive = false;
 	}
 
 	void HSGame::GameStart()
 	{
-		auto startScene = m_Scene.top();
+		auto startScene = m_SceneManager->Peek();
 		if (startScene == nullptr)
 			return;
 
@@ -48,16 +45,15 @@ namespace HopStep
 
 	void HSGame::SetStartScene(std::shared_ptr<IScene> startScene)
 	{
-		if (startScene == nullptr)
+		if (startScene == nullptr || m_SceneManager == nullptr)
 			return;
 
-		m_Scene.push(startScene);
+		m_SceneManager->PushScene(startScene);
 	}
 
 	void HSGame::InitEngine()
 	{
 		ResultChecker funcResult;
-		m_Scene.empty();
 
 		m_Logger = std::make_unique<HSConsoleLogger>();
 
@@ -75,6 +71,7 @@ namespace HopStep
 		funcResult = InitRenderer();
 
 		m_InputLayer = std::make_unique<InputLayer>();
+		m_SceneManager = std::make_unique<SceneManager>();
 	}
 
 	Result HSGame::InitRenderer()
@@ -141,7 +138,7 @@ namespace HopStep
 
 		auto currentFrame = std::make_shared<FrameInfo>();
 
-		m_RenderObjectList->GatherCommand(currentFrame);
+		m_RenderObjectList->GatherCommand(currentFrame.get());
 
 		if (currentFrame->IsValid())
 			PushToRenderQueue(currentFrame);
