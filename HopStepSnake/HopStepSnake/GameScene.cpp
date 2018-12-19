@@ -1,5 +1,8 @@
 #include "GameScene.h"
 
+constexpr int widthCellCount = 24;
+constexpr int heightCellCount = 16;
+constexpr int cellPixel = 20;
 
 bool SnakeGameScene::Init()
 {

@@ -4,6 +4,19 @@
 
 namespace HopStep
 {
+	HSRect::HSRect(HSRect* rect)
+		: m_Center(0), m_RectColor(0)
+	{
+		if (rect == nullptr)
+			return;
+
+		this->m_Center = rect->m_Center;
+		this->m_Height = rect->m_Height;
+		this->m_Width = rect->m_Width;
+		this->m_RectColor = rect->m_RectColor;
+		this->m_Type = rect->m_Type;
+	}
+
 	HSRect & HSRect::operator=(const HSRect & rhs)
 	{
 		this->m_Center = rhs.m_Center;

@@ -8,6 +8,7 @@ namespace HopStep
 	{
 	public:
 
+		HSRect(HSRect* rect);
 		HSRect() : m_RectColor(0), m_Center(0) {}
 		HSRect& operator=(const HSRect& rhs);
 

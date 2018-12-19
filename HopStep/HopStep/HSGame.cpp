@@ -38,11 +38,6 @@ namespace HopStep
 		UpdateMessageLoop();
 	}
 
-	void HSGame::SetWindowConfig(WindowConfig& config)
-	{
-		m_WindowConfig = config;
-	}
-
 	void HSGame::SetStartScene(std::shared_ptr<IScene> startScene)
 	{
 		if (startScene == nullptr || m_SceneManager == nullptr)
@@ -51,8 +46,10 @@ namespace HopStep
 		m_SceneManager->PushScene(startScene);
 	}
 
-	void HSGame::InitEngine()
+	void HSGame::InitEngine(WindowConfig& config)
 	{
+		m_WindowConfig = config;
+
 		ResultChecker funcResult;
 
 		m_Logger = std::make_unique<HSConsoleLogger>();

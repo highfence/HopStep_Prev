@@ -10,15 +10,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	HSGame SnakeGame;
 
 	WindowConfig windowConfig;
-	windowConfig.clientWidth = 1200;
-	windowConfig.clientHeight = 800;
+	windowConfig.clientWidth = 480;
+	windowConfig.clientHeight = 320;
 	windowConfig.instance = hInstance;
 	windowConfig.cmdShow = nCmdShow;
 	windowConfig.windowName = L"Snake Practice!";
 	windowConfig.backgroundColor = HopStep::HSColor(0.f, 0.f, 0.f, 1.0f);
 
-	SnakeGame.SetWindowConfig(windowConfig);
-	SnakeGame.InitEngine();
+	SnakeGame.InitEngine(windowConfig);
 
 	// Todo : change this sequence easier
 	std::shared_ptr<IScene> gameScene = std::static_pointer_cast<IScene>(std::make_shared<SnakeGameScene>());

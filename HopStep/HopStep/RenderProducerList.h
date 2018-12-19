@@ -1,4 +1,5 @@
 #pragma once
+#include <atomic>
 
 namespace HopStep
 {
@@ -22,6 +23,8 @@ namespace HopStep
 			void GatherCommand(FrameInfo* frame);
 
 		private:
+
+			std::atomic<bool> m_IsGathering = false;
 
 			std::vector<IRenderCommandProducer*> m_RenderProducers;
 			static std::shared_ptr<RenderProducerList> instance;

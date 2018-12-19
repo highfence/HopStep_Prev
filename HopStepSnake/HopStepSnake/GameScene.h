@@ -1,7 +1,8 @@
 #pragma once
+#include "Snake.h"
 #include "../../HopStep/HopStep/HopStep.h"
 
-class SnakeGameScene : public HopStep::IScene
+class SnakeGameScene final : public HopStep::IScene
 {
 public:
 
@@ -10,5 +11,9 @@ public:
 	virtual void UpdateScene(const float deltaTime) override;
 
 	virtual bool OnChangeScene(HopStep::SceneManager* manager) override;
+
+private :
+
+	Snake player;
 };
 

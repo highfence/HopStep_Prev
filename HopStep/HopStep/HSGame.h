@@ -26,13 +26,11 @@ namespace HopStep
 		HSGame();
 		~HSGame();
 
-		void InitEngine();
+		void InitEngine(WindowConfig& config);
 
 		void Release();
 
 		void GameStart();
-
-		void SetWindowConfig(WindowConfig& config);
 
 		void SetStartScene(std::shared_ptr<IScene> startScene);
 
