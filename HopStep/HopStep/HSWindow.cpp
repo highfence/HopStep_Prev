@@ -88,5 +88,7 @@ namespace HopStep
 		renderCommand->bodySize = jsonString.size();
 
 		renderCommand->type = RenderCommandType::ClearScreen;
+
+		frameInfo->AddRenderCommand(renderCommand);
 	}
 }

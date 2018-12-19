@@ -33,9 +33,10 @@ namespace HopStep
 				continue;
 			}
 
+			auto func = renderFunction->second;
 			for (auto& command : commandList.second)
 			{ 
-				renderFunction->second(command);
+				func(command);
 			}
 		}
 

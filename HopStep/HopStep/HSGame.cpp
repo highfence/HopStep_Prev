@@ -61,8 +61,8 @@ namespace HopStep
 
 		m_Logger = std::make_unique<HSConsoleLogger>();
 
-		m_RenderObjectList = std::make_shared<RenderProducerList>();
-		m_TickObjectList = std::make_shared<TickObjectList>();
+		m_RenderObjectList = RenderProducerList::Get();
+		m_TickObjectList = TickObjectList::Get();
 
 		m_RenderQueue = std::make_unique<RenderQueue>();
 
@@ -105,7 +105,6 @@ namespace HopStep
 		return openResult.result;
 	}
 
-	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::UpdateMessageLoop()
 	{
 		MSG message;
@@ -133,6 +132,8 @@ namespace HopStep
 		}
 	}
 
+	// Todo : Load frameTime from engine(or game) config...
+	constexpr float frameTime = 1.0f; // / 60.0f;
 	void HSGame::UpdateEngine()
 	{
 		if (m_AccTime < frameTime)
@@ -146,7 +147,8 @@ namespace HopStep
 
 		m_RenderObjectList->GatherCommand(currentFrame);
 
-		m_RenderQueue->Push(currentFrame);
+		if (currentFrame->IsValid())
+			m_RenderQueue->Push(currentFrame);
 
 		m_AccTime = 0.0f;
 	}

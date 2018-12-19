@@ -4,17 +4,19 @@
 
 namespace HopStep
 {
-	Internal::TickObjectList::TickObjectList()
-	{
-		if (thisGameTickObjects != nullptr)
-			return;
+	std::shared_ptr<TickObjectList> TickObjectList::instance = nullptr;
 
-		thisGameTickObjects = this;
+	std::shared_ptr<TickObjectList> Internal::TickObjectList::Get()
+	{
+		if (instance == nullptr)
+			instance = std::make_shared<TickObjectList>();
+		
+		return instance;
 	}
 
 	Internal::TickObjectList::~TickObjectList()
 	{
-		thisGameTickObjects = nullptr;
+		instance = nullptr;
 
 		m_TickObjectList.clear();
 	}
@@ -24,7 +26,7 @@ namespace HopStep
 		if (object == nullptr)
 			return Result::NullParameter;
 
-		if (std::find(m_TickObjectList.begin(), m_TickObjectList.end(), object) == m_TickObjectList.end())
+		if (std::find(m_TickObjectList.begin(), m_TickObjectList.end(), object) != m_TickObjectList.end())
 			return Result::DuplicatedObject;
 
 		m_TickObjectList.push_back(object);

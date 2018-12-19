@@ -105,7 +105,9 @@
     <ClInclude Include="ITickObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="TickObjectList.h" />
+    <ClInclude Include="TickObjectList.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -191,6 +193,8 @@
     <ClCompile Include="RenderProducerList.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="TickObjectList.cpp" />
+    <ClCompile Include="TickObjectList.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

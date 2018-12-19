@@ -52,6 +52,7 @@ namespace HopStep
 		std::unique_ptr<IRenderer>          m_Renderer;
 		std::unique_ptr<RenderQueue>        m_RenderQueue;
 		std::unique_ptr<HSConsoleLogger>    m_Logger;
+
 		std::shared_ptr<RenderProducerList> m_RenderObjectList;
 		std::shared_ptr<TickObjectList>		m_TickObjectList;
 

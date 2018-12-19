@@ -10,7 +10,9 @@ namespace HopStep
 		{
 		public:
 
-			TickObjectList();
+			static std::shared_ptr<TickObjectList> Get();
+
+			TickObjectList() = default;
 			~TickObjectList();
 
 			Result AddObject(ITickObject* object);
@@ -21,8 +23,7 @@ namespace HopStep
 		private :
 
 			std::vector<ITickObject*> m_TickObjectList;
+			static std::shared_ptr<TickObjectList> instance;
 		};
-
-		static TickObjectList* thisGameTickObjects = nullptr;
 	}
 }

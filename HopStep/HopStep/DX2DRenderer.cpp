@@ -155,7 +155,7 @@ namespace HopStep
 			return Result::NotInitializeYet;
 
 		m_Processor->RegistRenderFunction(RenderCommandType::ClearScreen, std::bind(&DX2DRenderer::ClearScreen, this, std::placeholders::_1));
-		m_Processor->RegistRenderFunction(RenderCommandType::DrawRect, std::bind(&DX2DRenderer::DrawRect, this, std::placeholders::_1));
+		m_Processor->RegistRenderFunction(RenderCommandType::DrawRect   , std::bind(&DX2DRenderer::DrawRect	  , this, std::placeholders::_1));
 
 		return Result::None;
 	}

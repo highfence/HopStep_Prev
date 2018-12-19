@@ -5,17 +5,19 @@
 
 namespace HopStep
 {
-	RenderProducerList::RenderProducerList()
-	{
-		if (thisGameRendererList != nullptr)
-			return;
+	std::shared_ptr<RenderProducerList> RenderProducerList::instance = nullptr;
 
-		thisGameRendererList = this;
+	std::shared_ptr<RenderProducerList> Internal::RenderProducerList::Get()
+	{
+		if (instance == nullptr)
+			instance = std::make_shared<RenderProducerList>();
+
+		return instance;
 	}
 
 	RenderProducerList::~RenderProducerList()
 	{
-		thisGameRendererList = nullptr;
+		instance = nullptr;
 
 		m_RenderProducers.clear();
 	}
@@ -25,7 +27,7 @@ namespace HopStep
 		if (producer == nullptr)
 			return Result::NullParameter;
 
-		if (std::find(m_RenderProducers.begin(), m_RenderProducers.end(), producer) == m_RenderProducers.end())
+		if (std::find(m_RenderProducers.begin(), m_RenderProducers.end(), producer) != m_RenderProducers.end())
 			return Result::DuplicatedObject;
 
 		m_RenderProducers.push_back(producer);

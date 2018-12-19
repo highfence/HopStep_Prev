@@ -11,20 +11,28 @@ namespace HopStep
 		{
 		public :
 
+			bool IsValid() 
+			{
+				if (m_RenderCommands.size() == 0)
+					return false;
+
+				return true;
+			}
+
 			// Todo : change to template function (using boost::shared_ptr<T>)
-			void AddRenderCommand(RenderCommandType type, std::shared_ptr<RenderCommand> command)
+			void AddRenderCommand(std::shared_ptr<RenderCommand> command)
 			{
 				if (command == nullptr)
 					return;
 
-				if (m_RenderCommands.find(type) == m_RenderCommands.end())
+				if (m_RenderCommands.find(command->type) == m_RenderCommands.end())
 				{
 					std::vector<std::shared_ptr<RenderCommand>> commandList;
-					m_RenderCommands.emplace(type, commandList);
+					m_RenderCommands.emplace(command->type, commandList);
 				}
 
-				auto list = m_RenderCommands[type];
-				list.push_back(command);
+				auto typeIter = m_RenderCommands.find(command->type);
+				typeIter->second.emplace_back(command);
 			}
 
 			std::unordered_map<RenderCommandType, std::vector<std::shared_ptr<RenderCommand>>> m_RenderCommands;

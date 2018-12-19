@@ -1,4 +1,5 @@
 #pragma once
+#include "HSDebug.h"
 #include "RenderProducerList.h"
 
 namespace HopStep
@@ -11,18 +12,24 @@ namespace HopStep
 
 			IRenderCommandProducer()
 			{
-				if (thisGameRendererList == nullptr)
+				auto producerList = RenderProducerList::Get();
+				if (producerList == nullptr)
+				{
+					HSDebug::CheckResult(Result::GetSingletonFailed);
 					return;
-
-				thisGameRendererList->AddProducer(this);
+				}
+				producerList->AddProducer(this);
 			}
 
 			virtual ~IRenderCommandProducer()
 			{
-				if (thisGameRendererList == nullptr)
+				auto producerList = RenderProducerList::Get();
+				if (producerList == nullptr)
+				{
+					HSDebug::CheckResult(Result::GetSingletonFailed);
 					return;
-
-				thisGameRendererList->DeleteProducer(this);
+				}
+				producerList->DeleteProducer(this);
 			}
 
 			virtual void Produce(std::shared_ptr<FrameInfo> frameInfo) = 0;

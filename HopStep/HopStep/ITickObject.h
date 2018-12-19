@@ -11,18 +11,26 @@ namespace HopStep
 
 			ITickObject()
 			{
-				if (thisGameTickObjects == nullptr)
+				auto objectList = TickObjectList::Get();
+				if (objectList == nullptr)
+				{
+					HSDebug::CheckResult(Result::GetSingletonFailed);
 					return;
+				}
 				
-				thisGameTickObjects->AddObject(this);
+				objectList->AddObject(this);
 			}
 
 			virtual ~ITickObject()
 			{
-				if (thisGameTickObjects == nullptr)
+				auto objectList = TickObjectList::Get();
+				if (objectList == nullptr)
+				{
+					HSDebug::CheckResult(Result::GetSingletonFailed);
 					return;
+				}
 
-				thisGameTickObjects->DeleteObject(this);
+				objectList->DeleteObject(this);;
 			}
 
 			virtual void Tick(const float deltaTime) = 0;

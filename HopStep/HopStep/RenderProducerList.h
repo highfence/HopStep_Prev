@@ -11,7 +11,9 @@ namespace HopStep
 		{
 		public:
 
-			RenderProducerList();
+			static std::shared_ptr<RenderProducerList> Get();
+
+			RenderProducerList() = default;
 			~RenderProducerList();
 
 			Result AddProducer(IRenderCommandProducer* producer);
@@ -22,8 +24,7 @@ namespace HopStep
 		private:
 
 			std::vector<IRenderCommandProducer*> m_RenderProducers;
-
+			static std::shared_ptr<RenderProducerList> instance;
 		};
-		static RenderProducerList* thisGameRendererList = nullptr;
 	}
 }
