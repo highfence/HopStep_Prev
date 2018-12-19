@@ -40,6 +40,7 @@ namespace HopStep
 		Result InitRenderer();
 		Result OpenWindow();
 
+		void UpdateMessageLoop();
 		void UpdateEngine();
 
 		WindowConfig m_WindowConfig;

@@ -21,10 +21,10 @@ namespace HopStep
 				{
 					std::vector<std::shared_ptr<RenderCommand>> commandList;
 					m_RenderCommands.emplace(type, commandList);
-
-					auto list = m_RenderCommands[type];
-					list.push_back(command);
 				}
+
+				auto list = m_RenderCommands[type];
+				list.push_back(command);
 			}
 
 			std::unordered_map<RenderCommandType, std::vector<std::shared_ptr<RenderCommand>>> m_RenderCommands;

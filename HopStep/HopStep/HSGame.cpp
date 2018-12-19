@@ -30,32 +30,15 @@ namespace HopStep
 		m_IsRenderThreadActive = false;
 	}
 
-	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::GameStart()
 	{
-		MSG message;
-		while (true)
-		{
-			m_Timer->ProcessTime();
-			static float deltaTime = m_Timer->GetElapsedTime();
+		auto startScene = m_Scene.top();
+		if (startScene == nullptr)
+			return;
 
-			m_AccTime += deltaTime;
-			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
-			{
-				if (message.message == WM_QUIT)
-				{
-					Release();
-					break;
-				}
+		startScene->Init();
 
-				TranslateMessage(&message);
-				DispatchMessage(&message);
-			}
-			else
-			{
-				UpdateEngine();
-			}
-		}
+		UpdateMessageLoop();
 	}
 
 	void HSGame::SetWindowConfig(WindowConfig& config)
@@ -120,6 +103,34 @@ namespace HopStep
 		openResult = m_GameWindow->Create(m_WindowConfig);
 
 		return openResult.result;
+	}
+
+	constexpr float frameTime = 1.0f / 60.0f;
+	void HSGame::UpdateMessageLoop()
+	{
+		MSG message;
+		while (true)
+		{
+			m_Timer->ProcessTime();
+			static float deltaTime = m_Timer->GetElapsedTime();
+
+			m_AccTime += deltaTime;
+			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
+			{
+				if (message.message == WM_QUIT)
+				{
+					Release();
+					break;
+				}
+
+				TranslateMessage(&message);
+				DispatchMessage(&message);
+			}
+			else
+			{
+				UpdateEngine();
+			}
+		}
 	}
 
 	void HSGame::UpdateEngine()

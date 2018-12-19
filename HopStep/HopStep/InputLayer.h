@@ -3,6 +3,7 @@
 
 namespace HopStep
 {
+	// Todo : Make Input Message to queue
 	class InputLayer
 	{
 	public:
