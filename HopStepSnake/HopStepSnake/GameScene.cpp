@@ -3,8 +3,6 @@
 
 bool SnakeGameScene::Init()
 {
-
-
 	return true;
 }
 
