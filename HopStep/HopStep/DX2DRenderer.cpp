@@ -181,6 +181,7 @@ namespace HopStep
 			HSColor color = command.m_ScreenColor;
 			D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
 			m_RenderTarget->Clear(screenColor);
+			//m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::PeachPuff));
 		}
 
 		delete[] renderCommand->body;

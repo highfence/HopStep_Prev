@@ -42,6 +42,7 @@ namespace HopStep
 
 		void UpdateMessageLoop();
 		void UpdateEngine();
+		void PushToRenderQueue(std::shared_ptr<FrameInfo> frameInfo);
 
 		WindowConfig m_WindowConfig;
 

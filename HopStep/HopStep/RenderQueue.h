@@ -49,6 +49,18 @@ namespace HopStep
 				return m_FrameQueue.empty();
 			}
 
+			int Size()
+			{
+				std::lock_guard<std::mutex> lock(m_Mutex);
+				return m_FrameQueue.size();
+			}
+
+			void Clear()
+			{
+				std::lock_guard<std::mutex> lock(m_Mutex);
+				return m_FrameQueue.clear();
+			}
+
 		private:
 
 			std::deque<std::shared_ptr<FrameInfo>> m_FrameQueue;

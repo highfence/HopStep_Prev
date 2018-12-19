@@ -82,19 +82,14 @@ namespace HopStep
 		// Todo : Renderer initialize with engine config
 		m_Renderer = std::make_unique<DX2DRenderer>();
 
-		Result renderThreadResult;
-
+		ResultChecker renderThreadResult;
 		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue.get());
-		HSDebug::CheckResult(renderThreadResult);
-
 		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle, m_Logger.get());
-		HSDebug::CheckResult(renderThreadResult);
 
 		m_IsRenderThreadActive = true;
 		m_RenderThread = std::thread([&]() { RenderThreadWork(); });
-		//m_RenderThread.detach();
 
-		return Result::None;
+		return renderThreadResult.result;
 	}
 
 	Result HSGame::OpenWindow()
@@ -108,12 +103,13 @@ namespace HopStep
 	void HSGame::UpdateMessageLoop()
 	{
 		MSG message;
+		m_Timer->ProcessTime();
+
 		while (true)
 		{
-			m_Timer->ProcessTime();
 			static float deltaTime = m_Timer->GetElapsedTime();
-
 			m_AccTime += deltaTime;
+
 			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 			{
 				if (message.message == WM_QUIT)
@@ -133,7 +129,7 @@ namespace HopStep
 	}
 
 	// Todo : Load frameTime from engine(or game) config...
-	constexpr float frameTime = 1.0f; // / 60.0f;
+	constexpr float frameTime = 1.0f / 60.0f;
 	void HSGame::UpdateEngine()
 	{
 		if (m_AccTime < frameTime)
@@ -148,9 +144,23 @@ namespace HopStep
 		m_RenderObjectList->GatherCommand(currentFrame);
 
 		if (currentFrame->IsValid())
-			m_RenderQueue->Push(currentFrame);
+			PushToRenderQueue(currentFrame);
 
 		m_AccTime = 0.0f;
+	}
+
+	void HSGame::PushToRenderQueue(std::shared_ptr<FrameInfo> frameInfo)
+	{
+		if (frameInfo == nullptr)
+			return;
+
+		int queueSize = m_RenderQueue->Size();
+		if (queueSize >= 60)
+		{
+			m_RenderQueue->Clear();
+		}
+
+		m_RenderQueue->Push(frameInfo);
 	}
 
 	void HSGame::RenderThreadWork()
