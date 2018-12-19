@@ -5,9 +5,11 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nCmdShow)
 {
-	HopStep::HSGame SnakeGame;
+	using namespace HopStep;
 
-	HopStep::WindowConfig windowConfig;
+	HSGame SnakeGame;
+
+	WindowConfig windowConfig;
 	windowConfig.clientWidth = 1200;
 	windowConfig.clientHeight = 800;
 	windowConfig.instance = hInstance;
@@ -19,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	SnakeGame.InitEngine();
 
 	// Todo : change this sequence easier
-	std::shared_ptr<HopStep::IScene> gameScene = std::static_pointer_cast<HopStep::IScene>(std::make_shared<SnakeGameScene>());
+	std::shared_ptr<IScene> gameScene = std::static_pointer_cast<IScene>(std::make_shared<SnakeGameScene>());
 	SnakeGame.SetStartScene(gameScene);
 
 	SnakeGame.GameStart();

@@ -34,7 +34,9 @@ namespace HopStep
 			void Pop()
 			{
 				std::lock_guard<std::mutex> lock(m_Mutex);
-				m_FrameQueue.pop_front();
+
+				if (m_FrameQueue.empty() == false)
+					m_FrameQueue.pop_front();
 			}
 
 			void Push(std::shared_ptr<FrameInfo> frame)
