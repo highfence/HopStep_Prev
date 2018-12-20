@@ -118,11 +118,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Apple.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Apple.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Snake.h" />

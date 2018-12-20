@@ -58,7 +58,24 @@ void Snake::MarchingSnake(SnakeDirection inputDirection)
 
 void Snake::FeedApple()
 {
+	auto endRect = (*bodys.back());
+	auto newBody = new HopStep::HSRect(endRect);
+	newBody->SetVisible(true);
 
+	bodys.push_back(newBody);
+}
+
+bool Snake::IsOverlappedPosition(int x, int y)
+{
+	for (auto checkIter = ++(bodys.begin()); checkIter != bodys.end(); ++checkIter)
+	{
+		if (x == (*checkIter)->m_Center.x && y == (*checkIter)->m_Center.y)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 HopStep::HSVector<int> Snake::GetHeadPosition() const

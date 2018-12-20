@@ -40,13 +40,11 @@ namespace HopStep
 		if (producer == nullptr)
 			return Result::NullParameter;
 
-		std::remove_if(m_RenderProducers.begin(), m_RenderProducers.end(), [=](IRenderCommandProducer* currentProducer)
-		{
-			if (currentProducer == producer)
-				return true;
+		auto eraseProducer = std::find(m_RenderProducers.begin(), m_RenderProducers.end(), producer);
+		if (eraseProducer == m_RenderProducers.end())
+			return Result::InvalidParameter;
 
-			return false;
-		});
+		m_RenderProducers.erase(eraseProducer);
 
 		return Result::None;
 	}

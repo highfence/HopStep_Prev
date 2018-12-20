@@ -16,6 +16,8 @@ public:
 
 	void MarchingSnake(SnakeDirection direction);
 	void FeedApple();
+	bool IsOverlappedPosition(int x, int y);
+
 	SnakeDirection GetDirection() const { return m_Direction; }
 	HopStep::HSVector<int> GetHeadPosition() const;
 

@@ -1,3 +1,5 @@
+#include <random>
+#include "Apple.h"
 #include "GameScene.h"
 
 constexpr int widthCellCount = 24;
@@ -6,6 +8,7 @@ constexpr int cellPixel = 20;
 
 bool SnakeGameScene::Init()
 {
+	MakeNewApple();
 	return true;
 }
 
@@ -15,18 +18,23 @@ void SnakeGameScene::UpdateScene(float deltaTime)
 	static float m_AccTime = 0.0f;
 	m_AccTime += deltaTime;
 
-	static Snake::SnakeDirection direction = Snake::SnakeDirection::Right;
-	auto currentDirection = GetDirectionInput(player.GetDirection());
-	if (currentDirection != Snake::SnakeDirection::None)
-	{
-		direction = currentDirection;
-	}
+	auto direction = GetDirectionInput();
 	
 	if (m_AccTime > tickTime)
 	{
+		if (IsSnakeAteApple())
+		{
+			if (apple != nullptr)
+			{
+				delete apple;
+				apple = nullptr;
+			}
+
+			player.FeedApple();
+			MakeNewApple();
+		}
+
 		player.MarchingSnake(direction);
-
-
 		m_AccTime = 0.0f;
 	}
 }
@@ -36,32 +44,72 @@ bool SnakeGameScene::OnChangeScene(HopStep::SceneManager * manager)
 	return false;
 }
 
-Snake::SnakeDirection SnakeGameScene::GetDirectionInput(Snake::SnakeDirection basicInput)
+Snake::SnakeDirection SnakeGameScene::GetDirectionInput()
 {
+	static Snake::SnakeDirection direction = Snake::SnakeDirection::Right;
+
+	auto newDirection = Snake::SnakeDirection::None;
+
 	auto inputLayer = HopStep::InputLayer::Get();
 	if (inputLayer == nullptr)
-		return Snake::SnakeDirection::None;
+		newDirection = Snake::SnakeDirection::None;
 
 	if (inputLayer->GetKeyState(VK_LEFT) == HopStep::KeyState::HoldKey
 		|| inputLayer->GetKeyState(VK_LEFT) == HopStep::KeyState::PushKey)
 	{
-		return Snake::SnakeDirection::Left;
+		newDirection = Snake::SnakeDirection::Left;
 	}
 	else if (inputLayer->GetKeyState(VK_RIGHT) == HopStep::KeyState::HoldKey
 		|| inputLayer->GetKeyState(VK_RIGHT) == HopStep::KeyState::PushKey)
 	{
-		return Snake::SnakeDirection::Right;
+		newDirection = Snake::SnakeDirection::Right;
 	}
 	else if (inputLayer->GetKeyState(VK_UP) == HopStep::KeyState::HoldKey
 		|| inputLayer->GetKeyState(VK_UP) == HopStep::KeyState::PushKey)
 	{
-		return Snake::SnakeDirection::Up;
+		newDirection = Snake::SnakeDirection::Up;
 	}
 	else if (inputLayer->GetKeyState(VK_DOWN) == HopStep::KeyState::HoldKey
 		|| inputLayer->GetKeyState(VK_DOWN) == HopStep::KeyState::PushKey)
 	{
-		return Snake::SnakeDirection::Down;
+		newDirection =Snake::SnakeDirection::Down;
 	}
 
-	return Snake::SnakeDirection::None;
+	if (newDirection != Snake::SnakeDirection::None)
+		direction = newDirection;
+
+	return direction;
+}
+
+void SnakeGameScene::MakeNewApple()
+{
+	if (apple != nullptr)
+		return;
+
+	int x, y;
+	do
+	{
+		std::random_device rd;
+		std::mt19937 mt(rd());
+		std::uniform_int_distribution<int> xdist(0, 23);
+		std::uniform_int_distribution<int> ydist(0, 15);
+
+		x = xdist(mt) * 20 + 10;
+		y = ydist(mt) * 20 + 10;
+
+	} while (player.IsOverlappedPosition(x, y));
+	
+	apple = new Apple(x, y);
+}
+
+bool SnakeGameScene::IsSnakeAteApple()
+{
+	if (apple == nullptr)
+		return true;
+
+	auto headPosition = player.GetHeadPosition();
+	if (headPosition.x == apple->position.x && headPosition.y == apple->position.y)
+		return true;
+
+	return false;
 }

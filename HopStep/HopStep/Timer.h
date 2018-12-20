@@ -8,8 +8,8 @@ namespace HopStep
 		{
 		public:
 
-			GameTimer();
-			virtual ~GameTimer();
+			GameTimer(void);
+			virtual ~GameTimer(void);
 
 			void InitTimer();
 			void ProcessTime();

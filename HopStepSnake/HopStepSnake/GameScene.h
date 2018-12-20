@@ -2,6 +2,8 @@
 #include "Snake.h"
 #include "../../HopStep/HopStep/HopStep.h"
 
+class Apple;
+
 class SnakeGameScene final : public HopStep::IScene
 {
 public:
@@ -14,8 +16,13 @@ public:
 
 private :
 
-	Snake::SnakeDirection GetDirectionInput(Snake::SnakeDirection basicInput);
+	Snake::SnakeDirection GetDirectionInput();
 
+	void MakeNewApple();
+
+	bool IsSnakeAteApple();
+
+	Apple* apple = nullptr;
 	Snake player;
 };
 
