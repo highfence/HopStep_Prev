@@ -3,8 +3,14 @@
 
 namespace HopStep
 {
-	InputLayer::InputLayer()
+	std::shared_ptr<InputLayer> InputLayer::instance = nullptr;
+
+	std::shared_ptr<InputLayer> InputLayer::Get()
 	{
+		if (instance == nullptr)
+			instance = std::make_shared<InputLayer>();
+
+		return instance;
 	}
 
 	InputLayer::~InputLayer()

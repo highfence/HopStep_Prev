@@ -67,7 +67,6 @@ namespace HopStep
 
 		funcResult = InitRenderer();
 
-		m_InputLayer = std::make_unique<InputLayer>();
 		m_SceneManager = std::make_unique<SceneManager>();
 	}
 
@@ -129,7 +128,14 @@ namespace HopStep
 		if (m_AccTime < frameTime)
 			return;
 
-		m_InputLayer->UpdateKeyStates();
+		auto InputLayer = InputLayer::Get();
+		InputLayer->UpdateKeyStates();
+
+		auto currentScene = m_SceneManager->Peek();
+		if (currentScene != nullptr)
+		{
+			currentScene->UpdateScene(m_AccTime);
+		}
 
 		m_TickObjectList->ProcessTick(m_AccTime);
 

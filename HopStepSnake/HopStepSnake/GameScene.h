@@ -14,6 +14,8 @@ public:
 
 private :
 
+	Snake::SnakeDirection GetDirectionInput(Snake::SnakeDirection basicInput);
+
 	Snake player;
 };
 

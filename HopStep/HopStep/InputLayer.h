@@ -7,7 +7,10 @@ namespace HopStep
 	class InputLayer
 	{
 	public:
-		InputLayer();
+
+		static std::shared_ptr<InputLayer> Get();
+
+		InputLayer() = default;
 		~InputLayer();
 
 		void UpdateKeyStates();
@@ -18,5 +21,7 @@ namespace HopStep
 
 		BYTE m_Keys[keyboardNumber];
 		BYTE m_OldKeys[keyboardNumber];
+
+		static std::shared_ptr<InputLayer> instance;
 	};
 }

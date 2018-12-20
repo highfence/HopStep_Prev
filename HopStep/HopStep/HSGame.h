@@ -48,7 +48,6 @@ namespace HopStep
 		std::unique_ptr<SceneManager>		m_SceneManager;
 		std::unique_ptr<HSWindow>           m_GameWindow;
 		std::unique_ptr<GameTimer>          m_Timer;
-		std::unique_ptr<InputLayer>         m_InputLayer;
 		std::unique_ptr<IRenderer>          m_Renderer;
 		std::unique_ptr<RenderQueue>        m_RenderQueue;
 		std::unique_ptr<HSConsoleLogger>    m_Logger;

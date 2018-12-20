@@ -29,11 +29,64 @@ Snake::~Snake()
 	bodys.clear();
 }
 
-void Snake::MarchingSnake(SnakeDirection direction)
+void Snake::MarchingSnake(SnakeDirection inputDirection)
 {
+	auto headIter = bodys.begin();
+
+	auto inputMarchingVector = GetMarchingVector(inputDirection);
+	HopStep::HSVector<float> nextPosition(0);
+	nextPosition.x = (*headIter)->m_Center.x + inputMarchingVector.x;
+	nextPosition.y = (*headIter)->m_Center.y + inputMarchingVector.y;
+
+	for (auto checkIter = ++(bodys.begin()); checkIter != bodys.end(); ++checkIter)
+	{
+		if (nextPosition.x == (*checkIter)->m_Center.x && nextPosition.y == (*checkIter)->m_Center.y)
+		{
+			return;
+		}
+	}
+
+	m_Direction = inputDirection;
+
+	for (int idx = bodys.size() - 1; idx != 0; --idx)
+	{
+		bodys[idx]->m_Center = bodys[idx - 1]->m_Center;
+	}
+
+	bodys[0]->m_Center = nextPosition;
 }
 
 void Snake::FeedApple()
 {
 
+}
+
+HopStep::HSVector<int> Snake::GetHeadPosition() const
+{
+	HopStep::HSVector<int> pos(0);
+	pos.x = bodys[0]->m_Center.x;
+	pos.y = bodys[0]->m_Center.y;
+	return pos;
+}
+
+HopStep::HSVector<int> Snake::GetMarchingVector(SnakeDirection direction)
+{
+	HopStep::HSVector<int> marchingVector(0);
+	switch (direction)
+	{
+	case SnakeDirection::Down:
+		marchingVector = HopStep::HSVector<int>(0, 20);
+		break;
+	case SnakeDirection::Up:
+		marchingVector = HopStep::HSVector<int>(0, -20);
+		break;
+	case SnakeDirection::Right:
+		marchingVector = HopStep::HSVector<int>(20, 0);
+		break;
+	case SnakeDirection::Left:
+		marchingVector = HopStep::HSVector<int>(-20, 0);
+		break;
+	}
+
+	return marchingVector;
 }

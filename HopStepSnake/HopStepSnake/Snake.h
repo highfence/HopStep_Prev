@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "../../HopStep/HopStep/HopStep.h"
 
 class Snake
@@ -8,7 +8,7 @@ public:
 
 	enum class SnakeDirection : int
 	{
-		Right, Left, Up, Down
+		None, Right, Left, Up, Down
 	};
 
 	Snake();
@@ -16,9 +16,13 @@ public:
 
 	void MarchingSnake(SnakeDirection direction);
 	void FeedApple();
+	SnakeDirection GetDirection() const { return m_Direction; }
+	HopStep::HSVector<int> GetHeadPosition() const;
 
 private :
 
+	HopStep::HSVector<int> GetMarchingVector(SnakeDirection direction);
+
 	SnakeDirection m_Direction = SnakeDirection::Right;
-	std::list<HopStep::HSRect*> bodys;
+	std::vector<HopStep::HSRect*> bodys;
 };

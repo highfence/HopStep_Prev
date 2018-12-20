@@ -9,7 +9,9 @@
 #include "GameObject.h"
 #include "IDGenerator.h"
 #include "SceneManager.h"
+#include "InputLayer.h"
 #include "json/json.h"
+#include "Keys.h"
 
 #include "HSColor.h"
 #include "HSVector.h"
