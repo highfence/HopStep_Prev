@@ -196,5 +196,6 @@
     <ClCompile Include="TickObjectList.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="IRenderCommandProducer.cpp" />
   </ItemGroup>
 </Project>

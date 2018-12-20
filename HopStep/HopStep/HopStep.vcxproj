@@ -197,6 +197,7 @@
     <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="IRenderCommandProducer.cpp" />
     <ClCompile Include="JsonSerialize.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RenderCommand.cpp" />

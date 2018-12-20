@@ -63,6 +63,8 @@ namespace HopStep
 		ShowWindow(WindowHandle, m_Config.cmdShow);
 		UpdateWindow(WindowHandle);
 
+		this->SetVisible(true);
+
 		return Result::None;
 	}
 

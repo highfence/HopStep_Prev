@@ -1,6 +1,4 @@
 #pragma once
-#include "HSDebug.h"
-#include "RenderProducerList.h"
 
 namespace HopStep
 {
@@ -10,29 +8,20 @@ namespace HopStep
 		{
 		public :
 
-			IRenderCommandProducer()
-			{
-				auto producerList = RenderProducerList::Get();
-				if (producerList == nullptr)
-				{
-					HSDebug::CheckResult(Result::GetSingletonFailed);
-					return;
-				}
-				producerList->AddProducer(this);
-			}
+			IRenderCommandProducer() {}
 
 			virtual ~IRenderCommandProducer()
 			{
-				auto producerList = RenderProducerList::Get();
-				if (producerList == nullptr)
-				{
-					HSDebug::CheckResult(Result::GetSingletonFailed);
-					return;
-				}
-				producerList->DeleteProducer(this);
+				UnregistMe();
 			}
 
+			virtual void SetVisible(bool visivility);
 			virtual void Produce(std::shared_ptr<FrameInfo> frameInfo) = 0;
+
+		protected :
+
+			virtual void RegistMe();
+			virtual void UnregistMe();
 		};
 	}
 }
