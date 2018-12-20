@@ -57,6 +57,9 @@
     <ClInclude Include="StringHelper.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="HSColor.h">
+      <Filter>Util</Filter>
+    </ClInclude>
     <ClInclude Include="JsonSerialize.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -102,17 +105,8 @@
     <ClInclude Include="ITickObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="HSColor.h">
-      <Filter>Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="HSRect.h">
-      <Filter>Draw</Filter>
-    </ClInclude>
     <ClInclude Include="TickObjectList.h">
       <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +139,6 @@
     </Filter>
     <Filter Include="Rendering\Renderer">
       <UniqueIdentifier>{a03c910f-28ef-46de-9796-f587a43cb912}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Draw">
-      <UniqueIdentifier>{52701adc-f15e-4bc8-93f8-47e8c7375442}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +175,9 @@
     <ClCompile Include="StringHelper.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="HSColor.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
     <ClCompile Include="JsonSerialize.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -199,19 +193,11 @@
     <ClCompile Include="RenderProducerList.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="HSColor.cpp">
-      <Filter>Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="HSRect.cpp">
-      <Filter>Draw</Filter>
-    </ClCompile>
     <ClCompile Include="TickObjectList.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderCommandProducer.cpp" />
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="IRenderCommandProducer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="FrameInfo.cpp" />
   </ItemGroup>
 </Project>
