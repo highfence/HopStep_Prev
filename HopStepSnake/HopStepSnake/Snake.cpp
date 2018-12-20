@@ -11,12 +11,13 @@ Snake::Snake()
 	int x = 5;
 	int y = 5;
 
-	for (int i = 0; i < 1; ++i)
+	for (int i = 0; i < 4; ++i)
 	{
 		HopStep::HSRect* body = new HopStep::HSRect(primitiveRect);
-		primitiveRect->m_Center.x = x * 20 + 10;
-		primitiveRect->m_Center.y = y * 20 + 10;
-		bodys.push_back(primitiveRect);
+		body->m_Center.x = x * 20 + 10;
+		body->m_Center.y = y * 20 + 10;
+		bodys.push_back(body);
+		body->SetVisible(true);
 		--x;
 	}
 
