@@ -15,6 +15,7 @@
 #include "RenderProducerList.h"
 #include "TickObjectList.h"
 #include "HSConsoleLogger.h"
+#include "SceneManager.h"
 
 namespace HopStep
 {
@@ -25,13 +26,11 @@ namespace HopStep
 		HSGame();
 		~HSGame();
 
-		void InitEngine();
+		void InitEngine(WindowConfig& config);
 
 		void Release();
 
 		void GameStart();
-
-		void SetWindowConfig(WindowConfig& config);
 
 		void SetStartScene(std::shared_ptr<IScene> startScene);
 
@@ -46,7 +45,7 @@ namespace HopStep
 
 		WindowConfig m_WindowConfig;
 
-		std::stack<std::shared_ptr<IScene>> m_Scene;
+		std::unique_ptr<SceneManager>		m_SceneManager;
 		std::unique_ptr<HSWindow>           m_GameWindow;
 		std::unique_ptr<GameTimer>          m_Timer;
 		std::unique_ptr<InputLayer>         m_InputLayer;

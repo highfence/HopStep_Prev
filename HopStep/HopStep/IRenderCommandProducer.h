@@ -4,6 +4,8 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
+		class FrameInfo;
+
 		class IRenderCommandProducer
 		{
 		public :
@@ -16,7 +18,7 @@ namespace HopStep
 			}
 
 			virtual void SetVisible(bool visivility);
-			virtual void Produce(std::shared_ptr<FrameInfo> frameInfo) = 0;
+			virtual void Produce(FrameInfo* frameInfo) = 0;
 
 		protected :
 

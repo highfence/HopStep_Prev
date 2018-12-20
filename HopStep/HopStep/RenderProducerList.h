@@ -1,11 +1,12 @@
 #pragma once
-#include "FrameInfo.h"
+#include <atomic>
 
 namespace HopStep
 {
 	inline namespace Internal
 	{
 		class IRenderCommandProducer;
+		class FrameInfo;
 
 		class RenderProducerList
 		{
@@ -19,9 +20,11 @@ namespace HopStep
 			Result AddProducer(IRenderCommandProducer* producer);
 			Result DeleteProducer(IRenderCommandProducer* producer);
 
-			void GatherCommand(std::shared_ptr<FrameInfo> frame);
+			void GatherCommand(FrameInfo* frame);
 
 		private:
+
+			std::atomic<bool> m_IsGathering = false;
 
 			std::vector<IRenderCommandProducer*> m_RenderProducers;
 			static std::shared_ptr<RenderProducerList> instance;

@@ -120,10 +120,12 @@
   <ItemGroup>
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\HopStep\HopStep\HopStep.vcxproj">

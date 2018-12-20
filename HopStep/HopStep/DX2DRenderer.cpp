@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RenderQueue.h"
 #include "JsonSerialize.h"
+#include "HSRect.h"
 #include "HSConsoleLogger.h"
 #include "RenderCommandProcessor.h"
 #include "DX2DRenderer.h"
@@ -42,8 +43,6 @@ namespace HopStep
 		SafeRelease(&m_Direct2DFactory);
 		SafeRelease(&m_RenderTarget);
 		SafeRelease(&m_BackGroundColorBrush);
-		SafeRelease(&m_pLightSlateGrayBrush);
-		SafeRelease(&m_pCornflowerBlueBrush);
 
 		return Result::None;
 	}
@@ -66,57 +65,6 @@ namespace HopStep
 
 		m_RenderQueue->Pop();
 
-#pragma region DEBUG
-
-		//// Draw a grid background.
-		//D2D1_SIZE_F rtSize = m_pRenderTarget->GetSize();
-
-		//int width = static_cast<int>(rtSize.width);
-		//int height = static_cast<int>(rtSize.height);
-
-		//for (int x = 0; x < width; x += 10)
-		//{
-		//	m_pRenderTarget->DrawLine(
-		//		D2D1::Point2F(static_cast<FLOAT>(x), 0.0f),
-		//		D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
-		//		m_pLightSlateGrayBrush,
-		//		0.5f
-		//	);
-		//}
-
-		//for (int y = 0; y < height; y += 10)
-		//{
-		//	m_pRenderTarget->DrawLine(
-		//		D2D1::Point2F(0.0f, static_cast<FLOAT>(y)),
-		//		D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
-		//		m_pLightSlateGrayBrush,
-		//		0.5f
-		//	);
-		//}
-
-		//// Draw two rectangles.
-		//D2D1_RECT_F rectangle1 = D2D1::RectF(
-		//	rtSize.width / 2 - 50.0f,
-		//	rtSize.height / 2 - 50.0f,
-		//	rtSize.width / 2 + 50.0f,
-		//	rtSize.height / 2 + 50.0f
-		//);
-
-		//D2D1_RECT_F rectangle2 = D2D1::RectF(
-		//	rtSize.width / 2 - 100.0f,
-		//	rtSize.height / 2 - 100.0f,
-		//	rtSize.width / 2 + 100.0f,
-		//	rtSize.height / 2 + 100.0f
-		//);
-
-		//// Draw a filled rectangle.
-		//m_pRenderTarget->FillRectangle(&rectangle1, m_pLightSlateGrayBrush);
-
-		//// Draw the outline of a rectangle.
-		//m_pRenderTarget->DrawRectangle(&rectangle2, m_pCornflowerBlueBrush);
-
-#pragma endregion
-
 		m_RenderTarget->EndDraw();
 	}
 
@@ -131,18 +79,8 @@ namespace HopStep
 
 		D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top);
 
-		// Create a Direct2D render target.
 		hr = m_Direct2DFactory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties(m_Hwnd, size), &m_RenderTarget);
-		if (SUCCEEDED(hr) == false)
-			return Result::DX2DRenderTargetCreateFailed;
 
-		// Create a gray brush.
-		hr = m_RenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::LightSlateGray), &m_pLightSlateGrayBrush);
-		if (SUCCEEDED(hr) == false)
-			return Result::DX2DRenderTargetCreateFailed;
-
-		// Create a blue brush.
-		hr = m_RenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::CornflowerBlue), &m_pCornflowerBlueBrush);
 		if (SUCCEEDED(hr) == false)
 			return Result::DX2DRenderTargetCreateFailed;
 
@@ -181,7 +119,6 @@ namespace HopStep
 			HSColor color = command.m_ScreenColor;
 			D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
 			m_RenderTarget->Clear(screenColor);
-			//m_RenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::PeachPuff));
 		}
 
 		delete[] renderCommand->body;
@@ -209,14 +146,15 @@ namespace HopStep
 
 		delete reader;
 
-		HSColor color = command.m_RectColor;
+		HSRect rect = command.m_Rect;
+		HSColor color = rect.m_RectColor;
 		D2D1::ColorF rectColor(color.r, color.g, color.b, color.a);
 
 		D2D1_RECT_F rectangle = D2D1::RectF(
-			command.m_Center.x - command.m_Width / 2,
-			command.m_Center.y - command.m_Height / 2,
-			command.m_Center.x + command.m_Width / 2,
-			command.m_Center.y + command.m_Height / 2
+			rect.m_Center.x - rect.m_Width / 2,
+			rect.m_Center.y - rect.m_Height / 2,
+			rect.m_Center.x + rect.m_Width / 2,
+			rect.m_Center.y + rect.m_Height / 2
 		);
 
 		ID2D1SolidColorBrush* rectBrush = nullptr;
@@ -228,11 +166,11 @@ namespace HopStep
 			return;
 		}
 
-		if (command.m_Type == DrawRectCommand::RectType::FilledRect)
+		if (rect.m_Type == HSRect::RectType::FilledRect)
 		{
 			m_RenderTarget->FillRectangle(&rectangle, rectBrush);
 		}
-		else if (command.m_Type == DrawRectCommand::RectType::LineRect)
+		else if (rect.m_Type == HSRect::RectType::LineRect)
 		{
 			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
 		}

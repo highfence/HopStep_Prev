@@ -24,6 +24,9 @@ namespace HopStep
 
 	Result RenderProducerList::AddProducer(IRenderCommandProducer * producer)
 	{
+		if (m_IsGathering)
+			return Result::InvalidParameter;
+
 		if (producer == nullptr)
 			return Result::NullParameter;
 
@@ -37,25 +40,43 @@ namespace HopStep
 
 	Result RenderProducerList::DeleteProducer(IRenderCommandProducer * producer)
 	{
+		if (m_IsGathering)
+			return Result::InvalidParameter;
+
 		if (producer == nullptr)
 			return Result::NullParameter;
 
-		std::remove(m_RenderProducers.begin(), m_RenderProducers.end(), producer);
+		std::remove_if(m_RenderProducers.begin(), m_RenderProducers.end(), [=](IRenderCommandProducer* currentProducer)
+		{
+			if (currentProducer == producer)
+				return true;
+
+			return false;
+		});
 
 		return Result::None;
 	}
 
-	void RenderProducerList::GatherCommand(std::shared_ptr<FrameInfo> frameInfo)
+	void RenderProducerList::GatherCommand(FrameInfo* frameInfo)
 	{
 		if (frameInfo == nullptr)
 			return;
 
-		for (const auto& producer : m_RenderProducers)
+		m_IsGathering = true;
+		for (int i = 0; i < m_RenderProducers.size(); ++i)
 		{
-			if (producer == nullptr)
+			if (m_RenderProducers[i] == nullptr)
 				continue;
 
-			producer->Produce(frameInfo);
+			m_RenderProducers[i]->Produce(frameInfo);
 		}
+		//for (const auto& producer : m_RenderProducers)
+		//{
+		//	if (producer == nullptr)
+		//		continue;
+
+		//	producer->Produce(frameInfo);
+		//}
+		m_IsGathering = false;
 	}
 }
