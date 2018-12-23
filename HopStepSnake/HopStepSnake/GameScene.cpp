@@ -6,13 +6,14 @@ constexpr int widthCellCount = 24;
 constexpr int heightCellCount = 16;
 constexpr int cellPixel = 20;
 
+constexpr float tickTime = 30.0f;
+
 bool SnakeGameScene::Init()
 {
 	MakeNewApple();
 	return true;
 }
 
-constexpr float tickTime = 10.0f;
 void SnakeGameScene::UpdateScene(float deltaTime)
 {
 	static float m_AccTime = 0.0f;
@@ -24,17 +25,12 @@ void SnakeGameScene::UpdateScene(float deltaTime)
 	{
 		if (IsSnakeAteApple())
 		{
-			if (apple != nullptr)
-			{
-				delete apple;
-				apple = nullptr;
-			}
-
-			player.FeedApple();
+			DeleteApple();
+			snake.FeedApple();
 			MakeNewApple();
 		}
 
-		player.MarchingSnake(direction);
+		snake.MarchingSnake(direction);
 		m_AccTime = 0.0f;
 	}
 }
@@ -91,15 +87,24 @@ void SnakeGameScene::MakeNewApple()
 	{
 		std::random_device rd;
 		std::mt19937 mt(rd());
-		std::uniform_int_distribution<int> xdist(0, 23);
-		std::uniform_int_distribution<int> ydist(0, 15);
+		std::uniform_int_distribution<int> xdist(1, 23);
+		std::uniform_int_distribution<int> ydist(1, 15);
 
 		x = xdist(mt) * 20 + 10;
 		y = ydist(mt) * 20 + 10;
 
-	} while (player.IsOverlappedPosition(x, y));
+	} while (snake.IsOverlappedPosition(x, y));
 	
 	apple = new Apple(x, y);
+}
+
+void SnakeGameScene::DeleteApple()
+{
+	if (apple != nullptr)
+	{
+		delete apple;
+		apple = nullptr;
+	}
 }
 
 bool SnakeGameScene::IsSnakeAteApple()
@@ -107,7 +112,7 @@ bool SnakeGameScene::IsSnakeAteApple()
 	if (apple == nullptr)
 		return true;
 
-	auto headPosition = player.GetHeadPosition();
+	auto headPosition = snake.GetHeadPosition();
 	if (headPosition.x == apple->position.x && headPosition.y == apple->position.y)
 		return true;
 

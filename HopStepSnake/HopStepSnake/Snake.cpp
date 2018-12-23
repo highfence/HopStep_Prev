@@ -107,3 +107,4 @@ HopStep::HSVector<int> Snake::GetMarchingVector(SnakeDirection direction)
 
 	return marchingVector;
 }
+

@@ -4,6 +4,7 @@
 class Apple
 {
 public:
+
 	Apple(int, int);
 	~Apple();
 

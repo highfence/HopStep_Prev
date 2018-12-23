@@ -20,10 +20,16 @@ namespace HopStep
 
         private :
 
+			void ClearScreen(std::shared_ptr<RenderCommand> renderCommand);
+			void DrawRect(std::shared_ptr<RenderCommand> renderCommand);
+
+			RenderQueue* m_RenderQueue = nullptr;
+			std::unique_ptr<RenderCommandProcessor> m_Processor;
+
+
 			Result CreateDeviceResources();
 			Result RegistRenderFunctions();
 
-			RenderQueue* m_RenderQueue = nullptr;
 			HSConsoleLogger* m_Logger = nullptr;
 
 			HWND m_Hwnd;
@@ -31,12 +37,9 @@ namespace HopStep
 			ID2D1HwndRenderTarget* m_RenderTarget = nullptr;
 			ID2D1SolidColorBrush* m_BackGroundColorBrush = nullptr;
 
-			std::unique_ptr<RenderCommandProcessor> m_Processor;
-
 		private :
 
-			void ClearScreen(std::shared_ptr<RenderCommand> renderCommand);
-			void DrawRect(std::shared_ptr<RenderCommand> renderCommand);
+
         };
     }
 }

@@ -19,10 +19,11 @@ private :
 	Snake::SnakeDirection GetDirectionInput();
 
 	void MakeNewApple();
+	void DeleteApple();
 
 	bool IsSnakeAteApple();
 
 	Apple* apple = nullptr;
-	Snake player;
+	Snake snake;
 };
 
