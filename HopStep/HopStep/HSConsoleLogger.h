@@ -45,7 +45,7 @@ namespace HopStep
 			std::lock_guard<std::mutex> _writeLock(_lock);
 
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)color);
-			std::cout << logText << std::endl;
+			std::cout << logHead << logText << std::endl;
 		}
 	};
 }

@@ -37,6 +37,9 @@ void SnakeGameScene::UpdateScene(float deltaTime)
 
 bool SnakeGameScene::OnChangeScene(HopStep::SceneManager * manager)
 {
+	if (manager == nullptr)
+		return false;
+
 	return false;
 }
 

@@ -5,8 +5,8 @@ Apple::Apple(int x, int y)
 	: position(0), rect(0)
 {
 	position = HopStep::HSVector<int>(x, y);
-	rect.m_Center.x = x;
-	rect.m_Center.y = y;
+	rect.m_Center.x = static_cast<float>(x);
+	rect.m_Center.y = static_cast<float>(y);
 	rect.m_Type = HopStep::HSRect::RectType::FilledRect;
 	rect.m_Width = 17;
 	rect.m_Height = 17;

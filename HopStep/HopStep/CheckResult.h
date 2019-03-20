@@ -10,10 +10,10 @@ namespace HopStep
 		{
 			Result result = Result::None;
 
-			ResultChecker& operator=(const Result& result)
+			ResultChecker& operator=(const Result& checkingResult)
 			{
-				HSDebug::CheckResult(result);
-				this->result = result;
+				HSDebug::CheckResult(checkingResult);
+				this->result = checkingResult;
 				return *this;
 			}
 		};

@@ -24,6 +24,7 @@ namespace HopStep
 	public:
 
 		HSGame();
+
 		~HSGame();
 
 		void InitEngine(WindowConfig& config);
@@ -37,26 +38,37 @@ namespace HopStep
 	private :
 
 		Result InitRenderer();
+
 		Result OpenWindow();
 
 		void UpdateMessageLoop();
+
 		void UpdateEngine();
+
 		void PushToRenderQueue(std::shared_ptr<FrameInfo> frameInfo);
 
 		WindowConfig m_WindowConfig;
 
 		std::unique_ptr<SceneManager>		m_SceneManager;
+
 		std::unique_ptr<HSWindow>           m_GameWindow;
+
 		std::unique_ptr<GameTimer>          m_Timer;
+
 		std::unique_ptr<IRenderer>          m_Renderer;
+
 		std::unique_ptr<RenderQueue>        m_RenderQueue;
+
 		std::unique_ptr<HSConsoleLogger>    m_Logger;
 
 		std::shared_ptr<RenderProducerList> m_RenderObjectList;
+
 		std::shared_ptr<TickObjectList>		m_TickObjectList;
 
 		std::thread m_RenderThread;
+		
 		std::atomic_bool m_IsRenderThreadActive = false;
+
 		void RenderThreadWork();
 
 		float m_AccTime = 0.0f;
