@@ -8,10 +8,10 @@ namespace HopStep
 {
 	HSGame::HSGame()
 	{
-		if (thisGame != nullptr)
+		if (globalGamePtr != nullptr)
 		{
 			HSDebug::CheckResult(Result::DuplicatedGameInstance);
-			thisGame = this;
+			globalGamePtr = this;
 		}
 	}
 
@@ -19,7 +19,9 @@ namespace HopStep
 	{
 		Release();
 
+#ifdef HS_RENDER_THREAD
 		m_RenderThread.join();
+#endif
 	}
 
 	void HSGame::Release()
@@ -38,11 +40,8 @@ namespace HopStep
 		UpdateMessageLoop();
 	}
 
-	void HSGame::SetStartScene(std::shared_ptr<IScene> startScene)
+	void HSGame::SetStartScene(IScene* startScene)
 	{
-		if (startScene == nullptr || m_SceneManager == nullptr)
-			return;
-
 		m_SceneManager->PushScene(startScene);
 	}
 
@@ -79,8 +78,10 @@ namespace HopStep
 		renderThreadResult = m_Renderer->SetRenderQueue(m_RenderQueue.get());
 		renderThreadResult = m_Renderer->InitRenderer(m_GameWindow.get()->WindowHandle, m_Logger.get());
 
+#ifdef HS_RENDER_THREAD
 		m_IsRenderThreadActive = true;
 		m_RenderThread = std::thread([&]() { RenderThreadWork(); });
+#endif
 
 		return renderThreadResult.result;
 	}
@@ -96,11 +97,12 @@ namespace HopStep
 	void HSGame::UpdateMessageLoop()
 	{
 		MSG message;
-		m_Timer->ProcessTime();
 
+		float deltaTime = 0.0f;
 		while (true)
 		{
-			static float deltaTime = m_Timer->GetElapsedTime();
+			m_Timer->ProcessTime();
+			deltaTime = m_Timer->GetElapsedTime();
 			m_AccTime += deltaTime;
 
 			if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
@@ -128,8 +130,7 @@ namespace HopStep
 		if (m_AccTime < frameTime)
 			return;
 
-		auto InputLayer = InputLayer::Get();
-		InputLayer->UpdateKeyStates();
+		InputLayer::Get()->UpdateKeyStates();
 
 		auto currentScene = m_SceneManager->Peek();
 		if (currentScene != nullptr)
@@ -139,35 +140,37 @@ namespace HopStep
 
 		m_TickObjectList->ProcessTick(m_AccTime);
 
-		auto currentFrame = std::make_shared<FrameInfo>();
+		FrameInfo currentFrame;
 
-		m_RenderObjectList->GatherCommand(currentFrame.get());
+		m_RenderObjectList->GatherCommand(currentFrame);
 
-		if (currentFrame->IsValid())
-			PushToRenderQueue(currentFrame);
+		if (currentFrame.IsValid())
+		{
+			m_RenderQueue->Push(currentFrame);
+#ifndef HS_RENDER_THREAD
+			m_Renderer->Render();
+#endif
+		}
 
 		m_AccTime = 0.0f;
 	}
 
-	void HSGame::PushToRenderQueue(std::shared_ptr<FrameInfo> frameInfo)
-	{
-		if (frameInfo == nullptr)
-			return;
-
-		int queueSize = m_RenderQueue->Size();
-		if (queueSize >= 60)
-		{
-			m_RenderQueue->Clear();
-		}
-
-		m_RenderQueue->Push(frameInfo);
-	}
-
 	void HSGame::RenderThreadWork()
 	{
+		GameTimer timer;
+		timer.InitTimer();
+		float accTime = 0.0f;
+
 		while (m_IsRenderThreadActive)
 		{
-			m_Renderer->Render();
+			timer.ProcessTime();
+			accTime += timer.GetElapsedTime();
+
+			if (accTime > frameTime)
+			{
+				m_Renderer->Render();
+				accTime = 0.0f;
+			}
 		}
 
 		m_Renderer->ReleaseRenderer();

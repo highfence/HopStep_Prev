@@ -20,7 +20,7 @@ namespace HopStep
 			Result AddProducer(IRenderCommandProducer* producer);
 			Result DeleteProducer(IRenderCommandProducer* producer);
 
-			void GatherCommand(FrameInfo* frame);
+			void GatherCommand(FrameInfo& frame);
 
 		private:
 

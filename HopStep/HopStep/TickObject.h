@@ -5,11 +5,11 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
-		class ITickObject
+		class TickObject
 		{
 		public :
 
-			ITickObject()
+			TickObject()
 			{
 				auto objectList = TickObjectList::Get();
 				if (objectList == nullptr)
@@ -21,7 +21,7 @@ namespace HopStep
 				objectList->AddObject(this);
 			}
 
-			virtual ~ITickObject()
+			virtual ~TickObject()
 			{
 				auto objectList = TickObjectList::Get();
 				if (objectList == nullptr)
@@ -33,7 +33,7 @@ namespace HopStep
 				objectList->DeleteObject(this);;
 			}
 
-			virtual void Tick(const float deltaTime) = 0;
+			virtual void Tick(const float deltaTime) {};
 		};
 	}
 }

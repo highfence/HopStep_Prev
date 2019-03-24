@@ -68,11 +68,8 @@ namespace HopStep
 		return Result::None;
 	}
 
-	void HSWindow::Produce(FrameInfo* frameInfo)
+	void HSWindow::Produce(FrameInfo& frameInfo)
 	{
-		if (frameInfo == nullptr)
-			return;
-
 		ClearScreenCommand command;
 		command.m_ScreenColor = m_Config.backgroundColor;
 		command.m_IsColorChanged = true;
@@ -91,6 +88,6 @@ namespace HopStep
 
 		renderCommand->type = RenderCommandType::ClearScreen;
 
-		frameInfo->AddRenderCommand(renderCommand);
+		frameInfo.AddRenderCommand(*renderCommand.get());
 	}
 }

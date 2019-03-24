@@ -18,7 +18,7 @@ namespace HopStep
 				m_Scenes.pop();
 		}
 
-		void PushScene(std::shared_ptr<IScene> scene)
+		void PushScene(IScene* scene)
 		{
 			m_Scenes.push(scene);
 		}
@@ -28,13 +28,13 @@ namespace HopStep
 			m_Scenes.pop();
 		}
 
-		std::shared_ptr<IScene> Peek()
+		IScene* Peek()
 		{
 			return m_Scenes.top();
 		}
 
 	protected :
 
-		std::stack<std::shared_ptr<IScene>> m_Scenes;
+		std::stack<IScene*> m_Scenes;
 	};
 }

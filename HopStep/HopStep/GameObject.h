@@ -1,10 +1,13 @@
 #pragma once
+#include "TickObject.h"
+#include <vector>
 
 namespace HopStep
 {
 	using ObjectId = long long;
+	class IComponent;
 
-	class GameObject
+	class GameObject : public TickObject
 	{
 	public :
 
@@ -14,9 +17,15 @@ namespace HopStep
 		void SetObjectId(ObjectId id) { m_Id = id; }
 		ObjectId GetId() const { return m_Id; }
 
+		virtual void Tick(const float deltaTime);
+
+		bool AddComponent(IComponent* component);
+		bool RemoveComponent(IComponent* component);
+
 	protected :
 
-		ObjectId m_Id = 0L;
+		std::vector<IComponent*> m_Components;
 
+		ObjectId m_Id = 0L;
 	};
 }

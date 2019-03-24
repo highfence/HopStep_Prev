@@ -4,8 +4,10 @@ namespace HopStep
 {
 	class SceneManager;
 
-	__interface IScene
+	class IScene
 	{
+	public :
+
 		virtual void UpdateScene(const float deltaTime) = 0;
 
 		virtual bool Init() = 0;

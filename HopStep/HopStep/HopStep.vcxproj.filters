@@ -102,9 +102,6 @@
     <ClInclude Include="RenderProducerList.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="ITickObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="TickObjectList.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -113,6 +110,15 @@
     </ClInclude>
     <ClInclude Include="HSRect.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TickObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,9 @@
     </Filter>
     <Filter Include="Rendering\Renderer">
       <UniqueIdentifier>{a03c910f-28ef-46de-9796-f587a43cb912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{b292c68d-026e-4b8c-ae55-947b8144a8e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +222,12 @@
     </ClCompile>
     <ClCompile Include="HSRect.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="IComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

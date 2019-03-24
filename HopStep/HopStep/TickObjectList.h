@@ -4,7 +4,7 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
-		class ITickObject;
+		class TickObject;
 
 		class TickObjectList
 		{
@@ -15,14 +15,14 @@ namespace HopStep
 			TickObjectList() = default;
 			~TickObjectList();
 
-			Result AddObject(ITickObject* object);
-			Result DeleteObject(ITickObject* object);
+			Result AddObject(TickObject* object);
+			Result DeleteObject(TickObject* object);
 
 			void ProcessTick(const float deltaTime);
 
 		private :
 
-			std::vector<ITickObject*> m_TickObjectList;
+			std::vector<TickObject*> m_TickObjects;
 			static std::shared_ptr<TickObjectList> instance;
 		};
 	}

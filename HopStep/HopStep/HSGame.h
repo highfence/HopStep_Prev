@@ -33,7 +33,7 @@ namespace HopStep
 
 		void GameStart();
 
-		void SetStartScene(std::shared_ptr<IScene> startScene);
+		void SetStartScene(IScene* startScene);
 
 	private :
 
@@ -44,8 +44,6 @@ namespace HopStep
 		void UpdateMessageLoop();
 
 		void UpdateEngine();
-
-		void PushToRenderQueue(std::shared_ptr<FrameInfo> frameInfo);
 
 		WindowConfig m_WindowConfig;
 
@@ -74,5 +72,5 @@ namespace HopStep
 		float m_AccTime = 0.0f;
 	};
 
-	static HSGame* thisGame = nullptr;
+	static HSGame* globalGamePtr = nullptr;
 }

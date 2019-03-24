@@ -8,7 +8,8 @@ namespace HopStep
 		{
 			None,
 			ClearScreen,
-			DrawRect
+			DrawRect,
+			DrawSprite
 		};
 	}
 }

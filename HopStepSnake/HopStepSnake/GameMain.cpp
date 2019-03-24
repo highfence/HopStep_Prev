@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	SnakeGame.InitEngine(windowConfig);
 
 	// Todo : change this sequence easier
-	std::shared_ptr<IScene> gameScene = std::static_pointer_cast<IScene>(std::make_shared<SnakeGameScene>());
+	SnakeGameScene* gameScene = new SnakeGameScene();
 	SnakeGame.SetStartScene(gameScene);
 
 	SnakeGame.GameStart();

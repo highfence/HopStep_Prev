@@ -15,28 +15,24 @@ namespace HopStep
 		return Result::None;
 	}
 
-	Result Internal::RenderCommandProcessor::Process(std::shared_ptr<FrameInfo> frameInfo)
+	Result Internal::RenderCommandProcessor::Process(FrameInfo& frameInfo)
 	{
-		if (frameInfo == nullptr)
-			return Result::NullParameter;
-
-		const auto& commands = frameInfo->m_RenderCommands;
-
-		for (auto& commandList : commands)
+		for (auto& commandList : frameInfo.m_RenderCommands)
 		{
 			auto commandType = commandList.first;
-			auto renderFunction = m_RenderFunctionMap.find(commandType);
+			auto renderFunctionIter = m_RenderFunctionMap.find(commandType);
 
-			if (renderFunction == m_RenderFunctionMap.end())
+			if (renderFunctionIter == m_RenderFunctionMap.end())
 			{
 				m_Logger->Write(LogType::Warn, "%s | Unregisted function render type : %d", __FUNCTION__, static_cast<int>(commandType));
 				continue;
 			}
 
-			auto func = renderFunction->second;
-			for (auto& command : commandList.second)
+			RenderCommandFunc renderFunction = renderFunctionIter->second;
+
+			for (RenderCommand command : commandList.second)
 			{ 
-				func(command);
+				renderFunction(command);
 			}
 		}
 

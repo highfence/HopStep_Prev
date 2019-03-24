@@ -22,11 +22,11 @@ namespace HopStep
 				m_FrameQueue.shrink_to_fit();
 			}
 
-			std::shared_ptr<FrameInfo> Peek()
+			FrameInfo Peek()
 			{
 				std::lock_guard<std::mutex> lock(m_Mutex);
 				if (m_FrameQueue.empty())
-					return nullptr;
+					return FrameInfo();
 
 				return m_FrameQueue.front();
 			}
@@ -39,10 +39,10 @@ namespace HopStep
 					m_FrameQueue.pop_front();
 			}
 
-			void Push(std::shared_ptr<FrameInfo> frame)
+			void Push(FrameInfo& frame)
 			{
 				std::lock_guard<std::mutex> lock(m_Mutex);
-				m_FrameQueue.push_back(frame);
+				m_FrameQueue.emplace_back(frame);
 			}
 
 			bool IsEmpty()
@@ -65,7 +65,7 @@ namespace HopStep
 
 		private:
 
-			std::deque<std::shared_ptr<FrameInfo>> m_FrameQueue;
+			std::deque<FrameInfo> m_FrameQueue;
 			std::mutex m_Mutex;
 		};
 	}

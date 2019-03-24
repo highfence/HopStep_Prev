@@ -13,9 +13,9 @@ namespace HopStep
 
 			bool IsValid();
 			// Todo : change to template function (using boost::shared_ptr<T>)
-			void AddRenderCommand(std::shared_ptr<RenderCommand> command);
+			void AddRenderCommand(RenderCommand& command);
 
-			std::unordered_map<RenderCommandType, std::vector<std::shared_ptr<RenderCommand>>> m_RenderCommands;
+			std::unordered_map<RenderCommandType, std::vector<RenderCommand>> m_RenderCommands;
 		};
 	}
 }

@@ -49,11 +49,8 @@ namespace HopStep
 		return Result::None;
 	}
 
-	void RenderProducerList::GatherCommand(FrameInfo* frameInfo)
+	void RenderProducerList::GatherCommand(FrameInfo& frameInfo)
 	{
-		if (frameInfo == nullptr)
-			return;
-
 		for (const auto& producer : m_RenderProducers)
 		{
 			if (producer == nullptr)

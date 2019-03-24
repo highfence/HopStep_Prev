@@ -98,12 +98,12 @@ namespace HopStep
 		return Result::None;
 	}
 
-	void Internal::DX2DRenderer::ClearScreen(std::shared_ptr<RenderCommand> renderCommand)
+	void Internal::DX2DRenderer::ClearScreen(RenderCommand& renderCommand)
 	{
 		ClearScreenCommand command;
-		const int bodySize = renderCommand->bodySize;
+		const int bodySize = renderCommand.bodySize;
 		std::string rawJson;
-		rawJson.assign(renderCommand->body, renderCommand->bodySize);
+		rawJson.assign(renderCommand.body, renderCommand.bodySize);
 
 		Json::Value root;
 		Json::CharReaderBuilder builder;
@@ -121,18 +121,18 @@ namespace HopStep
 			m_RenderTarget->Clear(screenColor);
 		}
 
-		delete[] renderCommand->body;
+		delete[] renderCommand.body;
 	}
 
-	void Internal::DX2DRenderer::DrawRect(std::shared_ptr<RenderCommand> renderCommand)
+	void Internal::DX2DRenderer::DrawRect(RenderCommand& renderCommand)
 	{
 		if (m_RenderTarget == nullptr)
 			return;
 
 		DrawRectCommand command;
-		const int bodySize = renderCommand->bodySize;
+		const int bodySize = renderCommand.bodySize;
 		std::string rawJson;
-		rawJson.assign(renderCommand->body, renderCommand->bodySize);;
+		rawJson.assign(renderCommand.body, renderCommand.bodySize);;
 
 		Json::Value root;
 		Json::CharReaderBuilder builder;
@@ -162,7 +162,7 @@ namespace HopStep
 		if (SUCCEEDED(hr) == false)
 		{
 			m_Logger->Write(LogType::Error, "%s | Brush creation failed", __FUNCTION__);
-			delete[] renderCommand->body;
+			delete[] renderCommand.body;
 			return;
 		}
 
@@ -175,7 +175,12 @@ namespace HopStep
 			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
 		}
 
-		delete[] renderCommand->body;
+		delete[] renderCommand.body;
 		SafeRelease(&rectBrush);
+	}
+
+	void Internal::DX2DRenderer::DrawSprite(RenderCommand & renderCommand)
+	{
+
 	}
 }

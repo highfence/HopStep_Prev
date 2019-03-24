@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ITickObject.h"
+#include "TickObject.h"
 #include "TickObjectList.h"
 
 namespace HopStep
@@ -18,35 +18,35 @@ namespace HopStep
 	{
 		instance = nullptr;
 
-		m_TickObjectList.clear();
+		m_TickObjects.clear();
 	}
 
-	Result Internal::TickObjectList::AddObject(ITickObject * object)
+	Result Internal::TickObjectList::AddObject(TickObject * object)
 	{
 		if (object == nullptr)
 			return Result::NullParameter;
 
-		if (std::find(m_TickObjectList.begin(), m_TickObjectList.end(), object) != m_TickObjectList.end())
+		if (std::find(m_TickObjects.begin(), m_TickObjects.end(), object) != m_TickObjects.end())
 			return Result::DuplicatedObject;
 
-		m_TickObjectList.push_back(object);
+		m_TickObjects.push_back(object);
 
 		return Result::None;
 	}
 
-	Result Internal::TickObjectList::DeleteObject(ITickObject * object)
+	Result Internal::TickObjectList::DeleteObject(TickObject * object)
 	{
 		if (object == nullptr)
 			return Result::NullParameter;
 
-		std::remove(m_TickObjectList.begin(), m_TickObjectList.end(), object);
+		std::remove(m_TickObjects.begin(), m_TickObjects.end(), object);
 
 		return Result::None;
 	}
 
 	void Internal::TickObjectList::ProcessTick(const float deltaTime)
 	{
-		for (const auto& tickObject : m_TickObjectList)
+		for (const auto& tickObject : m_TickObjects)
 		{
 			if (tickObject == nullptr)
 				continue;

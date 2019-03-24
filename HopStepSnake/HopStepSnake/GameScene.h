@@ -3,8 +3,10 @@
 #include "../../HopStep/HopStep/HopStep.h"
 
 class Apple;
+using IScene = HopStep::IScene;
+using SceneManager = HopStep::SceneManager;
 
-class SnakeGameScene final : public HopStep::IScene
+class SnakeGameScene final : public IScene
 {
 public:
 
@@ -12,7 +14,7 @@ public:
 
 	virtual void UpdateScene(const float deltaTime) override;
 
-	virtual bool OnChangeScene(HopStep::SceneManager* manager) override;
+	virtual bool OnChangeScene(SceneManager* manager) override;
 
 private :
 

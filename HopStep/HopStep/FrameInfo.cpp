@@ -11,18 +11,15 @@ namespace HopStep
 		return true;
 	}
 
-	void Internal::FrameInfo::AddRenderCommand(std::shared_ptr<RenderCommand> command)
+	void Internal::FrameInfo::AddRenderCommand(RenderCommand& command)
 	{
-		if (command == nullptr)
-			return;
-
-		if (m_RenderCommands.find(command->type) == m_RenderCommands.end())
+		if (m_RenderCommands.find(command.type) == m_RenderCommands.end())
 		{
-			std::vector<std::shared_ptr<RenderCommand>> commandList;
-			m_RenderCommands.emplace(command->type, commandList);
+			std::vector<RenderCommand> commandList;
+			m_RenderCommands.emplace(command.type, commandList);
 		}
 
-		auto typeIter = m_RenderCommands.find(command->type);
-		typeIter->second.emplace_back(command);
+		auto typeIter = m_RenderCommands.find(command.type);
+		typeIter->second.push_back(command);
 	}
 }

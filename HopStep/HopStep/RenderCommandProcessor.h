@@ -8,7 +8,7 @@ namespace HopStep
 {
 	inline namespace Internal
 	{
-		using RenderCommandFunc = std::function<void(std::shared_ptr<RenderCommand>)>;
+		using RenderCommandFunc = std::function<void(RenderCommand&)>;
 
 		class RenderCommandProcessor
 		{
@@ -19,7 +19,7 @@ namespace HopStep
 
 			Result Init(HSConsoleLogger* logger);
 
-			Result Process(std::shared_ptr<FrameInfo> frameInfo);
+			Result Process(FrameInfo& frameInfo);
 
 			Result RegistRenderFunction(RenderCommandType type, RenderCommandFunc function);;
 

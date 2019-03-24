@@ -18,7 +18,7 @@ namespace HopStep
 			FilledRect
 		};
 
-		virtual void Produce(FrameInfo* frameInfo) override;
+		virtual void Produce(FrameInfo& frameInfo) override;
 
 		HSColor m_RectColor;
 		HSVector<float> m_Center;

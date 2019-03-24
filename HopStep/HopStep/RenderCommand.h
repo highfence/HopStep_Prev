@@ -48,6 +48,17 @@ namespace HopStep
 			virtual void Serialize(Json::Value& root) override;
 			virtual void Deserialize(Json::Value& root) override;
 		};
+
+		class DrawSpriteCommand final : public IJsonSerializable
+		{
+		public :
+
+			DrawSpriteCommand(void) {}
+			virtual ~DrawSpriteCommand(void) {}
+
+			virtual void Serialize(Json::Value& root) override;
+			virtual void Deserialize(Json::Value& root) override;
+		};
 	}
 
 }

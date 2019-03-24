@@ -28,11 +28,8 @@ namespace HopStep
 		return *this;
 	}
 
-	void HSRect::Produce(FrameInfo* frameInfo)
+	void HSRect::Produce(FrameInfo& frameInfo)
 	{
-		if (frameInfo == nullptr)
-			return;
-
 		DrawRectCommand command;
 		command.m_Rect = HSRect(*this);
 
@@ -50,6 +47,6 @@ namespace HopStep
 
 		renderCommand->type = RenderCommandType::DrawRect;
 
-		frameInfo->AddRenderCommand(renderCommand);
+		frameInfo.AddRenderCommand(*renderCommand.get());
 	}
 }

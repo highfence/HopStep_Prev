@@ -6,7 +6,7 @@ constexpr int widthCellCount = 24;
 constexpr int heightCellCount = 16;
 constexpr int cellPixel = 20;
 
-constexpr float tickTime = 30.0f;
+constexpr float tickTime = 1.0f;
 
 bool SnakeGameScene::Init()
 {
@@ -35,7 +35,7 @@ void SnakeGameScene::UpdateScene(float deltaTime)
 	}
 }
 
-bool SnakeGameScene::OnChangeScene(HopStep::SceneManager * manager)
+bool SnakeGameScene::OnChangeScene(HopStep::SceneManager* manager)
 {
 	if (manager == nullptr)
 		return false;

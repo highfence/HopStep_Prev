@@ -32,7 +32,7 @@ namespace HopStep
 
 		HWND WindowHandle;
 
-		virtual void Produce(FrameInfo* frameInfo) override;
+		virtual void Produce(FrameInfo& frameInfo) override;
 
 	private :
 
