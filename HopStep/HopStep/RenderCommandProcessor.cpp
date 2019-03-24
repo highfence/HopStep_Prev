@@ -7,9 +7,6 @@ namespace HopStep
 {
 	Result Internal::RenderCommandProcessor::Init(HSConsoleLogger * logger)
 	{
-		if (logger == nullptr)
-			return Result::NullParameter;
-
 		m_Logger = logger;
 
 		return Result::None;
@@ -24,7 +21,7 @@ namespace HopStep
 
 			if (renderFunctionIter == m_RenderFunctionMap.end())
 			{
-				m_Logger->Write(LogType::Warn, "%s | Unregisted function render type : %d", __FUNCTION__, static_cast<int>(commandType));
+				m_Logger->Write(LogType::Warn, "%s | Unresisted function render type : %d", __FUNCTION__, static_cast<int>(commandType));
 				continue;
 			}
 

@@ -23,6 +23,30 @@ namespace HopStep
 
 #pragma pack(pop)
 
+		template <class T>
+		std::shared_ptr<T> Deserialze(RenderCommand& rawCommand)
+		{
+			std::shared_ptr<T> command = std::make_shared<T>();
+			const int bodySize = rawCommand.bodySize;
+			std::string rawJson;
+			rawJson.assign(rawCommand.body, rawCommand.bodySize);
+
+			Json::CharReaderBuilder builder;
+			Json::CharReader* reader = builder.newCharReader();
+
+			if (reader == nullptr)
+				return nullptr;
+
+			Json::Value root;
+			reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
+			command->Deserialize(root);
+
+			delete reader;
+			delete[] rawCommand.body;
+
+			return command;
+		}
+
 		class ClearScreenCommand final : public IJsonSerializable
 		{
 		public :

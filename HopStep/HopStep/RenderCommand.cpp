@@ -37,3 +37,11 @@ namespace HopStep
 		m_Rect.m_Type     = static_cast<HSRect::RectType>(root["type"].asInt());
 	}
 }
+
+void HopStep::Internal::DrawSpriteCommand::Serialize(Json::Value & root)
+{
+}
+
+void HopStep::Internal::DrawSpriteCommand::Deserialize(Json::Value & root)
+{
+}

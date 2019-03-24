@@ -30,12 +30,7 @@ namespace HopStep
 		if (hr != S_OK)
 			return Result::DX2DRenderFactoryInitializeFailed;
 
-		m_Processor = std::make_unique<RenderCommandProcessor>();
-
-		ResultChecker initResult;
-		initResult = RegistRenderFunctions();
-
-		return initResult.result;
+		return Result::None;
 	}
 
 	Result Internal::DX2DRenderer::ReleaseRenderer()
@@ -61,7 +56,27 @@ namespace HopStep
 
 		auto currentFrame = m_RenderQueue->Peek();
 
-		m_Processor->Process(currentFrame);
+		for (auto& commandList : currentFrame.m_RenderCommands)
+		{
+			for (RenderCommand command : commandList.second)
+			{
+				switch (command.type)
+				{
+				case Internal::RenderCommandType::ClearScreen:
+					ClearScreen(Deserialze<ClearScreenCommand>(command).get());
+					break;
+				case Internal::RenderCommandType::DrawRect:
+					DrawRect(Deserialze<DrawRectCommand>(command).get());
+					break;
+				case Internal::RenderCommandType::DrawSprite:
+					DrawSprite(Deserialze<DrawSpriteCommand>(command).get());
+					break;
+				default:
+					m_Logger->Write(LogType::Error, "%s | Unresisted function render type : %d", __FUNCTION__, static_cast<int>(command.type));
+					break;
+				}
+			}
+		}
 
 		m_RenderQueue->Pop();
 
@@ -87,66 +102,22 @@ namespace HopStep
 		return Result::None;
 	}
 
-	Result Internal::DX2DRenderer::RegistRenderFunctions()
+	void Internal::DX2DRenderer::ClearScreen(ClearScreenCommand* command)
 	{
-		if (m_Processor == nullptr)
-			return Result::NotInitializeYet;
-
-		m_Processor->RegistRenderFunction(RenderCommandType::ClearScreen, std::bind(&DX2DRenderer::ClearScreen, this, std::placeholders::_1));
-		m_Processor->RegistRenderFunction(RenderCommandType::DrawRect   , std::bind(&DX2DRenderer::DrawRect	  , this, std::placeholders::_1));
-
-		return Result::None;
-	}
-
-	void Internal::DX2DRenderer::ClearScreen(RenderCommand& renderCommand)
-	{
-		ClearScreenCommand command;
-		const int bodySize = renderCommand.bodySize;
-		std::string rawJson;
-		rawJson.assign(renderCommand.body, renderCommand.bodySize);
-
-		Json::Value root;
-		Json::CharReaderBuilder builder;
-		Json::CharReader* reader = builder.newCharReader();;
-
-		if (reader)
-		{
-			reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
-			command.Deserialize(root);
-
-			delete reader;
-
-			HSColor color = command.m_ScreenColor;
-			D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
-			m_RenderTarget->Clear(screenColor);
-		}
-
-		delete[] renderCommand.body;
-	}
-
-	void Internal::DX2DRenderer::DrawRect(RenderCommand& renderCommand)
-	{
-		if (m_RenderTarget == nullptr)
+		if (command == nullptr)
 			return;
 
-		DrawRectCommand command;
-		const int bodySize = renderCommand.bodySize;
-		std::string rawJson;
-		rawJson.assign(renderCommand.body, renderCommand.bodySize);;
+		HSColor color = command->m_ScreenColor;
+		D2D1::ColorF screenColor(color.r, color.g, color.b, color.a);
+		m_RenderTarget->Clear(screenColor);
+	}
 
-		Json::Value root;
-		Json::CharReaderBuilder builder;
-		Json::CharReader* reader = builder.newCharReader();;
-
-		if (reader == nullptr)
+	void Internal::DX2DRenderer::DrawRect(DrawRectCommand* command)
+	{
+		if (command == nullptr)
 			return;
 
-		reader->parse(rawJson.c_str(), rawJson.c_str() + rawJson.size(), &root, nullptr);
-		command.Deserialize(root);
-
-		delete reader;
-
-		HSRect rect = command.m_Rect;
+		HSRect rect = command->m_Rect;
 		HSColor color = rect.m_RectColor;
 		D2D1::ColorF rectColor(color.r, color.g, color.b, color.a);
 
@@ -162,7 +133,6 @@ namespace HopStep
 		if (SUCCEEDED(hr) == false)
 		{
 			m_Logger->Write(LogType::Error, "%s | Brush creation failed", __FUNCTION__);
-			delete[] renderCommand.body;
 			return;
 		}
 
@@ -175,12 +145,13 @@ namespace HopStep
 			m_RenderTarget->DrawRectangle(&rectangle, rectBrush);
 		}
 
-		delete[] renderCommand.body;
 		SafeRelease(&rectBrush);
 	}
 
-	void Internal::DX2DRenderer::DrawSprite(RenderCommand & renderCommand)
+	void Internal::DX2DRenderer::DrawSprite(DrawSpriteCommand* command)
 	{
+		if (command == nullptr)
+			return;
 
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderCommandProcessor.h"
+#include "RenderCommand.h"
 #include "IRenderer.h"
 
 namespace HopStep
@@ -20,15 +21,13 @@ namespace HopStep
 
         private :
 
-			void ClearScreen(RenderCommand& renderCommand);
-			void DrawRect(RenderCommand& renderCommand);
-			void DrawSprite(RenderCommand& renderCommand);
+			void ClearScreen(ClearScreenCommand* renderCommand);
+			void DrawRect(DrawRectCommand* renderCommand);
+			void DrawSprite(DrawSpriteCommand* renderCommand);
 
 			RenderQueue* m_RenderQueue = nullptr;
-			std::unique_ptr<RenderCommandProcessor> m_Processor;
 
 			Result CreateDeviceResources();
-			Result RegistRenderFunctions();
 
 			HSConsoleLogger* m_Logger = nullptr;
 
