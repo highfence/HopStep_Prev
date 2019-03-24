@@ -153,5 +153,7 @@ namespace HopStep
 		if (command == nullptr)
 			return;
 
+		// 커맨드안에는 이미지의 핸들을 받도록 하자.
+		// 스프라이트렌더러는 핸들을 관리해야한다.
 	}
 }
