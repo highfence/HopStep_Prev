@@ -120,6 +120,12 @@
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="HSHandle.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ISingleton.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -154,6 +160,9 @@
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{b292c68d-026e-4b8c-ae55-947b8144a8e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\File">
+      <UniqueIdentifier>{088d860c-c6b1-4e30-ab7e-1ed57e0d7580}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

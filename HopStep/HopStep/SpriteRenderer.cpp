@@ -13,5 +13,18 @@ namespace HopStep
 
 	void SpriteRenderer::Tick(const float deltaTime)
 	{
+
+	}
+
+	void SpriteRenderer::Produce(FrameInfo & frameInfo)
+	{
+		
+	}
+	bool SpriteRenderer::InitWithFileName(const std::string & fileName)
+	{
+
+
+		return false;
 	}
 }
+	

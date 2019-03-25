@@ -160,6 +160,7 @@
     <ClInclude Include="HSDebug.h" />
     <ClInclude Include="HSGame.h" />
     <ClInclude Include="HSConsoleLogger.h" />
+    <ClInclude Include="HSHandle.h" />
     <ClInclude Include="HSRect.h" />
     <ClInclude Include="HsWindow.h" />
     <ClInclude Include="IComponent.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="IRenderCommandProducer.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="ISingleton.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="TickObject.h" />
     <ClInclude Include="JsonSerialize.h" />
